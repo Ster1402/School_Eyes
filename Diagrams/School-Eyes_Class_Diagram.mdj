@@ -3709,7 +3709,7 @@
 										"$ref": "AAAAAAGAUeVDtQjBOf8="
 									},
 									"edgePosition": 2,
-									"text": "0..1"
+									"text": "0..*"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5784,7 +5784,7 @@
 								"reference": {
 									"$ref": "AAAAAAGAUaHTcwROk/M="
 								},
-								"multiplicity": "0..1"
+								"multiplicity": "0..*"
 							},
 							"end2": {
 								"_type": "UMLAssociationEnd",
@@ -5948,7 +5948,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAUaHgxQR34Yw="
 							},
-							"name": "CONFIG_FILE"
+							"name": "CONFIG_FILE",
+							"type": ""
 						}
 					],
 					"operations": [
@@ -6239,7 +6240,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAUaIehwUbFCc="
 							},
-							"name": "__disciplines"
+							"name": "__disciplines",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6377,7 +6379,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAUaI5ZgVtjY0="
 							},
-							"name": "name"
+							"name": "name",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6385,7 +6388,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAUaI5ZgVtjY0="
 							},
-							"name": "level"
+							"name": "level",
+							"type": ""
 						}
 					]
 				},
@@ -6435,7 +6439,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAUaJHDwWWHGo="
 							},
-							"name": "name"
+							"name": "name",
+							"type": ""
 						}
 					]
 				},
