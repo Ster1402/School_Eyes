@@ -1,5 +1,6 @@
 #Ignore the virtual environnement 
 env/
 
-#Ignore 
+#Ignore python cache
 utils/__pychache__/
+__pychache__
