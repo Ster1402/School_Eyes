@@ -1,7 +1,5 @@
-from utils import ReconizerProcess
 from utils.RequestHandler import RequestHandler
 import sys
-
 
 def main(args):
 
