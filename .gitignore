@@ -2,5 +2,4 @@
 env/
 
 #Ignore python cache
-utils/__pychache__/
-__pychache__
+__pycache__
