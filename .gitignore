@@ -1,3 +1,5 @@
+#Ignore the virtual environnement 
 env/
-Diagrams/
-utils/__pychache__
+
+#Ignore 
+utils/__pychache__/
