@@ -3,3 +3,14 @@ env/
 
 #Ignore python cache
 __pycache__
+
+# Ignore the node_modules directory
+node_modules/
+
+# Ignore Logs
+logs
+*.log
+
+# Ignore IDE specific files
+.idea/
+.vscode/
