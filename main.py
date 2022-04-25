@@ -1,13 +1,11 @@
-from utils import ReconizerProcess
-
+from utils.RequestHandler import RequestHandler
 import sys
 
-
 def main(args):
-	pass
+	request_handler = RequestHandler()
+	request_handler.run(args)
 
-
-
-
+#Main program
 if __name__ == '__main__':
 	main(sys.argv)
+
