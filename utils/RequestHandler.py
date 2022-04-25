@@ -1,29 +1,62 @@
-from multiprocessing import RLock
-import threading
+from operator import index
 import os
 import json
-import time
+from aiohttp import web #For web async server
+import socketio #To create a server
 
+global _ROOT_PATH
 _ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-class RequestHandler(threading.Thread):
+class RequestHandler:
     __CONFIG_PATH = os.path.join(_ROOT_PATH, "config/")
     __CONFIG_FILE = os.path.join(__CONFIG_PATH, "config.json") 
 
-    #To make each reconize process lock each other we needed
-    semaphore = RLock()
+    #Async Socket IO Server
+    sio = socketio.AsyncServer()
+    
+    #Create new Aiohttp web Server
+    app = web.Application()
+    #Bind Socket IO to our web base server
+    sio.attach(app)
 
     def __init__(self):
-        threading.Thread.__init__(self)
-        self.name = "RequestHandler_Thread"
+        self.name = "RequestHandler_Server"
 
         self.clients = []
         self.requests = []
+        
         self.host, self.port = self.__getServerInformation()
 
+        #Register event handler
+        self.sio.on('client-request', self.ListenRequest)
+    
+        self._httpRoutes()
+
+
+    def run(self, args):
+        
+        host = self.host if len(args) < 3 else args[1]
+        port = self.port if len(args) < 3 else args[2]
+        
+        #Run the app
+        web.run_app(app=self.app,
+                    host=host,
+                    port=port)
+        
+    def _httpRoutes(self):
+        self.app.router.add_get('/', handler=self.index)
+
+    #Index page : If a browse make a request
+    async def index(self, request):
+        #Getting index.html file
+        index_file = os.path.join( _ROOT_PATH, 
+                                "pages/",
+                                "index.html")
+
+        with open(index_file) as data: 
+            return web.Response(text=data.read(), content_type="text/html")
+
     def _writeDefaultConfig(self):
-        default_host = ""
+        default_host = "0.0.0.0"
         default_port = 65_000
 
         data = {
@@ -70,28 +103,43 @@ class RequestHandler(threading.Thread):
 
         else:
             #Create config.json
+            if not os.path.exists(self.__CONFIG_PATH):            
+                os.makedirs(self.__CONFIG_PATH) 
             
-            os.makedirs(self.__CONFIG_PATH) 
             with open(self.__CONFIG_FILE, "w"):
                 self._writeDefaultConfig()
 
             return (default_host, default_port)
-
-    def run(self):
-        print(self.name)
-        self.ListenRequest()
-        
         
     def DecodeRequest(self, request):
-        #Decode here
+        decoded_request = None
+                 
+        if isinstance(request, str):
+            decoded_request = json.loads(request)
+        elif isinstance(request, dict):
+            decoded_request = request
+        else:
+            pass
+
+        self.requests.append(decoded_request)
+
+        return decoded_request
+
+    #We listen for message
+    @sio.on('client-request')
+    async def ListenRequest(self, socket_id, request):
         
-        #....
-
-        self.requests.append(request)
-
-        return request
-
-    def ListenRequest(self):
-        print("Listening for request...")
-
+        data = self.DecodeRequest(request)
         
+        print("New request from:", socket_id, " request : ", request)
+
+        #Process request here
+        #...
+        #End 
+
+        response = {
+            "Provider": "School-Eyes",
+            "response": data,
+        }
+
+        await self.sio.emit('server-response', json.dumps(response), room=socket_id)

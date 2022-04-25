@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+wheel = "*"
+numpy = "*"
+opencv-python = "*"
+cmake = "*"
+face-recognition = "*"
+face-recognition-models = "*"
+python-socketio = "*"
+aiohttp = "*"
+requests = "*"
+click = "*"
+pypi = "*"
+dlib = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
