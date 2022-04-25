@@ -17,7 +17,6 @@ class RequestHandler:
     
     #Create new Aiohttp web Server
     app = web.Application()
-
     #Bind Socket IO to our web base server
     sio.attach(app)
 
@@ -75,7 +74,6 @@ class RequestHandler:
         #We write the default value in the file
         json.dump(data, open(self.__CONFIG_FILE, "w"), indent=4)
         
-
     def __getServerInformation(self):        
         default_host = ""
         default_port = 65_000
