@@ -3,9 +3,11 @@ import os
 import json
 from aiohttp import web #For web async server
 import socketio #To create a server
+from .Request import Request
 
 global _ROOT_PATH
 _ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 class RequestHandler:
     __CONFIG_PATH = os.path.join(_ROOT_PATH, "config/")
     __CONFIG_FILE = os.path.join(__CONFIG_PATH, "config.json") 
@@ -15,19 +17,22 @@ class RequestHandler:
     
     #Create new Aiohttp web Server
     app = web.Application()
+
     #Bind Socket IO to our web base server
     sio.attach(app)
 
     def __init__(self):
         self.name = "RequestHandler_Server"
 
-        self.clients = []
-        self.requests = []
+        self.clients = set()
+        self.requests = list()
         
         self.host, self.port = self.__getServerInformation()
 
         #Register event handler
         self.sio.on('client-request', self.ListenRequest)
+        self.sio.on('disconnect', self.disconnect)
+        self.sio.on('connect', self.connect)
     
         self._httpRoutes()
 
@@ -70,6 +75,7 @@ class RequestHandler:
         #We write the default value in the file
         json.dump(data, open(self.__CONFIG_FILE, "w"), indent=4)
         
+
     def __getServerInformation(self):        
         default_host = ""
         default_port = 65_000
@@ -98,7 +104,6 @@ class RequestHandler:
                                       open(self.__CONFIG_FILE, "w"), 
                                       indent=4)
 
-
             return (data.get("Server").get("Host"),
                     data.get("Server").get("Port"))
 
@@ -111,7 +116,8 @@ class RequestHandler:
                 self._writeDefaultConfig()
 
             return (default_host, default_port)
-        
+
+
     def DecodeRequest(self, request):
         decoded_request = None
                  
@@ -119,28 +125,47 @@ class RequestHandler:
             decoded_request = json.loads(request)
         elif isinstance(request, dict):
             decoded_request = request
-        else:
-            pass
 
         self.requests.append(decoded_request)
 
         return decoded_request
 
+    """
+    Events : 
+        - connect : new client
+        - disconnect : client disconnect
+        - client-request : request for attendance list
+    """
+
+    @sio.on('connect')
+    def connect(self, socket_id, environ, auth):
+        self.clients.add(socket_id)
+        print("Connected : ", socket_id)
+
+    @sio.on('disconnect')
+    def disconnect(self, socket_id, environ):
+        if socket_id in self.clients:
+            self.clients.remove(socket_id)
+        print("Disconnected : ", socket_id)
+
     #We listen for message
     @sio.on('client-request')
     async def ListenRequest(self, socket_id, request):
-        
+
+        print("Numbers : " , len(self.clients) )
+
         data = self.DecodeRequest(request)
         
         print("New request from:", socket_id, " request : ", request)
 
         #Process request here
-        #...
+        #
         #End 
 
-        response = {
-            "Provider": "School-Eyes",
-            "response": data,
-        }
+        response = {**data}
+        response["Provider"] = "School-Eyes"
+        
+        print("Response: ",response)
 
         await self.sio.emit('server-response', json.dumps(response), room=socket_id)
+
