@@ -47,6 +47,7 @@ class RequestHandler:
 
     #Index page : If a browse make a request
     async def index(self, request):
+        print(request)
         #Getting index.html file
         index_file = os.path.join( _ROOT_PATH, 
                                 "pages/",
