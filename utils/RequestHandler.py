@@ -143,7 +143,7 @@ class RequestHandler:
         print("Connected : ", socket_id)
 
     @sio.on('disconnect')
-    def disconnect(self, socket_id, environ):
+    def disconnect(self, socket_id):
         if socket_id in self.clients:
             self.clients.remove(socket_id)
         print("Disconnected : ", socket_id)
