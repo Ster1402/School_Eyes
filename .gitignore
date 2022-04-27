@@ -15,3 +15,8 @@ logs
 # Ignore IDE specific files
 .idea/
 .vscode/
+
+# Ignore pictures
+*.png
+*.jpeg
+*.jpg
