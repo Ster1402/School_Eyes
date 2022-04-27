@@ -1,4 +1,3 @@
-from operator import index
 import os
 import json
 from aiohttp import web #For web async server
@@ -150,11 +149,11 @@ class RequestHandler:
     @sio.on('client-request')
     async def ListenRequest(self, socket_id, request):
 
-        print("Numbers : " , len(self.clients) )
+        print("Numbers of clients : " , len(self.clients) )
 
         data = self.DecodeRequest(request)
         
-        print("New request from:", socket_id, " request : ", request)
+        print("Socket ID:", socket_id, " request : ", request)
 
         #Process request here
         #

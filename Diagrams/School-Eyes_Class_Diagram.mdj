@@ -237,24 +237,7 @@
 											"top": 304,
 											"width": 143,
 											"height": 13,
-											"text": "+connection",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGAUdzPmgekIsA=",
-											"_parent": {
-												"$ref": "AAAAAAGAUaHTfARWFvU="
-											},
-											"model": {
-												"$ref": "AAAAAAGAUdzPVgehVMU="
-											},
-											"font": "Arial;13;0",
-											"left": 29,
-											"top": 319,
-											"width": 143,
-											"height": 13,
-											"text": "+launched_hour",
+											"text": "+socket_id",
 											"horizontalAlignment": 0
 										},
 										{
@@ -268,7 +251,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 29,
-											"top": 334,
+											"top": 319,
 											"width": 143,
 											"height": 13,
 											"text": "+finish_hour",
@@ -279,7 +262,7 @@
 									"left": 24,
 									"top": 209,
 									"width": 153,
-									"height": 143
+									"height": 128
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -292,7 +275,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 24,
-									"top": 352,
+									"top": 337,
 									"width": 153,
 									"height": 10
 								},
@@ -5891,17 +5874,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGAUaHTcwROk/M="
 							},
-							"name": "connection",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGAUdzPVgehVMU=",
-							"_parent": {
-								"$ref": "AAAAAAGAUaHTcwROk/M="
-							},
-							"name": "launched_hour",
-							"type": ""
+							"name": "socket_id"
 						},
 						{
 							"_type": "UMLAttribute",
