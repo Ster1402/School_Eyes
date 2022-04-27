@@ -1,4 +1,12 @@
 {
+    "VideoSources" : {
+        "_15BS2": {
+            "camera_0" : "rtsp://192.168.43.110:8080/h264_ulaw.sdp",
+            "camera_1" : "rtsp://192.168.43.161:8080/h264_ulaw.sdp"},
+        "_27BS2": {
+            "camera_0" : "rtsp://192.168.43.30:8080/h264_ulaw.sdp",
+            "camera_1" : "rtsp://192.168.43.167:8080/h264_ulaw.sdp"}
+    },
     "Server": {
         "Host": "0.0.0.0",
         "Port": 65000
