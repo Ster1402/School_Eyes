@@ -1,5 +1,3 @@
-import os
-from pprint import pprint
 from ..database.db import StudentModel
 
 class Student(dict):

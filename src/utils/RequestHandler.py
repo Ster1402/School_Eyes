@@ -1,6 +1,6 @@
 import os
 import json
-from aiohttp import web #For web async server
+from aiohttp import web
 import socketio #To create a server
 from .Request import Request
 from .ReconizerProcess import ReconizerProcess
@@ -162,9 +162,9 @@ class RequestHandler:
 
         #Process request here
         reconizer_process = ReconizerProcess(data)
-        res = reconizer_process.RecognitionProcess()
-        
+        res = await reconizer_process.RecognitionProcess()
+                
         print("Response: ", res)
 
-        await self.sio.emit('server-response', json.dumps(res), room=socket_id)
+        await self.sio.emit('server-response', json.dumps(res), broadcast=True)
 

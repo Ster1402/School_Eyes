@@ -2,24 +2,22 @@ from time import ctime, sleep
 from .FaceReconizer import FaceReconizer
 from .VideoProvider import VideoProvider
 from .Request import Request
-
+import cv2
 
 class TimerTest:
 
     def __init__(self) -> None:
-        self.latency = 0.3
+        self.latency = 0.5
 
         self.i_test = 0
         self.j_test = 0
 
     def ShouldEndThread(self):
         self.i_test += 1
-        return self.i_test == 5
+        return self.i_test == 10
         
     def ShouldProcessFrame(self):
-        self.j_test += 1
-
-        return self.j_test % 2 == 0
+        return True
 
 
 class ReconizerProcess:
@@ -39,26 +37,26 @@ class ReconizerProcess:
         #ListFormatter : To format the result
         self.__list_formatter = None
 
-    def RecognitionProcess(self) -> list:
+    async def RecognitionProcess(self) -> list:
         
         result = []        
 
         for frame in self.__video_provider.ProvideFrame():
-        
             if not self.__timer.ShouldEndThread():
-                print("Not the end...")
-
+                                
                 if self.__timer.ShouldProcessFrame():
-                    print("Process frame...")
                     
-                    students_detected = self.__face_reconizer.StudentsDetected(frame)
+                    rgb_frame = frame[:, :, ::-1]
+                    students_detected = self.__face_reconizer.StudentsDetected(rgb_frame)
                     time = ctime()
+                    
+                    cv2.imwrite('FrameVideo.png', frame)
 
                     result.append({
                         "time": time,
                         "students": students_detected 
                     })
-                
+                print('Sleep latency')                
                 sleep(self.__timer.latency)
 
             else:

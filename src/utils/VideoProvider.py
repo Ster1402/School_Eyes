@@ -33,11 +33,12 @@ class VideoProvider:
         for video_source in cycle(self.__video_sources):
 
             camera = cv2.VideoCapture(video_source)
-
+            print("Camera ok...")
             if camera.isOpened():
                 is_frame_ready, frame = camera.read()
-
                 if is_frame_ready:
+                    sleep(1)
                     yield frame
-
+                    sleep(1)
+                    
             camera.release()
