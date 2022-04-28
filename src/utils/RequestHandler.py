@@ -3,6 +3,7 @@ import json
 from aiohttp import web #For web async server
 import socketio #To create a server
 from .Request import Request
+from .ReconizerProcess import ReconizerProcess
 
 global _ROOT_PATH
 _ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -74,7 +75,7 @@ class RequestHandler:
         json.dump(data, open(self.__CONFIG_FILE, "w"), indent=4)
         
     def __getServerInformation(self):        
-        default_host = ""
+        default_host = "0.0.0.0"
         default_port = 65_000
         data = {}
 
@@ -125,7 +126,14 @@ class RequestHandler:
 
         self.requests.append(decoded_request)
 
-        return decoded_request
+        return Request(id=decoded_request.get("id"),
+                        teacher=decoded_request.get("teacher"),
+                        classroom=decoded_request.get("classroom"),
+                        course=decoded_request.get("course"),
+                        disciplines=decoded_request.get("disciplines"),
+                        level=decoded_request.get("level"),
+                        socket_id=decoded_request.get("socket_id"),
+                        finish_hour=decoded_request.get("finish_hour"))
 
     """
     Events : 
@@ -136,13 +144,10 @@ class RequestHandler:
 
     @sio.on('connect')
     def connect(self, socket_id, environ, auth):
-        self.clients.add(socket_id)
         print("Connected : ", socket_id)
 
     @sio.on('disconnect')
     def disconnect(self, socket_id):
-        if socket_id in self.clients:
-            self.clients.remove(socket_id)
         print("Disconnected : ", socket_id)
 
     #We listen for message
@@ -156,13 +161,10 @@ class RequestHandler:
         print("Socket ID:", socket_id, " request : ", request)
 
         #Process request here
-        #
-        #End 
-
-        response = {**data}
-        response["Provider"] = "School-Eyes"
+        reconizer_process = ReconizerProcess(data)
+        res = reconizer_process.RecognitionProcess()
         
-        print("Response: ",response)
+        print("Response: ", res)
 
-        await self.sio.emit('server-response', json.dumps(response), room=socket_id)
+        await self.sio.emit('server-response', json.dumps(res), room=socket_id)
 

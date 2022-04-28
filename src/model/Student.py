@@ -8,14 +8,8 @@ class Student(dict):
         self["name"] = name
         self["register_number"] = register_number
         self["level"] = level
-
-        self["pictures"] = []
+        self["pictures"] = StudentModel.getStudentPictures(register_number)
         self["face_encodings"] = self._EncodeFace()
-
-        print("++++++++++++++++++++++++++++++")
-        print("Student:")
-        pprint(self)
-        print("------------------------------")
 
     def __key(self):
         return self["register_number"]

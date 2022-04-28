@@ -4,18 +4,12 @@ from ..database.db import DisciplineModel
 
 class Discipline(dict):
 
-    def __init__(self, name, level) -> None:
+    def __init__(self, name, axes, level) -> None:
         assert isinstance(name, str)
         assert isinstance(level, int)
 
         self["name"] = name
         self["level"] = level
-        
-        axes_names = DisciplineModel.getAxes(name)
 
-        self["axes"] = [ Axe(axe,level) for axe in axes_names ]
+        self["axes"] = [ Axe(axe,level) for axe in axes ]
 
-        print("++++++++++++++++++++++++++++++")
-        print("Discipline:")
-        pprint(self)
-        print("------------------------------")

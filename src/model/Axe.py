@@ -8,8 +8,3 @@ class Axe(dict):
         self["name"] = name
         self["level"] = level
         self["students"] = Student.getStudents(axe=name, level=level)
-
-        print("++++++++++++++++++++++++++++++")
-        print("Axe:")
-        pprint(self)
-        print("------------------------------")
