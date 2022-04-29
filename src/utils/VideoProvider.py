@@ -34,20 +34,28 @@ class VideoProvider:
 
             camera = cv2.VideoCapture(video_source)
 
-            print("[Camera retrieved]")
+            print(f"[Camera retrieved : {video_source}]")
+
+            fps = 0
 
             if camera.isOpened():
-                print("[Camera opened!]")
-                
-                fps = 0
 
-                while fps < 30:
-                    fps += 1
-                    is_frame_ready, frame = camera.read()
-                    if is_frame_ready:
-                        print("[Frame ready]")
-                        yield frame
+                print("[Camera opened!]")
+                sleep(0.3)
+                is_frame_ready, frame = camera.read()
+
+                if is_frame_ready:
+
+                    print("[Frame ready]")
+
+                    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+                    cv2.imwrite("FrameTest.png", frame)
+
+                    yield frame
+
             else:
                 print("[[Error] : Couldn't open camera!]")        
 
             camera.release()
+            print("[Camera closed]!")
