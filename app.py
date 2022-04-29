@@ -7,7 +7,8 @@ from src.utils.Request import Request
 
 async def main(args):
 	test = await ReconizerProcess(request=Request(classroom="test", 
-									disciplines=[{"name":"GIT", "axes":["GLO"]}]
+									disciplines=[{"name":"GIT", "axes":["GLO"]}],
+									level=3
 									)
 					).RecognitionProcess()
 	pprint(test)

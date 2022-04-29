@@ -1,5 +1,7 @@
+from time import sleep
 import cv2
 import face_recognition as fr
+from pprintpp import pprint
 from ..model.Discipline import Discipline
 
 
@@ -18,7 +20,8 @@ class FaceReconizer:
 
         self.__disciplines = []
         self.__students = []
-
+        print("FaceReconizer:", concerned_disciplines)
+        
         for discipline in concerned_disciplines:
             name = discipline["name"]
             axes = discipline["axes"]
@@ -42,16 +45,17 @@ class FaceReconizer:
 
                 self.__students.extend(students)
 
-    async def StudentsDetected(self, frame) -> list:
-
-        if not frame.all():
-            return []
+    def StudentsDetected(self, frame) -> list:
 
         print("Enter StudentDetected...")
         
+        print(" Students :")
+        #sleep(1)
+        print("......")
+
         result = []
 
-        face_locations = fr.face_locations(img=frame, model="cnn")
+        face_locations = fr.face_locations(img=frame, model="hog")
         print("Face Locations ok...")
         unknowns_faces_encodings = fr.face_encodings(face_image=frame, 
                                                      known_face_locations=face_locations)

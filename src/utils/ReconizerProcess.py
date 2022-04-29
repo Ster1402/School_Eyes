@@ -45,9 +45,9 @@ class ReconizerProcess:
             if not self.__timer.ShouldEndThread():
                                 
                 if self.__timer.ShouldProcessFrame():
-                    
+                    print("Frame processed...")
                     rgb_frame = frame[:, :, ::-1]
-                    students_detected = await self.__face_reconizer.StudentsDetected(rgb_frame)
+                    students_detected = self.__face_reconizer.StudentsDetected(rgb_frame)
                     time = ctime()
                     
                     #cv2.imwrite('FrameVideo.png', frame)

@@ -36,9 +36,11 @@ class VideoProvider:
             print("Camera ok...")
             if camera.isOpened():
                 is_frame_ready, frame = camera.read()
+                print("Camera opened!")
                 if is_frame_ready:
-                    sleep(1)
+                    print("Frame ready")
                     yield frame
                     sleep(1)
-                    
+            else:
+                print("Couldn't open camera!")        
             camera.release()
