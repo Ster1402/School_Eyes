@@ -123,7 +123,7 @@ class DB:
         cursor.close()
         con.close()
 
-        if not result:
+        if not result[0]:
             return 0
         
         return result[0]

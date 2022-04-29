@@ -29,18 +29,25 @@ class VideoProvider:
 
 
     def ProvideFrame(self):
-        
+        print("[VideoProvider.ProvideFrame")
         for video_source in cycle(self.__video_sources):
 
             camera = cv2.VideoCapture(video_source)
-            print("Camera ok...")
+
+            print("[Camera retrieved]")
+
             if camera.isOpened():
-                is_frame_ready, frame = camera.read()
-                print("Camera opened!")
-                if is_frame_ready:
-                    print("Frame ready")
-                    yield frame
-                    sleep(1)
+                print("[Camera opened!]")
+                
+                fps = 0
+
+                while fps < 30:
+                    fps += 1
+                    is_frame_ready, frame = camera.read()
+                    if is_frame_ready:
+                        print("[Frame ready]")
+                        yield frame
             else:
-                print("Couldn't open camera!")        
+                print("[[Error] : Couldn't open camera!]")        
+
             camera.release()

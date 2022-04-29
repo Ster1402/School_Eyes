@@ -4,6 +4,7 @@ from .VideoProvider import VideoProvider
 from .Request import Request
 import cv2
 import asyncio
+
 class TimerTest:
 
     def __init__(self) -> None:
@@ -14,7 +15,7 @@ class TimerTest:
 
     def ShouldEndThread(self):
         self.i_test += 1
-        return self.i_test == 10
+        return self.i_test == 35
         
     def ShouldProcessFrame(self):
         return True
@@ -45,14 +46,8 @@ class ReconizerProcess:
             if not self.__timer.ShouldEndThread():
                                 
                 if self.__timer.ShouldProcessFrame():
-<<<<<<< HEAD
-                    print("Frame processed...")
-                    rgb_frame = frame[:, :, ::-1]
-                    students_detected = self.__face_reconizer.StudentsDetected(rgb_frame)
-=======
                     
                     students_detected = await self.__face_reconizer.StudentsDetected(frame)
->>>>>>> d8308cedb69e5e6ef828932aa214276abd2ae8cb
                     time = ctime()
             
                     result.append({

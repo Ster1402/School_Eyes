@@ -45,45 +45,35 @@ class FaceReconizer:
 
                 self.__students.extend(students)
 
-<<<<<<< HEAD
-    def StudentsDetected(self, frame) -> list:
-=======
     async def StudentsDetected(self, frame) -> list:
->>>>>>> d8308cedb69e5e6ef828932aa214276abd2ae8cb
 
-        print("Enter StudentDetected...")
-        
-        print(" Students :")
-        #sleep(1)
-        print("......")
+        print("[FaceReconizer.StudentsDetected]")
 
         result = []
 
-<<<<<<< HEAD
-        face_locations = fr.face_locations(img=frame, model="hog")
-=======
-        face_locations = fr.face_locations(img=frame, model="hog", number_of_times_to_upsample=2)
->>>>>>> d8308cedb69e5e6ef828932aa214276abd2ae8cb
-        print("Face Locations ok...")
+        face_locations = fr.face_locations(img=frame,
+                                                model="hog", 
+                                                number_of_times_to_upsample=3)
+            
+        print("[Face Locations]:", face_locations)
         unknowns_faces_encodings = fr.face_encodings(face_image=frame, 
-                                                     known_face_locations=face_locations)
-
-        print("Students face encodings...")
+                                                     known_face_locations=face_locations,
+                                                     num_jitters=2)
 
         for unknown_face_encoding in unknowns_faces_encodings:
 
-            print("Trying to know student")
+            print("[Trying to know student]")
 
             for student in self.__students:
                 
-                print("Comparing with : ", student["name"])
+                print("[Comparing with : ", student["name"], "]")
                 student_face_encodings = student["face_encodings"]
 
                 if student_face_encodings:
 
                     matches = fr.compare_faces(known_face_encodings=student_face_encodings,
                                         face_encoding_to_check= unknown_face_encoding,
-                                        tolerance=0.6)
+                                        tolerance=0.4)
 
                     number_of_match = matches.count(True)
                     print("Number of match:", number_of_match)

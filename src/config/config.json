@@ -1,8 +1,7 @@
 {
     "VideoSources" : {
         "test" : {
-            "t" : 0,
-            "t_2" : "rtsp://192.168.43.37:8080/h264_ulaw.sdp"
+            "t" : 0
         },
         "_15BS1": {
             "camera_0" : "rtsp://192.168.43.110:8080/h264_ulaw.sdp",
