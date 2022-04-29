@@ -45,17 +45,24 @@ class ReconizerProcess:
             if not self.__timer.ShouldEndThread():
                                 
                 if self.__timer.ShouldProcessFrame():
+<<<<<<< HEAD
                     print("Frame processed...")
                     rgb_frame = frame[:, :, ::-1]
                     students_detected = self.__face_reconizer.StudentsDetected(rgb_frame)
-                    time = ctime()
+=======
                     
-                    #cv2.imwrite('FrameVideo.png', frame)
-
+                    students_detected = await self.__face_reconizer.StudentsDetected(frame)
+>>>>>>> d8308cedb69e5e6ef828932aa214276abd2ae8cb
+                    time = ctime()
+            
                     result.append({
                         "time": time,
                         "students": students_detected 
                     })
+                
+                else:
+                    continue
+
                 print('Sleep latency')                
                 sleep(self.__timer.latency)
 

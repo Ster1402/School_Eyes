@@ -45,7 +45,11 @@ class FaceReconizer:
 
                 self.__students.extend(students)
 
+<<<<<<< HEAD
     def StudentsDetected(self, frame) -> list:
+=======
+    async def StudentsDetected(self, frame) -> list:
+>>>>>>> d8308cedb69e5e6ef828932aa214276abd2ae8cb
 
         print("Enter StudentDetected...")
         
@@ -55,7 +59,11 @@ class FaceReconizer:
 
         result = []
 
+<<<<<<< HEAD
         face_locations = fr.face_locations(img=frame, model="hog")
+=======
+        face_locations = fr.face_locations(img=frame, model="hog", number_of_times_to_upsample=2)
+>>>>>>> d8308cedb69e5e6ef828932aa214276abd2ae8cb
         print("Face Locations ok...")
         unknowns_faces_encodings = fr.face_encodings(face_image=frame, 
                                                      known_face_locations=face_locations)
