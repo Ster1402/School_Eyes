@@ -1,5 +1,6 @@
 import cv2
 import face_recognition as fr
+from pprintpp import pprint
 from ..model.Discipline import Discipline
 
 
@@ -44,14 +45,11 @@ class FaceReconizer:
 
     async def StudentsDetected(self, frame) -> list:
 
-        if not frame.all():
-            return []
-
         print("Enter StudentDetected...")
         
         result = []
 
-        face_locations = fr.face_locations(img=frame, model="cnn")
+        face_locations = fr.face_locations(img=frame, model="hog", number_of_times_to_upsample=2)
         print("Face Locations ok...")
         unknowns_faces_encodings = fr.face_encodings(face_image=frame, 
                                                      known_face_locations=face_locations)

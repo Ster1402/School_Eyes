@@ -46,16 +46,17 @@ class ReconizerProcess:
                                 
                 if self.__timer.ShouldProcessFrame():
                     
-                    rgb_frame = frame[:, :, ::-1]
-                    students_detected = await self.__face_reconizer.StudentsDetected(rgb_frame)
+                    students_detected = await self.__face_reconizer.StudentsDetected(frame)
                     time = ctime()
-                    
-                    #cv2.imwrite('FrameVideo.png', frame)
-
+            
                     result.append({
                         "time": time,
                         "students": students_detected 
                     })
+                
+                else:
+                    continue
+
                 print('Sleep latency')                
                 sleep(self.__timer.latency)
 
