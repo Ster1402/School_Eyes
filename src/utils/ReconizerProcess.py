@@ -3,7 +3,7 @@ from .FaceReconizer import FaceReconizer
 from .VideoProvider import VideoProvider
 from .Request import Request
 import cv2
-
+import asyncio
 class TimerTest:
 
     def __init__(self) -> None:
@@ -47,10 +47,10 @@ class ReconizerProcess:
                 if self.__timer.ShouldProcessFrame():
                     
                     rgb_frame = frame[:, :, ::-1]
-                    students_detected = self.__face_reconizer.StudentsDetected(rgb_frame)
+                    students_detected = await self.__face_reconizer.StudentsDetected(rgb_frame)
                     time = ctime()
                     
-                    cv2.imwrite('FrameVideo.png', frame)
+                    #cv2.imwrite('FrameVideo.png', frame)
 
                     result.append({
                         "time": time,

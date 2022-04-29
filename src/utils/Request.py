@@ -19,8 +19,8 @@
 
 class Request(dict):
 
-    def __init__(self, id, teacher, classroom, course, 
-                disciplines, level, socket_id, finish_hour):
+    def __init__(self, id=0, teacher="", classroom="", course="", 
+                disciplines="", level=0, socket_id="", finish_hour=""):
 
         self._verifyParam(id, teacher, classroom, course, 
                          disciplines, level, socket_id, finish_hour)

@@ -1,13 +1,21 @@
-from src.utils.RequestHandler import RequestHandler
+from pprint import pprint
+from src.utils.ReconizerProcess import ReconizerProcess
 import sys
+import asyncio
 
-def main(args):
-	request_handler = RequestHandler()
-	request_handler.run(args)
+from src.utils.Request import Request
+
+async def main(args):
+	test = await ReconizerProcess(request=Request(classroom="test", 
+									disciplines=[{"name":"GIT", "axes":["GLO"]}]
+									)
+					).RecognitionProcess()
+	pprint(test)
+	# request_handler = RequestHandler()
+	# request_handler.run(args)
 
 #Main program
 if __name__ == '__main__':
-	main(sys.argv)
-
+	asyncio.run(main(sys.argv), debug=True)
 
 

@@ -162,7 +162,7 @@ class RequestHandler:
 
         #Process request here
         reconizer_process = ReconizerProcess(data)
-        res = await reconizer_process.RecognitionProcess()
+        res = reconizer_process.RecognitionProcess()
                 
         print("Response: ", res)
 

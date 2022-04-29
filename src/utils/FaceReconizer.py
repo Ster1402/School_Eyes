@@ -42,12 +42,16 @@ class FaceReconizer:
 
                 self.__students.extend(students)
 
-    def StudentsDetected(self, frame) -> list:
+    async def StudentsDetected(self, frame) -> list:
+
+        if not frame.all():
+            return []
+
         print("Enter StudentDetected...")
         
         result = []
 
-        face_locations = fr.face_locations(img=frame, model="hog")
+        face_locations = fr.face_locations(img=frame, model="cnn")
         print("Face Locations ok...")
         unknowns_faces_encodings = fr.face_encodings(face_image=frame, 
                                                      known_face_locations=face_locations)
@@ -55,6 +59,9 @@ class FaceReconizer:
         print("Students face encodings...")
 
         for unknown_face_encoding in unknowns_faces_encodings:
+
+            print("Trying to know student")
+
             for student in self.__students:
                 
                 print("Comparing with : ", student["name"])
@@ -64,7 +71,7 @@ class FaceReconizer:
 
                     matches = fr.compare_faces(known_face_encodings=student_face_encodings,
                                         face_encoding_to_check= unknown_face_encoding,
-                                        tolerance=0.4)
+                                        tolerance=0.6)
 
                     number_of_match = matches.count(True)
                     print("Number of match:", number_of_match)
@@ -73,9 +80,6 @@ class FaceReconizer:
 
                     #We add student if at least 50% of his pictures matches
                     if number_of_match > 0:
-                        del student["face_encodings"]
-                        del student["pictures"]
-                        
                         result.append(student)
 
         return result
