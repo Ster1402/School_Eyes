@@ -2,8 +2,7 @@ from time import ctime, sleep
 from .FaceReconizer import FaceReconizer
 from .VideoProvider import VideoProvider
 from .Request import Request
-import cv2
-import asyncio
+
 
 class TimerTest:
 
@@ -15,7 +14,7 @@ class TimerTest:
 
     def ShouldEndThread(self):
         self.i_test += 1
-        return self.i_test == 35
+        return self.i_test == 5
         
     def ShouldProcessFrame(self):
         return True
@@ -43,6 +42,7 @@ class ReconizerProcess:
         result = []        
 
         for frame in self.__video_provider.ProvideFrame():
+
             if not self.__timer.ShouldEndThread():
                                 
                 if self.__timer.ShouldProcessFrame():
@@ -66,4 +66,3 @@ class ReconizerProcess:
                 break
 
         return result
-

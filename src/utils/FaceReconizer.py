@@ -1,7 +1,4 @@
-from time import sleep
-import cv2
 import face_recognition as fr
-from pprintpp import pprint
 from ..model.Discipline import Discipline
 
 
@@ -51,14 +48,28 @@ class FaceReconizer:
 
         result = []
 
-        face_locations = fr.face_locations(img=frame,
+        try:
+            face_locations = fr.face_locations(img=frame,
                                                 model="hog", 
                                                 number_of_times_to_upsample=3)
+                
+            print("[Face Locations]:", face_locations)
+
+        except:
+            print("Error while trying to get face locations")
+            return []
+
+        else:
+
+            if face_locations:
+                unknowns_faces_encodings = fr.face_encodings(face_image=frame, 
+                                                            known_face_locations=face_locations,
+                                                            num_jitters=2)
+            else:
+                print("Nobody found with face_locations!")
+                unknowns_faces_encodings = fr.face_encodings(face_image=frame,
+                                                            num_jitters=2)
             
-        print("[Face Locations]:", face_locations)
-        unknowns_faces_encodings = fr.face_encodings(face_image=frame, 
-                                                     known_face_locations=face_locations,
-                                                     num_jitters=2)
 
         for unknown_face_encoding in unknowns_faces_encodings:
 
@@ -80,8 +91,14 @@ class FaceReconizer:
 
                     accurency_percent = (number_of_match / len(student_face_encodings))
 
+                    print(f"Accurency : {accurency_percent * 100}%")
+
                     #We add student if at least 50% of his pictures matches
                     if number_of_match > 0:
-                        result.append(student)
+                        #Remove face_encodings and pictures
+                        s: dict = student.copy()
+                        s.pop("face_encodings")
+                        s.pop("pictures")
+                        result.append(s)
 
         return result

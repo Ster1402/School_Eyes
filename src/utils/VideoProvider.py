@@ -29,7 +29,7 @@ class VideoProvider:
 
 
     def ProvideFrame(self):
-        print("[VideoProvider.ProvideFrame")
+        print("[VideoProvider.ProvideFrame]")
         for video_source in cycle(self.__video_sources):
 
             camera = cv2.VideoCapture(video_source)
@@ -41,11 +41,17 @@ class VideoProvider:
                 
                 fps = 0
 
-                while fps < 30:
+                while fps < 5:
                     fps += 1
                     is_frame_ready, frame = camera.read()
                     if is_frame_ready:
                         print("[Frame ready]")
+                        
+                        try:
+                            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                        except:
+                            pass
+
                         yield frame
             else:
                 print("[[Error] : Couldn't open camera!]")        

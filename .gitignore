@@ -20,3 +20,6 @@ logs
 *.png
 *.jpeg
 *.jpg
+
+#Ignore test
+*test.py
