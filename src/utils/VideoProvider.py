@@ -1,7 +1,6 @@
 import json
 import cv2
 from itertools import cycle
-from time import sleep
 import os
 class VideoProvider:
 
@@ -34,9 +33,12 @@ class VideoProvider:
 
             camera = cv2.VideoCapture(video_source)
 
-            print("[Camera retrieved]")
+            print(f"[Camera retrieved : {video_source}]")
+
+            fps = 0
 
             if camera.isOpened():
+
                 print("[Camera opened!]")
                 
                 fps = 0
@@ -57,3 +59,4 @@ class VideoProvider:
                 print("[[Error] : Couldn't open camera!]")        
 
             camera.release()
+            print("[Camera closed]!")
