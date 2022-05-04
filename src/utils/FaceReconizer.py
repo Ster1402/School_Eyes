@@ -1,4 +1,7 @@
+from PIL import Image
 import face_recognition as fr
+
+from ..model.Student import Student
 from ..model.Discipline import Discipline
 
 
@@ -17,7 +20,7 @@ class FaceReconizer:
 
         self.__disciplines = []
         self.__students = []
-        print("FaceReconizer:", concerned_disciplines)
+        print("[FaceReconizer.__init__]...")
         
         for discipline in concerned_disciplines:
             name = discipline["name"]
@@ -26,6 +29,8 @@ class FaceReconizer:
             self.__disciplines.append( Discipline(name, axes, level) )
         
         self.__FindStudents()
+
+        print("[FaceReconizer.__init__] : done !")
 
     def __FindStudents(self):
 
@@ -42,11 +47,14 @@ class FaceReconizer:
 
                 self.__students.extend(students)
 
-    async def StudentsDetected(self, frame) -> list:
+    def StudentsDetected(self, frame) -> list:
 
-        print("[FaceReconizer.StudentsDetected]")
+        print("[FaceReconizer.StudentsDetected]...")
+        # pil_img = Image.fromarray(frame)
+        # pil_img.show()
+        # print("Showing frame...")
 
-        result = []
+        result = set()
 
         try:
             face_locations = fr.face_locations(img=frame,
@@ -57,7 +65,7 @@ class FaceReconizer:
 
         except:
             print("Error while trying to get face locations")
-            return []
+            return set()
 
         else:
 
@@ -65,6 +73,7 @@ class FaceReconizer:
                 unknowns_faces_encodings = fr.face_encodings(face_image=frame, 
                                                             known_face_locations=face_locations,
                                                             num_jitters=2)
+
             else:
                 print("Nobody found with face_locations!")
                 unknowns_faces_encodings = fr.face_encodings(face_image=frame,
@@ -91,14 +100,16 @@ class FaceReconizer:
 
                     accurency_percent = (number_of_match / len(student_face_encodings))
 
-                    print(f"Accurency : {accurency_percent * 100}%")
+                    print(f"Matches : {accurency_percent * 100}%")
 
                     #We add student if at least 50% of his pictures matches
                     if number_of_match > 0:
                         #Remove face_encodings and pictures
-                        s: dict = student.copy()
-                        s.pop("face_encodings")
-                        s.pop("pictures")
-                        result.append(s)
+                        s: Student = student.copy()
+                        s["discipline_name"] = student["discipline_name"]
+                        s["axe_name"] = student["axe_name"]
+                        result.add(s)
+
+        print("[FaceReconizer.StudentsDetected] : done !")
 
         return result

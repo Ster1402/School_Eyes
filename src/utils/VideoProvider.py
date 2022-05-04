@@ -43,20 +43,24 @@ class VideoProvider:
                 
                 fps = 0
 
-                while fps < 5:
+                while fps < 2:
                     fps += 1
                     is_frame_ready, frame = camera.read()
                     if is_frame_ready:
                         print("[Frame ready]")
                         
                         try:
+                            print("[Convert frame to RGB]")
                             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                         except:
-                            pass
+                            print("[Error while trying to convert frame to RGB]")
+                            
 
                         yield frame
+                    
             else:
                 print("[[Error] : Couldn't open camera!]")        
+                yield None
 
             camera.release()
             print("[Camera closed]!")

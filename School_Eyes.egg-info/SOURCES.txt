@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+setup.py
+School_Eyes.egg-info/PKG-INFO
+School_Eyes.egg-info/SOURCES.txt
+School_Eyes.egg-info/dependency_links.txt
+School_Eyes.egg-info/top_level.txt

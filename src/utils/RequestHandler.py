@@ -1,7 +1,9 @@
 import os
 import json
+from threading import Thread
+from time import ctime
 from aiohttp import web
-import socketio #To create a server
+import socketio
 from .Request import Request
 from .ReconizerProcess import ReconizerProcess
 
@@ -9,22 +11,24 @@ global _ROOT_PATH
 _ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class RequestHandler:
+
     __CONFIG_PATH = os.path.join(_ROOT_PATH, "config/")
     __CONFIG_FILE = os.path.join(__CONFIG_PATH, "config.json") 
 
     #Async Socket IO Server
     sio = socketio.AsyncServer()
-    
     #Create new Aiohttp web Server
     app = web.Application()
     #Bind Socket IO to our web base server
     sio.attach(app)
 
     def __init__(self):
+        print("[RequestHandler.__init__] ...")
+
         self.name = "RequestHandler_Server"
 
-        self.clients = set()
-        self.requests = list()
+        self.clients = set() #Set of (socket_id, environ, auth) for each client
+        self.requests = list() #List of client request
         
         self.host, self.port = self.__getServerInformation()
 
@@ -35,11 +39,12 @@ class RequestHandler:
     
         self._httpRoutes()
 
+        print("[RequestHandler.__init__] : done !")
 
-    def run(self, args):
+    def run(self, argv):
         
-        host = self.host if len(args) < 3 else args[1]
-        port = self.port if len(args) < 3 else args[2]
+        host = self.host if len(argv) < 3 else argv[1]
+        port = self.port if len(argv) < 3 else argv[2]
         
         #Run the app
         web.run_app(app=self.app,
@@ -115,7 +120,6 @@ class RequestHandler:
 
             return (default_host, default_port)
 
-
     def DecodeRequest(self, request):
         decoded_request = None
                  
@@ -143,18 +147,21 @@ class RequestHandler:
     """
 
     @sio.on('connect')
-    def connect(self, socket_id, environ, auth):
+    def connect(self, socket_id, environ):
+        
+        self.clients.add(socket_id)
+
         print("Connected : ", socket_id)
+        print("Numbers of clients : " , len(self.clients) )
 
     @sio.on('disconnect')
     def disconnect(self, socket_id):
         print("Disconnected : ", socket_id)
+        print("Numbers of clients : " , len(self.clients) )
 
-    #We listen for message
+    #We listen for client request
     @sio.on('client-request')
     async def ListenRequest(self, socket_id, request):
-
-        print("Numbers of clients : " , len(self.clients) )
 
         data = self.DecodeRequest(request)
         
@@ -162,9 +169,8 @@ class RequestHandler:
 
         #Process request here
         reconizer_process = ReconizerProcess(data)
-        res = reconizer_process.RecognitionProcess()
-                
-        print("Response: ", res)
+        thread = Thread(target=reconizer_process.RecognitionProcess, args=())
+        thread.daemon = True
+        thread.start()
 
-        await self.sio.emit('server-response', json.dumps(res), broadcast=True)
 

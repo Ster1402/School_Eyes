@@ -17,6 +17,8 @@ click = "*"
 pypi = "*"
 dlib = "*"
 pprintpp = "*"
+school-eyes = {editable = true, path = "."}
+uvicorn = "*"
 
 [dev-packages]
 
