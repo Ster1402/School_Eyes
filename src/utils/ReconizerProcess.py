@@ -1,7 +1,7 @@
 from time import ctime, sleep
-
 from pprintpp import pprint
 
+from .Sender import Sender
 from .ListFormatter import ListFormatter
 from .FaceReconizer import FaceReconizer
 from .VideoProvider import VideoProvider
@@ -42,6 +42,10 @@ class ReconizerProcess:
         #ListFormatter : To format the result
         self.__list_formatter = ListFormatter(request)
 
+        #Sender : To send the result to the shared database
+        self.__sender = Sender(request)
+
+
     def RecognitionProcess(self) -> list:
         
         result: list = []        
@@ -81,15 +85,22 @@ class ReconizerProcess:
 
                     sleep(self.__timer.latency)
                     #Restart the timer eventually
-
             else:
-
                 break
         
         end_time = ctime()
 
         attendance_list = self.__list_formatter.FormattedList(result)
+
+        attendance_list["start_time"] = start_time
+        attendance_list["end_time"] = end_time
+        attendance_list["course"] = self.__request["course"]
+
         pprint(attendance_list)
 
         #Send data to the client
-        #
+        self.__sender.SendData(attendance_list)
+
+
+        
+

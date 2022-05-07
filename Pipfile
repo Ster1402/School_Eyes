@@ -19,6 +19,9 @@ dlib = "*"
 pprintpp = "*"
 school-eyes = {editable = true, path = "."}
 uvicorn = "*"
+mysqlclient = "*"
+pymysql = "*"
+pyside2 = "*"
 
 [dev-packages]
 

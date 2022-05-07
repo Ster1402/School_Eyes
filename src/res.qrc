@@ -1,0 +1,32 @@
+<RCC>
+  <qresource prefix="24x24">
+    <file>images/icons/24x24/cil-https.png</file>
+    <file>images/icons/24x24/cil-lightbulb.png</file>
+    <file>images/icons/24x24/cil-people.png</file>
+    <file>images/icons/24x24/cil-check.png</file>
+    <file>images/icons/24x24/cil-home.png</file>
+    <file>images/icons/24x24/cil-list.png</file>
+    <file>images/icons/24x24/cil-menu.png</file>
+    <file>images/icons/24x24/cil-options.png</file>
+    <file>images/icons/24x24/cil-options-horizontal.png</file>
+    <file>images/icons/24x24/cil-paperclip.png</file>
+    <file>images/icons/24x24/cil-pencil.png</file>
+    <file>images/icons/24x24/cil-plus.png</file>
+    <file>images/icons/24x24/cil-reload.png</file>
+    <file>images/icons/24x24/cil-save.png</file>
+    <file>images/icons/24x24/cil-screen-desktop.png</file>
+    <file>images/icons/24x24/cil-settings.png</file>
+    <file>images/icons/24x24/cil-user.png</file>
+    <file>images/icons/24x24/cil-video.png</file>
+  </qresource>
+  <qresource prefix="background">
+    <file>images/background/help.png</file>
+    <file>images/background/settings.png</file>
+    <file>images/background/back.jpg</file>
+    <file>images/background/Students.png</file>
+    <file>images/background/Camera.png</file>
+  </qresource>
+  <qresource prefix="logo">
+    <file>images/SchoolEyes_Logo.png</file>
+  </qresource>
+</RCC>
