@@ -728,7 +728,7 @@ background-size: cover;
 </string>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="page_home">
              <property name="layoutDirection">
@@ -1393,7 +1393,7 @@ QComboBox:hover {
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>60</height>
+                  <height>55</height>
                  </size>
                 </property>
                 <property name="maximumSize">
@@ -1463,6 +1463,12 @@ color: #cecece;</string>
                  </item>
                  <item>
                   <widget class="QLineEdit" name="new_camera_url">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -1498,6 +1504,12 @@ QLineEdit:focus, QLineEdit:hover {
                  </item>
                  <item>
                   <widget class="QPushButton" name="btn_add_camera">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="minimumSize">
                     <size>
                      <width>120</width>

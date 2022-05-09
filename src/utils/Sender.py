@@ -1,7 +1,6 @@
 import sys
 import os
 import json
-from pymysql import connect
 
 global _DATABASE_NAME_
 global _DATABASE_HOST_
