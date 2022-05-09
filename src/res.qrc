@@ -1,32 +1,55 @@
 <RCC>
-  <qresource prefix="24x24">
-    <file>images/icons/24x24/cil-https.png</file>
-    <file>images/icons/24x24/cil-lightbulb.png</file>
-    <file>images/icons/24x24/cil-people.png</file>
-    <file>images/icons/24x24/cil-check.png</file>
-    <file>images/icons/24x24/cil-home.png</file>
-    <file>images/icons/24x24/cil-list.png</file>
-    <file>images/icons/24x24/cil-menu.png</file>
-    <file>images/icons/24x24/cil-options.png</file>
-    <file>images/icons/24x24/cil-options-horizontal.png</file>
-    <file>images/icons/24x24/cil-paperclip.png</file>
-    <file>images/icons/24x24/cil-pencil.png</file>
-    <file>images/icons/24x24/cil-plus.png</file>
-    <file>images/icons/24x24/cil-reload.png</file>
-    <file>images/icons/24x24/cil-save.png</file>
-    <file>images/icons/24x24/cil-screen-desktop.png</file>
-    <file>images/icons/24x24/cil-settings.png</file>
-    <file>images/icons/24x24/cil-user.png</file>
-    <file>images/icons/24x24/cil-video.png</file>
-  </qresource>
-  <qresource prefix="background">
-    <file>images/background/help.png</file>
-    <file>images/background/settings.png</file>
-    <file>images/background/back.jpg</file>
-    <file>images/background/Students.png</file>
-    <file>images/background/Camera.png</file>
-  </qresource>
   <qresource prefix="logo">
     <file>images/SchoolEyes_Logo.png</file>
+  </qresource>
+  <qresource prefix="background">
+    <file>images/background/drag_drop.png</file>
+    <file>images/background/back.jpg</file>
+    <file>images/background/Camera.png</file>
+    <file>images/background/help.png</file>
+    <file>images/background/settings.png</file>
+    <file>images/background/Students.png</file>
+  </qresource>
+  <qresource prefix="24x24">
+    <file>images/icons/24x24/cil-lock-unlocked.png</file>
+    <file>images/icons/24x24/cil-power-standby.png</file>
+    <file>images/icons/24x24/cil-settings.png</file>
+    <file>images/icons/24x24/cil-camera.png</file>
+    <file>images/icons/24x24/cil-comment-bubble.png</file>
+    <file>images/icons/24x24/cil-comment-square.png</file>
+    <file>images/icons/24x24/cil-home.png</file>
+    <file>images/icons/24x24/cil-https.png</file>
+    <file>images/icons/24x24/cil-image1.png</file>
+    <file>images/icons/24x24/cil-image-plus.png</file>
+    <file>images/icons/24x24/cil-infinity.png</file>
+    <file>images/icons/24x24/cil-justify-center.png</file>
+    <file>images/icons/24x24/cil-justify-left.png</file>
+    <file>images/icons/24x24/cil-justify-right.png</file>
+    <file>images/icons/24x24/cil-library.png</file>
+    <file>images/icons/24x24/cil-lightbulb.png</file>
+    <file>images/icons/24x24/cil-link.png</file>
+    <file>images/icons/24x24/cil-link-alt.png</file>
+    <file>images/icons/24x24/cil-link-broken.png</file>
+    <file>images/icons/24x24/cil-list.png</file>
+    <file>images/icons/24x24/cil-menu.png</file>
+    <file>images/icons/24x24/cil-minus.png</file>
+    <file>images/icons/24x24/cil-mobile.png</file>
+    <file>images/icons/24x24/cil-mobile-landscape.png</file>
+    <file>images/icons/24x24/cil-monitor.png</file>
+    <file>images/icons/24x24/cil-mood-bad.png</file>
+    <file>images/icons/24x24/cil-moon.png</file>
+    <file>images/icons/24x24/cil-move.png</file>
+    <file>images/icons/24x24/cil-movie.png</file>
+    <file>images/icons/24x24/cil-options.png</file>
+    <file>images/icons/24x24/cil-options-horizontal.png</file>
+    <file>images/icons/24x24/cil-paper-plane.png</file>
+    <file>images/icons/24x24/cil-pencil.png</file>
+    <file>images/icons/24x24/cil-people.png</file>
+    <file>images/icons/24x24/cil-plus.png</file>
+    <file>images/icons/24x24/cil-trash.png</file>
+    <file>images/icons/24x24/cil-user.png</file>
+    <file>images/icons/24x24/cil-user-female.png</file>
+    <file>images/icons/24x24/cil-user-follow.png</file>
+    <file>images/icons/24x24/cil-video.png</file>
   </qresource>
 </RCC>
