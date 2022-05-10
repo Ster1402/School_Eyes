@@ -477,7 +477,7 @@ class Ui_MainWindow(object):
         self.stacked_widget.setStyleSheet("background-image: url(:/background/images/background/back.jpg);\n"
 "background-position: center;\n"
 "background-repeat: no-repeat;\n"
-"background-size: cover;\n"
+"\n"
 "")
         self.stacked_widget.setObjectName("stacked_widget")
         self.page_home = QtWidgets.QWidget()
