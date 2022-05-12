@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="logo">
+    <file>images/SchoolEyes_Logo.ico</file>
     <file>images/SchoolEyes_Logo.png</file>
   </qresource>
   <qresource prefix="background">

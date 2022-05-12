@@ -153,6 +153,7 @@ class DB:
                 id INT AUTO_INCREMENT NOT NULL, 
                 login VARCHAR(40) UNIQUE, 
                 password VARCHAR(255) NOT NULL,
+                status VARCHAR(15) DEFAULT "disconnected",
                 PRIMARY KEY(id) 
             );
 
@@ -231,6 +232,53 @@ class DB:
             """
 
             self.executeScript(create_default_admin)
+
+    @staticmethod
+    def adminConnected():
+        conn = sqlite3.connect(_DATABASE_PATH_)
+        cursor = conn.cursor()
+        
+        result = cursor.execute(f"""SELECT id, login, password
+                                    FROM Admin
+                                    WHERE status="connected" 
+                                """)\
+                        .fetchone()
+        
+        cursor.close()
+        conn.close()
+        
+        return result
+        
+    @staticmethod
+    def checkIfAdminExist(login, password):
+        
+        conn = sqlite3.connect(_DATABASE_PATH_)
+        cursor = conn.cursor()
+        
+        result = cursor.execute(f"""
+                            SELECT id, login, password FROM Admin
+                            WHERE  login="{login}" AND password="{password}"
+                        """).fetchone()
+        
+        cursor.close()
+        conn.close()
+        
+        return result
+
+    @staticmethod
+    def connectAdmin(id):
+        conn = sqlite3.connect(_DATABASE_PATH_)
+        cursor = conn.cursor()
+        
+        cursor.executescript(f"""UPDATE Admin 
+                                SET status="connected" 
+                                WHERE id={id};
+                            """)
+        print(id)
+        cursor.close()
+        conn.commit()
+        conn.close()
+        
 
 class StudentModel:
 
