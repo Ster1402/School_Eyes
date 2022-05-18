@@ -1,6 +1,7 @@
 
 import hashlib
 import re
+from time import sleep
 
 from PyQt5 import QtCore
 from PyQt5.QtCore import QPropertyAnimation
@@ -543,15 +544,18 @@ please make sure that the informations provide are correct."))
                     
                 key = cv2.waitKey(20)
                 
+                sleep(.01)
+                
                 if key == 27: #Esc
                     break
                 
+            cv2.destroyWindow("Camera preview")
+
         else:
             QMessageBox.critical(self, self._translate("Title", "Test camera"),
                             self._translate("ErrorMessage", "Impossible to join the camera, please make sure that the camera or the url is available !"))
 
         camera.release()
-        cv2.destroyWindow("Camera preview")
 
     
     def _updateCamerasList(self, classroom_name: str):
