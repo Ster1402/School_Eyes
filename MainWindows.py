@@ -5,6 +5,7 @@ import re
 from PyQt5 import QtCore
 from PyQt5.QtCore import QPropertyAnimation
 from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem, QMessageBox, QPushButton, QDialog, QFileDialog
+import cv2
 from DialogStudent import DiaglogStudent
 
 from src.database.db import DB, DisciplineModel, StudentModel
@@ -513,7 +514,45 @@ please make sure that the informations provide are correct."))
         self.table_camera.removeRow(row)
     
     def _tryCameras(self):
-        pass
+        selectedItems = self.table_camera.selectedItems()
+
+        if not selectedItems:
+            QMessageBox.warning(self, self._translate("Title", "Empty selection"),
+                                self._translate("WarningMessage", "There are no camera selected !"))
+            return
+
+        camera_url = selectedItems[1].text()
+        
+        QMessageBox.information(self, self._translate("Title", "Test camera"),
+                                self._translate("InfoMessage", "You shoudl press Escape Key (Esc) to close the record!"))
+    
+        if camera_url == "Webcam":
+            camera_url = 0
+    
+        camera = cv2.VideoCapture(camera_url)
+        
+        if camera.isOpened():
+            
+            while True:
+                
+                is_frame_ready, frame = camera.read()
+                
+                if is_frame_ready:
+                    
+                    cv2.imshow("Camera preview", frame)
+                    
+                key = cv2.waitKey(20)
+                
+                if key == 27: #Esc
+                    break
+                
+        else:
+            QMessageBox.critical(self, self._translate("Title", "Test camera"),
+                            self._translate("ErrorMessage", "Impossible to join the camera, please make sure that the camera or the url is available !"))
+
+        camera.release()
+        cv2.destroyWindow("Camera preview")
+
     
     def _updateCamerasList(self, classroom_name: str):
         assert isinstance(classroom_name, str)
