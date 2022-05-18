@@ -9,13 +9,14 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from ListBoxWidget import ListBoxWidget
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(950, 620)
-        MainWindow.setMinimumSize(QtCore.QSize(950, 600))
+        MainWindow.resize(1024, 620)
+        MainWindow.setMinimumSize(QtCore.QSize(1024, 600))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/logo/images/SchoolEyes_Logo.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -1081,6 +1082,78 @@ class Ui_MainWindow(object):
         self.table_camera.verticalHeader().setVisible(False)
         self.table_camera.verticalHeader().setStretchLastSection(False)
         self.verticalLayout_8.addWidget(self.table_camera)
+        self.horizontalLayout_16 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_16.setContentsMargins(10, -1, 0, -1)
+        self.horizontalLayout_16.setSpacing(10)
+        self.horizontalLayout_16.setObjectName("horizontalLayout_16")
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_16.addItem(spacerItem2)
+        self.btn_try_cameras = QtWidgets.QPushButton(self.page_camera)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_try_cameras.sizePolicy().hasHeightForWidth())
+        self.btn_try_cameras.setSizePolicy(sizePolicy)
+        self.btn_try_cameras.setMinimumSize(QtCore.QSize(120, 50))
+        self.btn_try_cameras.setMaximumSize(QtCore.QSize(16777215, 50))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_try_cameras.setFont(font)
+        self.btn_try_cameras.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_try_cameras.setStyleSheet("QPushButton {\n"
+"    color: #dedede;\n"
+"    background: #002A44;\n"
+"    border: 2px solid #dedede;\n"
+"    border-radius: 25px;\n"
+"    padding: 1px 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background: #003c5f;\n"
+"    border-color: #F38533;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background: #F38533;\n"
+"}")
+        self.btn_try_cameras.setObjectName("btn_try_cameras")
+        self.horizontalLayout_16.addWidget(self.btn_try_cameras)
+        self.btn_delete_camera = QtWidgets.QPushButton(self.page_camera)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_delete_camera.sizePolicy().hasHeightForWidth())
+        self.btn_delete_camera.setSizePolicy(sizePolicy)
+        self.btn_delete_camera.setMinimumSize(QtCore.QSize(120, 50))
+        self.btn_delete_camera.setMaximumSize(QtCore.QSize(16777215, 50))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_delete_camera.setFont(font)
+        self.btn_delete_camera.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_delete_camera.setStyleSheet("QPushButton {\n"
+"    color: #dedede;\n"
+"    background: rgb(179, 32, 27);\n"
+"    border: 2px solid #dedede;\n"
+"    border-radius: 25px;\n"
+"    padding: 1px 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    border-color: #F38533;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background: #F38533;\n"
+"}")
+        self.btn_delete_camera.setObjectName("btn_delete_camera")
+        self.horizontalLayout_16.addWidget(self.btn_delete_camera)
+        self.verticalLayout_8.addLayout(self.horizontalLayout_16)
         self.stacked_widget.addWidget(self.page_camera)
         self.page_help = QtWidgets.QWidget()
         self.page_help.setStyleSheet("background-color: rgb(170, 255, 127);")
@@ -1699,19 +1772,19 @@ class Ui_MainWindow(object):
         self.label_drag_and_drop.setAlignment(QtCore.Qt.AlignCenter)
         self.label_drag_and_drop.setObjectName("label_drag_and_drop")
         self.verticalLayout_12.addWidget(self.label_drag_and_drop, 0, QtCore.Qt.AlignTop)
-        self.drap_and_drop_box = QtWidgets.QListWidget(self.tab_add_student)
+        self.drag_and_drop_box = ListBoxWidget(self.tab_add_student)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.drap_and_drop_box.sizePolicy().hasHeightForWidth())
-        self.drap_and_drop_box.setSizePolicy(sizePolicy)
-        self.drap_and_drop_box.setMinimumSize(QtCore.QSize(315, 110))
-        self.drap_and_drop_box.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        sizePolicy.setHeightForWidth(self.drag_and_drop_box.sizePolicy().hasHeightForWidth())
+        self.drag_and_drop_box.setSizePolicy(sizePolicy)
+        self.drag_and_drop_box.setMinimumSize(QtCore.QSize(450, 110))
+        self.drag_and_drop_box.setMaximumSize(QtCore.QSize(16777215, 16777215))
         font = QtGui.QFont()
         font.setPointSize(11)
-        self.drap_and_drop_box.setFont(font)
-        self.drap_and_drop_box.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.drap_and_drop_box.setStyleSheet("QListWidget {\n"
+        self.drag_and_drop_box.setFont(font)
+        self.drag_and_drop_box.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.drag_and_drop_box.setStyleSheet("QListWidget {\n"
 "    background-image: url(:/background/images/background/drag_drop.png);\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
@@ -1724,6 +1797,10 @@ class Ui_MainWindow(object):
 "QListWidget::Item {\n"
 "    background: #002A44;\n"
 "    padding: 2px;\n"
+"}\n"
+"\n"
+"QListWidget::Item:selected {\n"
+"    background: #3C5F85;\n"
 "}\n"
 "\n"
 " QScrollBar:vertical {\n"
@@ -1766,24 +1843,20 @@ class Ui_MainWindow(object):
 "     background: none;\n"
 " }\n"
 "")
-        self.drap_and_drop_box.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.drap_and_drop_box.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.drap_and_drop_box.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        self.drap_and_drop_box.setDragDropMode(QtWidgets.QAbstractItemView.DropOnly)
-        self.drap_and_drop_box.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
-        self.drap_and_drop_box.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
-        self.drap_and_drop_box.setObjectName("drap_and_drop_box")
-        item = QtWidgets.QListWidgetItem()
-        self.drap_and_drop_box.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.drap_and_drop_box.addItem(item)
-        self.verticalLayout_12.addWidget(self.drap_and_drop_box, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.drag_and_drop_box.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.drag_and_drop_box.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.drag_and_drop_box.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.drag_and_drop_box.setDragDropMode(QtWidgets.QAbstractItemView.DropOnly)
+        self.drag_and_drop_box.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
+        self.drag_and_drop_box.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.drag_and_drop_box.setObjectName("drag_and_drop_box")
+        self.verticalLayout_12.addWidget(self.drag_and_drop_box, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.verticalLayout_13.addLayout(self.verticalLayout_12)
         self.horizontalLayout_14 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_14.setSpacing(5)
         self.horizontalLayout_14.setObjectName("horizontalLayout_14")
-        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_14.addItem(spacerItem2)
+        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_14.addItem(spacerItem3)
         self.btn_remove_picture = QtWidgets.QPushButton(self.tab_add_student)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -1850,8 +1923,8 @@ class Ui_MainWindow(object):
 "}")
         self.btn_select_pictures.setObjectName("btn_select_pictures")
         self.horizontalLayout_14.addWidget(self.btn_select_pictures, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_14.addItem(spacerItem3)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_14.addItem(spacerItem4)
         self.verticalLayout_13.addLayout(self.horizontalLayout_14)
         self.horizontalLayout_15.addLayout(self.verticalLayout_13)
         self.verticalLayout_14.addLayout(self.horizontalLayout_15)
@@ -1936,6 +2009,445 @@ class Ui_MainWindow(object):
 "background: rgba(0, 42, 68, 183);\n"
 "")
         self.tab_student_information.setObjectName("tab_student_information")
+        self.horizontalLayout_22 = QtWidgets.QHBoxLayout(self.tab_student_information)
+        self.horizontalLayout_22.setObjectName("horizontalLayout_22")
+        self.verticalLayout_16 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_16.setObjectName("verticalLayout_16")
+        self.table_students = QtWidgets.QTableWidget(self.tab_student_information)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.table_students.sizePolicy().hasHeightForWidth())
+        self.table_students.setSizePolicy(sizePolicy)
+        self.table_students.setMinimumSize(QtCore.QSize(540, 270))
+        self.table_students.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.table_students.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.table_students.setStyleSheet("*{\n"
+"    background: #003C5F;\n"
+"    font-size: 16px;\n"
+"    color: #dedede;\n"
+"}\n"
+"\n"
+"QTableWidget {\n"
+"    background: #002A44;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+" QScrollBar:vertical {\n"
+"    border: none;\n"
+"    background: rgb(52, 59, 72);\n"
+"    width: 14px;\n"
+"    margin: 21px 0 21px 0;\n"
+"    border-radius: 0px;\n"
+" }\n"
+"\n"
+" QScrollBar::handle:vertical {    \n"
+"    background: rgb(85, 170, 255);\n"
+"    min-height: 25px;\n"
+"    border-radius: 7px\n"
+" }\n"
+" QScrollBar::add-line:vertical {\n"
+"     border: none;\n"
+"    background: rgb(55, 63, 77);\n"
+"     height: 20px;\n"
+"    border-bottom-left-radius: 7px;\n"
+"    border-bottom-right-radius: 7px;\n"
+"     subcontrol-position: bottom;\n"
+"     subcontrol-origin: margin;\n"
+" }\n"
+" QScrollBar::sub-line:vertical {\n"
+"    border: none;\n"
+"    background: rgb(55, 63, 77);\n"
+"     height: 20px;\n"
+"    border-top-left-radius: 7px;\n"
+"    border-top-right-radius: 7px;\n"
+"     subcontrol-position: top;\n"
+"     subcontrol-origin: margin;\n"
+" }\n"
+"\n"
+" QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
+"     background: none;\n"
+" }\n"
+"\n"
+" QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+"     background: none;\n"
+" }\n"
+"\n"
+"\n"
+"QHeaderView::section:horizontal {\n"
+"    background-color: #F38533;\n"
+"    padding: 5px;\n"
+"    font-size: 16px;\n"
+"    font-weight: bold;\n"
+"    color: #002A44;\n"
+"    border-radius: 0;\n"
+"    border-left: 1px solid #003C5F;\n"
+"}\n"
+"\n"
+"QTableView::item {\n"
+"    background: #002A44;\n"
+"    border-left: 1px solid #003c5f;\n"
+"    color: #dedede;\n"
+"    padding-left: 10px;\n"
+"}\n"
+"\n"
+"QTableView::item:hover, QTableView::item:selected, QTableView::item:focus {\n"
+"    background: #003c5f;\n"
+"    color: #dedede;\n"
+"}\n"
+"")
+        self.table_students.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.table_students.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.table_students.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.table_students.setAlternatingRowColors(False)
+        self.table_students.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.table_students.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.table_students.setTextElideMode(QtCore.Qt.ElideLeft)
+        self.table_students.setGridStyle(QtCore.Qt.NoPen)
+        self.table_students.setWordWrap(True)
+        self.table_students.setCornerButtonEnabled(True)
+        self.table_students.setObjectName("table_students")
+        self.table_students.setColumnCount(3)
+        self.table_students.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_students.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_students.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_students.setHorizontalHeaderItem(2, item)
+        self.table_students.horizontalHeader().setCascadingSectionResizes(True)
+        self.table_students.horizontalHeader().setDefaultSectionSize(160)
+        self.table_students.horizontalHeader().setMinimumSectionSize(30)
+        self.table_students.horizontalHeader().setStretchLastSection(True)
+        self.table_students.verticalHeader().setVisible(False)
+        self.table_students.verticalHeader().setStretchLastSection(False)
+        self.verticalLayout_16.addWidget(self.table_students)
+        self.horizontalLayout_18 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_18.setObjectName("horizontalLayout_18")
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_18.addItem(spacerItem5)
+        self.btn_student_show_more = QtWidgets.QPushButton(self.tab_student_information)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_student_show_more.sizePolicy().hasHeightForWidth())
+        self.btn_student_show_more.setSizePolicy(sizePolicy)
+        self.btn_student_show_more.setMinimumSize(QtCore.QSize(110, 30))
+        self.btn_student_show_more.setMaximumSize(QtCore.QSize(110, 30))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_student_show_more.setFont(font)
+        self.btn_student_show_more.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_student_show_more.setStyleSheet("QPushButton {\n"
+"    color: #dedede;\n"
+"    background: #002A44;\n"
+"    border: 2px solid #dedede;\n"
+"    border-radius: 15px;\n"
+"    padding: 1px 10px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background: #003c5f;\n"
+"    border-color: #F38533;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background: #F38533;\n"
+"}")
+        self.btn_student_show_more.setObjectName("btn_student_show_more")
+        self.horizontalLayout_18.addWidget(self.btn_student_show_more)
+        self.btn_student_delete = QtWidgets.QPushButton(self.tab_student_information)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_student_delete.sizePolicy().hasHeightForWidth())
+        self.btn_student_delete.setSizePolicy(sizePolicy)
+        self.btn_student_delete.setMinimumSize(QtCore.QSize(110, 30))
+        self.btn_student_delete.setMaximumSize(QtCore.QSize(110, 30))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_student_delete.setFont(font)
+        self.btn_student_delete.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_student_delete.setStyleSheet("QPushButton {\n"
+"    color: #dedede;\n"
+"    background: rgb(179, 32, 27);\n"
+"    border: 2px solid #dedede;\n"
+"    border-radius: 15px;\n"
+"    padding: 1px 10px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    border-color: #F38533;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background: #F38533;\n"
+"}")
+        self.btn_student_delete.setObjectName("btn_student_delete")
+        self.horizontalLayout_18.addWidget(self.btn_student_delete)
+        self.verticalLayout_16.addLayout(self.horizontalLayout_18)
+        self.horizontalLayout_22.addLayout(self.verticalLayout_16)
+        self.verticalLayout_17 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_17.setObjectName("verticalLayout_17")
+        self.splitter_2 = QtWidgets.QSplitter(self.tab_student_information)
+        self.splitter_2.setStyleSheet("QSplitter{\n"
+"    background: #002A44;\n"
+"    border: 1px solid #dedede;\n"
+"    border-radius: 10px;\n"
+"}")
+        self.splitter_2.setOrientation(QtCore.Qt.Vertical)
+        self.splitter_2.setObjectName("splitter_2")
+        self.splitter = QtWidgets.QSplitter(self.splitter_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.splitter.sizePolicy().hasHeightForWidth())
+        self.splitter.setSizePolicy(sizePolicy)
+        self.splitter.setStyleSheet("background: transparent;")
+        self.splitter.setOrientation(QtCore.Qt.Vertical)
+        self.splitter.setObjectName("splitter")
+        self.student_information_search_label = QtWidgets.QLabel(self.splitter)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.student_information_search_label.sizePolicy().hasHeightForWidth())
+        self.student_information_search_label.setSizePolicy(sizePolicy)
+        self.student_information_search_label.setMinimumSize(QtCore.QSize(150, 35))
+        self.student_information_search_label.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(18)
+        font.setBold(True)
+        font.setWeight(75)
+        self.student_information_search_label.setFont(font)
+        self.student_information_search_label.setStyleSheet("color: #dedede;\n"
+"background: transparent;\n"
+"border-bottom: 1px solid #dededede;")
+        self.student_information_search_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.student_information_search_label.setObjectName("student_information_search_label")
+        self.layoutWidget = QtWidgets.QWidget(self.splitter)
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.layoutWidget)
+        self.verticalLayout_15.setContentsMargins(10, 0, 10, 20)
+        self.verticalLayout_15.setSpacing(10)
+        self.verticalLayout_15.setObjectName("verticalLayout_15")
+        self.horizontalLayout_19 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_19.setContentsMargins(-1, 25, -1, -1)
+        self.horizontalLayout_19.setObjectName("horizontalLayout_19")
+        self.student_name_label_2 = QtWidgets.QLabel(self.layoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.student_name_label_2.sizePolicy().hasHeightForWidth())
+        self.student_name_label_2.setSizePolicy(sizePolicy)
+        self.student_name_label_2.setMinimumSize(QtCore.QSize(100, 35))
+        self.student_name_label_2.setMaximumSize(QtCore.QSize(150, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.student_name_label_2.setFont(font)
+        self.student_name_label_2.setStyleSheet("color: #dedede;\n"
+"background: transparent;")
+        self.student_name_label_2.setObjectName("student_name_label_2")
+        self.horizontalLayout_19.addWidget(self.student_name_label_2)
+        self.student_discipline_info_comboBox = QtWidgets.QComboBox(self.layoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.student_discipline_info_comboBox.sizePolicy().hasHeightForWidth())
+        self.student_discipline_info_comboBox.setSizePolicy(sizePolicy)
+        self.student_discipline_info_comboBox.setMinimumSize(QtCore.QSize(150, 35))
+        self.student_discipline_info_comboBox.setMaximumSize(QtCore.QSize(250, 35))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.student_discipline_info_comboBox.setFont(font)
+        self.student_discipline_info_comboBox.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.student_discipline_info_comboBox.setStyleSheet("QComboBox {\n"
+"    padding: 0 15px 0 27px;\n"
+"    border: 2px solid #dedede;\n"
+"    color: #dedede;\n"
+"    background: transparent;\n"
+"    border-radius: 15px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    color: #dedede;\n"
+"    padding: 10px;\n"
+"    selection-background-color: #F38533;\n"
+"}\n"
+"\n"
+"QComboBox:hover {\n"
+"    border-color: #F38533;\n"
+"}\n"
+"\n"
+"")
+        self.student_discipline_info_comboBox.setObjectName("student_discipline_info_comboBox")
+        self.student_discipline_info_comboBox.addItem("")
+        self.student_discipline_info_comboBox.addItem("")
+        self.student_discipline_info_comboBox.addItem("")
+        self.student_discipline_info_comboBox.addItem("")
+        self.student_discipline_info_comboBox.addItem("")
+        self.student_discipline_info_comboBox.addItem("")
+        self.student_discipline_info_comboBox.addItem("")
+        self.student_discipline_info_comboBox.addItem("")
+        self.horizontalLayout_19.addWidget(self.student_discipline_info_comboBox)
+        self.verticalLayout_15.addLayout(self.horizontalLayout_19)
+        self.horizontalLayout_20 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_20.setObjectName("horizontalLayout_20")
+        self.student_name_label_3 = QtWidgets.QLabel(self.layoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.student_name_label_3.sizePolicy().hasHeightForWidth())
+        self.student_name_label_3.setSizePolicy(sizePolicy)
+        self.student_name_label_3.setMinimumSize(QtCore.QSize(100, 35))
+        self.student_name_label_3.setMaximumSize(QtCore.QSize(150, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.student_name_label_3.setFont(font)
+        self.student_name_label_3.setStyleSheet("color: #dedede;\n"
+"background: transparent;")
+        self.student_name_label_3.setObjectName("student_name_label_3")
+        self.horizontalLayout_20.addWidget(self.student_name_label_3)
+        self.student_axe_info_comboBox = QtWidgets.QComboBox(self.layoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.student_axe_info_comboBox.sizePolicy().hasHeightForWidth())
+        self.student_axe_info_comboBox.setSizePolicy(sizePolicy)
+        self.student_axe_info_comboBox.setMinimumSize(QtCore.QSize(150, 35))
+        self.student_axe_info_comboBox.setMaximumSize(QtCore.QSize(250, 35))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.student_axe_info_comboBox.setFont(font)
+        self.student_axe_info_comboBox.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.student_axe_info_comboBox.setStyleSheet("QComboBox {\n"
+"    padding: 0 15px 0 27px;\n"
+"    border: 2px solid #dedede;\n"
+"    color: #dedede;\n"
+"    background: transparent;\n"
+"    border-radius: 15px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    color: #dedede;\n"
+"    padding: 10px;\n"
+"    selection-background-color: #F38533;\n"
+"}\n"
+"\n"
+"QComboBox:hover {\n"
+"    border-color: #F38533;\n"
+"}\n"
+"\n"
+"")
+        self.student_axe_info_comboBox.setObjectName("student_axe_info_comboBox")
+        self.student_axe_info_comboBox.addItem("")
+        self.student_axe_info_comboBox.addItem("")
+        self.horizontalLayout_20.addWidget(self.student_axe_info_comboBox)
+        self.verticalLayout_15.addLayout(self.horizontalLayout_20)
+        self.horizontalLayout_21 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_21.setObjectName("horizontalLayout_21")
+        self.student_name_label_4 = QtWidgets.QLabel(self.layoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.student_name_label_4.sizePolicy().hasHeightForWidth())
+        self.student_name_label_4.setSizePolicy(sizePolicy)
+        self.student_name_label_4.setMinimumSize(QtCore.QSize(100, 35))
+        self.student_name_label_4.setMaximumSize(QtCore.QSize(150, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.student_name_label_4.setFont(font)
+        self.student_name_label_4.setStyleSheet("color: #dedede;\n"
+"background: transparent;")
+        self.student_name_label_4.setObjectName("student_name_label_4")
+        self.horizontalLayout_21.addWidget(self.student_name_label_4)
+        self.student_level_info_spinBox = QtWidgets.QSpinBox(self.layoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.student_level_info_spinBox.sizePolicy().hasHeightForWidth())
+        self.student_level_info_spinBox.setSizePolicy(sizePolicy)
+        self.student_level_info_spinBox.setMinimumSize(QtCore.QSize(150, 35))
+        self.student_level_info_spinBox.setMaximumSize(QtCore.QSize(250, 35))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.student_level_info_spinBox.setFont(font)
+        self.student_level_info_spinBox.setStyleSheet("QSpinBox {\n"
+"    padding: 0 15px 0 27px;\n"
+"    border: 2px solid #dedede;\n"
+"    color: #dedede;\n"
+"    background: transparent;\n"
+"    border-radius: 15px;\n"
+"}\n"
+"\n"
+"QSpinBox:hover, QSpinBox:focus {\n"
+"    border-color: #F38533;\n"
+"}")
+        self.student_level_info_spinBox.setMinimum(1)
+        self.student_level_info_spinBox.setMaximum(5)
+        self.student_level_info_spinBox.setObjectName("student_level_info_spinBox")
+        self.horizontalLayout_21.addWidget(self.student_level_info_spinBox)
+        self.verticalLayout_15.addLayout(self.horizontalLayout_21)
+        self.btn_scan_student = QtWidgets.QPushButton(self.splitter_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_scan_student.sizePolicy().hasHeightForWidth())
+        self.btn_scan_student.setSizePolicy(sizePolicy)
+        self.btn_scan_student.setMinimumSize(QtCore.QSize(120, 0))
+        self.btn_scan_student.setMaximumSize(QtCore.QSize(300, 35))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_scan_student.setFont(font)
+        self.btn_scan_student.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_scan_student.setStyleSheet("QPushButton {\n"
+"    color: #dedede;\n"
+"    background: #002A44;\n"
+"    border: 2px solid #dedede;\n"
+"    border-radius: 15px;\n"
+"    padding: 1px 10px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background: #003c5f;\n"
+"    border-color: #F38533;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background: #F38533;\n"
+"}")
+        self.btn_scan_student.setObjectName("btn_scan_student")
+        self.verticalLayout_17.addWidget(self.splitter_2)
+        spacerItem6 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_17.addItem(spacerItem6)
+        self.horizontalLayout_22.addLayout(self.verticalLayout_17)
         self.student_tabWidget.addTab(self.tab_student_information, "")
         self.verticalLayout_10.addWidget(self.student_tabWidget)
         self.stacked_widget.addWidget(self.page_students)
@@ -2008,6 +2520,8 @@ class Ui_MainWindow(object):
         item = self.table_camera.item(3, 1)
         item.setText(_translate("MainWindow", "rtsp:http://192.168.43.37:8080/h_264.uwa"))
         self.table_camera.setSortingEnabled(__sortingEnabled)
+        self.btn_try_cameras.setText(_translate("MainWindow", "Try"))
+        self.btn_delete_camera.setText(_translate("MainWindow", "Delete"))
         self.title_settings.setText(_translate("MainWindow", "Settings"))
         self.username_settings.setPlaceholderText(_translate("MainWindow", "Username"))
         self.old_password.setPlaceholderText(_translate("MainWindow", "Old password"))
@@ -2036,17 +2550,36 @@ class Ui_MainWindow(object):
         self.student_axe_label.setText(_translate("MainWindow", "Axe"))
         self.student_axe_comboBox.setPlaceholderText(_translate("MainWindow", "-- Axe --"))
         self.label_drag_and_drop.setText(_translate("MainWindow", "Drag and Drop the pictures here ☺"))
-        __sortingEnabled = self.drap_and_drop_box.isSortingEnabled()
-        self.drap_and_drop_box.setSortingEnabled(False)
-        item = self.drap_and_drop_box.item(0)
-        item.setText(_translate("MainWindow", "c:/jordan/pictures/jordan.jpg"))
-        item = self.drap_and_drop_box.item(1)
-        item.setText(_translate("MainWindow", "c:/jordan/pictures/jordan.jpg"))
-        self.drap_and_drop_box.setSortingEnabled(__sortingEnabled)
         self.btn_remove_picture.setText(_translate("MainWindow", "Remove"))
         self.btn_select_pictures.setText(_translate("MainWindow", "Choose"))
         self.btn_refresh_add_student.setText(_translate("MainWindow", "Refresh"))
         self.btn_save_add_student.setText(_translate("MainWindow", "Save"))
         self.student_tabWidget.setTabText(self.student_tabWidget.indexOf(self.tab_add_student), _translate("MainWindow", "Add Student"))
+        self.table_students.setSortingEnabled(True)
+        item = self.table_students.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Register Number"))
+        item = self.table_students.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Name"))
+        item = self.table_students.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Surname"))
+        self.btn_student_show_more.setText(_translate("MainWindow", "Show More"))
+        self.btn_student_delete.setText(_translate("MainWindow", "Delete"))
+        self.student_information_search_label.setText(_translate("MainWindow", "Search"))
+        self.student_name_label_2.setText(_translate("MainWindow", "Discipline"))
+        self.student_discipline_info_comboBox.setPlaceholderText(_translate("MainWindow", "-- Discipline --"))
+        self.student_discipline_info_comboBox.setItemText(0, _translate("MainWindow", "GIT"))
+        self.student_discipline_info_comboBox.setItemText(1, _translate("MainWindow", "TTIC"))
+        self.student_discipline_info_comboBox.setItemText(2, _translate("MainWindow", "GP"))
+        self.student_discipline_info_comboBox.setItemText(3, _translate("MainWindow", "GAM"))
+        self.student_discipline_info_comboBox.setItemText(4, _translate("MainWindow", "ROI"))
+        self.student_discipline_info_comboBox.setItemText(5, _translate("MainWindow", "GESI"))
+        self.student_discipline_info_comboBox.setItemText(6, _translate("MainWindow", "GC"))
+        self.student_discipline_info_comboBox.setItemText(7, _translate("MainWindow", "TAU"))
+        self.student_name_label_3.setText(_translate("MainWindow", "Axe"))
+        self.student_axe_info_comboBox.setPlaceholderText(_translate("MainWindow", "-- Discipline --"))
+        self.student_axe_info_comboBox.setItemText(0, _translate("MainWindow", "GLO"))
+        self.student_axe_info_comboBox.setItemText(1, _translate("MainWindow", "GRT"))
+        self.student_name_label_4.setText(_translate("MainWindow", "Level"))
+        self.btn_scan_student.setText(_translate("MainWindow", "Scan"))
         self.student_tabWidget.setTabText(self.student_tabWidget.indexOf(self.tab_student_information), _translate("MainWindow", "Informations"))
 import res_rc

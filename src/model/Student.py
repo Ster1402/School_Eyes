@@ -9,7 +9,7 @@ class Student(dict):
 
         if register_number:
             self["pictures"] = StudentModel.getStudentPictures(register_number)
-            self["face_encodings"] = self._EncodeFace()
+            self["face_encodings"] = self._EncodeFace()        
 
     def __key(self):
         return (self["register_number"])

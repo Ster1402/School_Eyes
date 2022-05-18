@@ -95,6 +95,7 @@ class ReconizerProcess:
         attendance_list["end_time"] = end_time
         attendance_list["course"] = self.__request["course"]
 
+        print("Attendance List : ")
         pprint(attendance_list)
 
         #Send data to the client
