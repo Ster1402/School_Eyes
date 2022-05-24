@@ -3,12 +3,11 @@
         "_test": {
             "camera_0": 0
         },
-        "_test2": {
-            "camera_0": 0
+        "_Local File": {
         },
         "_15BS1": {
-            "camera_0": "rtsp://192.168.43.110:8080/h264_ulaw.sdp",
-            "camera_1": "rtsp://192.168.43.161:8080/h264_ulaw.sdp"
+            "camera_1": "rtsp://192.168.43.161:8080/h264_ulaw.sdp",
+            "camera_3": "0"
         },
         "_16BS1": {
             "camera_0": "rtsp://192.168.43.110:8080/h264_ulaw.sdp",

@@ -4,8 +4,14 @@ import re
 from time import sleep
 
 from PyQt5 import QtCore
-from PyQt5.QtCore import QPropertyAnimation
-from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem, QMessageBox, QPushButton, QDialog, QFileDialog
+from PyQt5.QtCore import QPropertyAnimation, QMutex, QObject, QThread, pyqtSignal
+from PyQt5.QtWidgets import (
+    QMainWindow, 
+    QTableWidgetItem, 
+    QMessageBox, 
+    QPushButton, 
+    QDialog,
+    QFileDialog)
 import cv2
 from DialogStudent import DiaglogStudent
 
@@ -14,7 +20,28 @@ from model.Classroom import Classroom
 from UI_MainWindows import Ui_MainWindow
 from src.model.Student import Student
 
+mutex = QMutex()
 
+
+class Worker(QObject):
+    finished = pyqtSignal()
+    error_occured = pyqtSignal(str)
+    
+    def __init__(self, func):
+        super().__init__()
+        self.function = func
+    
+    def run(self):
+        mutex.lock()
+        try:
+            self.function()
+        except ValueError as err:
+            self.error_occured.emit(str(err))
+            
+        mutex.unlock()
+        self.finished.emit()
+        
+                
 class MainWindows(Ui_MainWindow, QMainWindow):
 
     def __init__(self):
@@ -157,6 +184,9 @@ please make sure that the informations provide are correct."))
         #
         # --> Classrooms : Camera page
         #
+        self.camera_is_running = False
+        self.try_camera_thread = QThread()
+        
         self.table_camera.clearContents()
 
         classrooms_names = Classroom.getClassroomsList()
@@ -514,6 +544,10 @@ please make sure that the informations provide are correct."))
         classroom.removeCamera(camera_name)
         self.table_camera.removeRow(row)
     
+    def printError(self, error: str):
+        QMessageBox.critical(self, self._translate("Title", "Error"),
+                                self._translate("ErrorMessage", error))
+    
     def _tryCameras(self):
         selectedItems = self.table_camera.selectedItems()
 
@@ -524,39 +558,71 @@ please make sure that the informations provide are correct."))
 
         camera_url = selectedItems[1].text()
         
-        QMessageBox.information(self, self._translate("Title", "Test camera"),
-                                self._translate("InfoMessage", "You shoudl press Escape Key (Esc) to close the record!"))
-    
-        if camera_url == "Webcam":
-            camera_url = 0
-    
-        camera = cv2.VideoCapture(camera_url)
+        # if self.try_camera_thread.isRunning():
+        #     QMessageBox.critical(self, self._translate("ErrorTitle", "Error"),
+        #                          self._translate("ErrorMessage", "A camera is already running, please close the proccess before."))
+        #     return
         
-        if camera.isOpened():
+        QMessageBox.information(self, self._translate("Title", "Test camera"),
+                                self._translate("InfoMessage", "You should press Escape Key (Esc) to close the record!"))
+    
+        self.try_camera_worker = Worker(lambda: self.tryCamera(camera_url))
+        self.try_camera_thread = QThread()
+        
+        self.try_camera_worker.moveToThread(self.try_camera_thread)
+        
+        self.try_camera_thread.started.connect(self.try_camera_worker.run)
+        self.try_camera_worker.finished.connect(self.try_camera_thread.quit)
+        self.try_camera_worker.finished.connect(self.try_camera_worker.deleteLater)
+        self.try_camera_worker.error_occured.connect(self.printError)
+
+        # Start the thread
+        self.try_camera_thread.start()
+
+        
+    def tryCamera(self, camera_url):
+        
+        if not self.camera_is_running:
             
-            while True:
+            self.btn_try_cameras.setEnabled(False)
+            self.btn_try_cameras.setText("Running...")    
+            self.camera_is_running = True
+            
+            if camera_url == "Webcam":
+                camera_url = 0
+        
+            camera = cv2.VideoCapture(camera_url)
+            
+            if camera.isOpened():
                 
-                is_frame_ready, frame = camera.read()
-                
-                if is_frame_ready:
+                while True:
                     
-                    cv2.imshow("Camera preview", frame)
+                    is_frame_ready, frame = camera.read()
                     
-                key = cv2.waitKey(20)
-                
-                sleep(.01)
-                
-                if key == 27: #Esc
-                    break
-                
-            cv2.destroyWindow("Camera preview")
+                    if is_frame_ready:
+                        
+                        cv2.imshow("Camera preview", frame)
+                            
+                    key = cv2.waitKey(20)
+                    
+                    sleep(.01)
+                    
+                    if key == 27: #Esc
+                        break
+                    
+                cv2.destroyWindow("Camera preview")
 
-        else:
-            QMessageBox.critical(self, self._translate("Title", "Test camera"),
-                            self._translate("ErrorMessage", "Impossible to join the camera, please make sure that the camera or the url is available !"))
-
-        camera.release()
-
+            else:
+                self.camera_is_running = False
+                self.btn_try_cameras.setEnabled(True)
+                self.btn_try_cameras.setText("Try")    
+                raise ValueError("Impossible to join the camera, please make sure that the camera or the url is available !")
+            
+            camera.release()
+            self.camera_is_running = False
+            self.btn_try_cameras.setEnabled(True)
+            self.btn_try_cameras.setText("Try")    
+    
     
     def _updateCamerasList(self, classroom_name: str):
         assert isinstance(classroom_name, str)

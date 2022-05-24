@@ -483,8 +483,8 @@ class StudentModel:
         register_number = student["register_number"]
         level = student["level"]
 
-        if StudentModel.findStudent(register_number):
-            raise ValueError("Student already exist")
+        # if StudentModel.findStudent(register_number):
+        #     raise ValueError("Student already exist")
 
         query = f"""
             UPDATE Student
