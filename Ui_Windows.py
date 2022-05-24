@@ -2037,4 +2037,13 @@ class Ui_MainWindow(object):
         self.btn_save_add_student.setText(_translate("MainWindow", "Save"))
         self.student_tabWidget.setTabText(self.student_tabWidget.indexOf(self.tab_add_student), _translate("MainWindow", "Add Student"))
         self.student_tabWidget.setTabText(self.student_tabWidget.indexOf(self.tab_student_information), _translate("MainWindow", "Informations"))
-import res_rc
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())

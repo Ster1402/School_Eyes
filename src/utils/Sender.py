@@ -1,7 +1,7 @@
 import sys
 import os
 import json
-from pymysql import connect
+# from pymysql import connect
 
 global _DATABASE_NAME_
 global _DATABASE_HOST_
@@ -23,19 +23,19 @@ class Sender:
         
 
     def SendData(self, data):
-        db = connect(host=_DATABASE_HOST_,
-                                port=_DATABASE_PORT_,
-                                user=_USER_,
-                                password=_PASSWORD_,
-                                database=_DATABASE_NAME_)
+        # db = connect(host=_DATABASE_HOST_,
+        #                         port=_DATABASE_PORT_,
+        #                         user=_USER_,
+        #                         password=_PASSWORD_,
+        #                         database=_DATABASE_NAME_)
 
-        cursor = db.cursor()
+        # cursor = db.cursor()
 
-        result = cursor.execute(f"""
-            INSERT INTO PendingResponse(teacher_id, date, response)
-                        VALUES ({self.teacher_id}, NOW(), {json.dumps(data)})
-        """)
+        # result = cursor.execute(f"""
+        #     INSERT INTO PendingResponse(teacher_id, date, response)
+        #                 VALUES ({self.teacher_id}, NOW(), {json.dumps(data)})
+        # """)
 
-        print(result)
-
+        # print(result)
+        pass
     
