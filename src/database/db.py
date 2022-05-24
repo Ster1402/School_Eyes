@@ -153,6 +153,7 @@ class DB:
                 id INT AUTO_INCREMENT NOT NULL, 
                 login VARCHAR(40) UNIQUE, 
                 password VARCHAR(255) NOT NULL,
+                status VARCHAR(15) DEFAULT "disconnected",
                 PRIMARY KEY(id) 
             );
 
@@ -175,7 +176,7 @@ class DB:
                 axe_id INT NOT NULL,
                 name VARCHAR(40) NOT NULL,
                 surname VARCHAR(40),
-                register_number VARCHAR(10),
+                register_number VARCHAR(10) UNIQUE,
                 level INT,
                 PRIMARY KEY(id),
                 FOREIGN KEY(axe_id) REFERENCES Axe(id)
@@ -184,7 +185,7 @@ class DB:
             CREATE TABLE IF NOT EXISTS Picture(
                 id INT AUTO_INCREMENT NOT NULL,
                 student_id INT NOT NULL,
-                path VARCHAR(255) NOT NULL,
+                path VARCHAR(255) NOT NULL UNIQUE,
                 face_encoding TEXT NOT NULL,
                 PRIMARY KEY(id),
                 FOREIGN KEY(student_id) REFERENCES Student(id)
@@ -231,6 +232,78 @@ class DB:
             """
 
             self.executeScript(create_default_admin)
+
+    @staticmethod
+    def adminConnected():
+        conn = sqlite3.connect(_DATABASE_PATH_)
+        cursor = conn.cursor()
+        
+        result = cursor.execute(f"""SELECT id, login, password
+                                    FROM Admin
+                                    WHERE status="connected" 
+                                """)\
+                        .fetchone()
+        
+        cursor.close()
+        conn.close()
+        
+        return result
+        
+    @staticmethod
+    def updateAdmin(id, new_login, new_password):
+        
+        conn = sqlite3.connect(_DATABASE_PATH_)
+        cursor = conn.cursor()
+        
+        cursor.execute(f"""UPDATE Admin 
+                            SET login="{new_login}", password="{new_password}"
+                            WHERE  id={id};""")
+        
+        cursor.close()
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def checkIfAdminExist(login, password):
+        
+        conn = sqlite3.connect(_DATABASE_PATH_)
+        cursor = conn.cursor()
+        
+        result = cursor.execute(f"""
+                            SELECT id, login, password FROM Admin
+                            WHERE  login="{login}" AND password="{password}"
+                        """).fetchone()
+        
+        cursor.close()
+        conn.close()
+        
+        return result
+
+    @staticmethod
+    def connectAdmin(id):
+        conn = sqlite3.connect(_DATABASE_PATH_)
+        cursor = conn.cursor()
+        
+        cursor.executescript(f"""UPDATE Admin 
+                                SET status="connected" 
+                                WHERE id={id};
+                            """)
+        cursor.close()
+        conn.commit()
+        conn.close()
+    
+    @staticmethod
+    def disconnectAdmin():
+        conn = sqlite3.connect(_DATABASE_PATH_)
+        cursor = conn.cursor()
+        
+        cursor.executescript(f"""UPDATE Admin 
+                                SET status="disconnected";""")
+
+        cursor.close()
+        conn.commit()
+        conn.close()
+    
 
 class StudentModel:
 
@@ -293,25 +366,31 @@ class StudentModel:
             raise ValueError("The register number doesn't match any student!")
 
         try:
-            #Get face encoding
-            picture = fr.load_image_file(picture_path)
+            
+            q = f"SELECT * FROM Picture WHERE path='{picture_path}';"
+            result = DB.executeQuery_(q)
+            
+            if not result:
+            
+                #Get face encoding
+                picture = fr.load_image_file(picture_path)
 
-            face_encoding = fr.face_encodings(picture)[0]
-            face_encoding_str = json.dumps(face_encoding, cls=NumpyArrayEncoder)
+                face_encoding = fr.face_encodings(picture)[0]
+                face_encoding_str = json.dumps(face_encoding, cls=NumpyArrayEncoder)
 
-            picture_id = ID_Generator("Picture")
+                picture_id = ID_Generator("Picture")
 
-            query = f"""
-                INSERT INTO Picture(id, student_id, path, face_encoding)
-                    VALUES ({picture_id.id}, {student["id"]}, "{picture_path}", "{face_encoding_str}");
-            """
+                query = f"""
+                    INSERT INTO Picture(id, student_id, path, face_encoding)
+                        VALUES ({picture_id.id}, {student["id"]}, "{picture_path}", "{face_encoding_str}");
+                """
 
-            DB.executeScript_(query)
+                DB.executeScript_(query)
 
         except:
             raise ValueError("The picture is not correct!")
         else:
-            print("Success !")
+            print("Face encoding successfully added !")
 
     @staticmethod
     def findStudent(register_number: str):
@@ -320,9 +399,12 @@ class StudentModel:
         from ..model.Student import Student
 
         query = f"""
-            SELECT Student.name, Student.surname, Student.level, Student.id 
-            FROM Student
-            WHERE register_number="{register_number}";
+            SELECT Student.name, Student.surname, Student.level, Student.id,
+                    Axe.name, Discipline.name 
+            FROM Student, Axe, Discipline
+            WHERE register_number="{register_number}"
+                  AND Student.axe_id=Axe.id 
+                  AND Axe.discipline_id=Discipline.id;
         """
 
         result = DB.executeQuery_(query)
@@ -335,18 +417,37 @@ class StudentModel:
         name = student[0] + StudentModel.name_separator + student[1]
         level = student[2]
         id = student[3]
-
+        axe = student[4]
+        discipline = student[5]
+        
         student = Student(name, register_number, level)
         student["id"] = id
+        student["axe"] = axe
+        student["discipline"] = discipline
 
         return student
 
     @staticmethod
-    def insertStudent(student, axe) -> None:
-        print("[Static] insertStudent")
+    def removeStudent(register_number: str):
+        
+        query = f"""
+            DELETE FROM Picture
+                WHERE student_id IN (SELECT id FROM Student 
+                                        WHERE register_number="{register_number}");
+        """
 
-        from ..model.Student import Student
-        assert isinstance(student, Student)
+        DB.executeScript_(query)
+        
+        query = f"""
+            DELETE FROM Student
+                WHERE register_number="{register_number}";
+        """
+
+        DB.executeScript_(query)
+        
+    @staticmethod
+    def insertStudent(student: dict, axe: str) -> None:
+        print("[Static] insertStudent")
 
         student_id_gen = ID_Generator("Student")
         student_id = student_id_gen.id
@@ -356,6 +457,9 @@ class StudentModel:
         name, surname = student["name"].split(StudentModel.name_separator)
         register_number = student["register_number"]
         level = student["level"]
+        
+        if StudentModel.findStudent(register_number):
+            raise ValueError("Student already exist")
 
         query = f"""
             INSERT INTO Student(id, axe_id, name, surname, register_number, level)
@@ -365,8 +469,55 @@ class StudentModel:
         DB.executeScript_(query)
 
     @staticmethod
+    def updateStudent(student, axe) -> None:
+        print("[Static] updateStudent")
+
+        from ..model.Student import Student
+        assert isinstance(student, Student)
+
+        student_id = student.get('id')
+
+        axe_id = AxeModel.getID(axe)
+
+        name, surname = student["name"].split(StudentModel.name_separator)
+        register_number = student["register_number"]
+        level = student["level"]
+
+        # if StudentModel.findStudent(register_number):
+        #     raise ValueError("Student already exist")
+
+        query = f"""
+            UPDATE Student
+                SET axe_id={axe_id}, name="{name}", surname="{surname}", 
+                    register_number="{register_number}", 
+                    level={level} 
+                WHERE id={student_id};            
+        """
+
+        DB.executeScript_(query)
+        
+        #
+        # Update pictures
+        #
+        
+        # for picture_path in student.get("pictures"):
+        #     q = f"SELECT * FROM Picture WHERE path='{picture_path}';"
+        #     result = DB.executeQuery_(q)
+            
+        #     if not result:
+        #         try:
+        #             StudentModel.addStudentPicture(picture_path, 
+        #                                         student.get('register_number'))
+        #         except ValueError:
+        #             print(f"Error while trying to insert {picture_path}")
+                
+            
+
+    @staticmethod
     def removePicture(path):
         assert isinstance(path, str)
+        
+        print("[RemovePicture] : ", path)
 
         query = f"""
             DELETE FROM Picture 
@@ -410,18 +561,28 @@ class DisciplineModel:
 
     @staticmethod
     def getAxes(discipline_name):
-        from ..model.Axe import Axe
-
+        
         query = f"""SELECT Axe.name 
                     FROM Axe, Discipline
                     WHERE Axe.discipline_id=Discipline.id 
                             AND Discipline.name="{discipline_name}" 
-
         """
 
         response = [ axe for axe, in DB.executeQuery_(query) ]
 
         return response
+
+    @staticmethod
+    def getDisciplinesName():
+        
+        query = f"""SELECT name 
+                    FROM Discipline;
+        """
+
+        response = [ discipline for discipline, in DB.executeQuery_(query) ]
+
+        return response
+
 
 class AxeModel:
 

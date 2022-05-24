@@ -1,17 +1,26 @@
 {
-    "VideoSources" : {
-        "test" : {
-            "camera_0" : 0
+    "VideoSources": {
+        "_test": {
+            "camera_0": 0
         },
-        "test2" : {
-            "camera" : 0
+        "_Local File": {
         },
         "_15BS1": {
-            "camera_0" : "rtsp://192.168.43.110:8080/h264_ulaw.sdp",
-            "camera_1" : "rtsp://192.168.43.161:8080/h264_ulaw.sdp"},
+            "camera_1": "rtsp://192.168.43.161:8080/h264_ulaw.sdp",
+            "camera_3": "0"
+        },
+        "_16BS1": {
+            "camera_0": "rtsp://192.168.43.110:8080/h264_ulaw.sdp",
+            "camera_1": "rtsp://192.168.43.161:8080/h264_ulaw.sdp"
+        },
         "_27BS2": {
-            "camera_0" : "rtsp://192.168.43.30:8080/h264_ulaw.sdp",
-            "camera_1" : "rtsp://192.168.43.167:8080/h264_ulaw.sdp"}
+            "camera_0": "rtsp://192.168.43.30:8080/h264_ulaw.sdp",
+            "camera_1": "rtsp://192.168.43.167:8080/h264_ulaw.sdp"
+        },
+        "_19BS2": {
+            "camera_0": "rtsp://192.168.43.37:8080/h264_ulaw.sdp",
+            "camera_1": "rtsp://192.168.43.161:8080/h264_ulaw.sdp"
+        }
     },
     "Server": {
         "Host": "0.0.0.0",

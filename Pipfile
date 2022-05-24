@@ -22,6 +22,7 @@ uvicorn = "*"
 mysqlclient = "*"
 pymysql = "*"
 pyside2 = "*"
+pyqt5 = "*"
 
 [dev-packages]
 

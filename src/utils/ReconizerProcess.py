@@ -1,6 +1,5 @@
 from time import ctime, sleep
 from pprintpp import pprint
-
 from .Sender import Sender
 from .ListFormatter import ListFormatter
 from .FaceReconizer import FaceReconizer
@@ -96,10 +95,11 @@ class ReconizerProcess:
         attendance_list["end_time"] = end_time
         attendance_list["course"] = self.__request["course"]
 
+        print("Attendance List : ")
         pprint(attendance_list)
 
         #Send data to the client
-        self.__sender.SendData(attendance_list)
+        # self.__sender.SendData(attendance_list)
 
 
         

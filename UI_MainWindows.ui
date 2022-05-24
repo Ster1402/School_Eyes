@@ -6,18 +6,22 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>877</width>
-    <height>617</height>
+    <width>1024</width>
+    <height>620</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>877</width>
-    <height>590</height>
+    <width>1024</width>
+    <height>600</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>School Eyes</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="src/res.qrc">
+    <normaloff>:/logo/images/SchoolEyes_Logo.ico</normaloff>:/logo/images/SchoolEyes_Logo.ico</iconset>
   </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
@@ -179,7 +183,7 @@ QPushButton:pressed{
        <item>
         <widget class="QFrame" name="frame_logo">
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(0, 118, 186);</string>
+          <string notr="true">background-color: #dedede;</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -380,7 +384,7 @@ QPushButton:pressed{
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background-image: url(:/24x24/images/icons/24x24/cil-home.png);
 	background-position: left center;
 	background-repeat: no-repeat;
@@ -396,7 +400,7 @@ QPushButton:pressed{
 QPushButton:!enabled
 {
      background-color: #003c5f;
-   	 border-right: 5px solid #cecece;
+   	 border-right: 5px solid #dedede;
    	 border-left: 25px solid #003c5f;
 }
 
@@ -450,7 +454,7 @@ QPushButton:pressed {
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background-image: url(:/24x24/images/icons/24x24/cil-people.png);
 	background-position: left center;
 	background-repeat: no-repeat;
@@ -465,7 +469,7 @@ QPushButton:pressed {
 QPushButton:!enabled
 {
      background-color: #003c5f;
-   	 border-right: 5px solid #cecece;
+   	 border-right: 5px solid #dedede;
    	 border-left: 25px solid #003c5f;
 }
 
@@ -517,7 +521,7 @@ QPushButton:pressed {
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background-image: url(:/24x24/images/icons/24x24/cil-video.png);
 	background-position: left center;
 	background-repeat: no-repeat;
@@ -532,7 +536,7 @@ QPushButton:pressed {
 QPushButton:!enabled
 {
      background-color: #003c5f;
-   	 border-right: 5px solid #cecece;
+   	 border-right: 5px solid #dedede;
    	 border-left: 25px solid #003c5f;
 }
 
@@ -584,7 +588,7 @@ QPushButton:pressed {
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background-image: url(:/24x24/images/icons/24x24/cil-settings.png);
 	background-position: left center;
 	background-repeat: no-repeat;
@@ -599,7 +603,7 @@ QPushButton:pressed {
 QPushButton:!enabled
 {
      background-color: #003c5f;
-   	 border-right: 5px solid #cecece;
+   	 border-right: 5px solid #dedede;
    	 border-left: 25px solid #003c5f;
 }
 
@@ -702,7 +706,7 @@ QPushButton:pressed {
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background-image: url(:/24x24/images/icons/24x24/cil-lightbulb.png);
 	background-position: left center;
 	background-repeat: no-repeat;
@@ -717,7 +721,7 @@ QPushButton:pressed {
 QPushButton:!enabled
 {
      background-color: #003c5f;
-   	 border-right: 5px solid #cecece;
+   	 border-right: 5px solid #dedede;
    	 border-left: 25px solid #003c5f;
 }
 
@@ -771,7 +775,7 @@ QPushButton:pressed {
                 <string notr="true">QPushButton {
 	
 	background-image: url(:/24x24/images/icons/24x24/cil-power-standby.png);
-	color: #cecece;
+	color: #dedede;
 	background-position: left center;
 	background-repeat: no-repeat;
 	border: none;
@@ -785,7 +789,7 @@ QPushButton:pressed {
 QPushButton:!enabled
 {
      background-color: #003c5f;
-   	 border-right: 5px solid #cecece;
+   	 border-right: 5px solid #dedede;
    	 border-left: 25px solid #003c5f;
 }
 
@@ -861,7 +865,6 @@ QPushButton:pressed {
              <string notr="true">background-image: url(:/background/images/background/back.jpg);
 background-position: center;
 background-repeat: no-repeat;
-background-size: cover;
 </string>
             </property>
             <property name="currentIndex">
@@ -910,10 +913,10 @@ background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: #003c5f;
-	color: #cecece;
+	color: #dedede;
 	font-size: 25px;
 	border-radius: 5px;
-	border: 3px solid #cecece;
+	border: 3px solid #dedede;
 }
 
 QPushButton:hover {
@@ -958,10 +961,10 @@ QPushButton:hover {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: #003c5f;
-	color: #cecece;
+	color: #dedede;
 	font-size: 25px;
 	border-radius: 5px;
-	border: 3px solid #cecece;
+	border: 3px solid #dedede;
 	
 }
 
@@ -1007,10 +1010,10 @@ QPushButton:hover {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: #003c5f;
-	color: #cecece;
+	color: #dedede;
 	font-size: 25px;
 	border-radius: 5px;
-	border: 3px solid #cecece;
+	border: 3px solid #dedede;
 	
 }
 
@@ -1056,10 +1059,10 @@ QPushButton:hover {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: #003c5f;
-	color: #cecece;
+	color: #dedede;
 	font-size: 25px;
 	border-radius: 5px;
-	border: 3px solid #cecece;
+	border: 3px solid #dedede;
 	
 }
 
@@ -1114,8 +1117,8 @@ QPushButton:hover {
                 <property name="styleSheet">
                  <string notr="true">QLabel{
 	background: rgba(0, 42, 68, 183);
-	color: #cecece;
-	border: 2px solid #cecece;
+	color: #dedede;
+	border: 2px solid #dedede;
 	border-radius: 15px;
 	
 }
@@ -1161,13 +1164,13 @@ QPushButton:hover {
                  <string notr="true">QLineEdit {
 	border-radius: 25px;
 padding: 0 15px 0 27px;
-border: 2px solid #cecece;
-color: #cecece;
+border: 2px solid #dedede;
+color: #dedede;
 background: transparent;
 background-image: url(:/24x24/images/icons/24x24/cil-user.png);
 background-repeat: no-repeat;
 background-position: left;
-border-left: 15px solid #cecece;
+border-left: 15px solid #dedede;
 }
 
 QLineEdit:focus, QLineEdit:hover  {
@@ -1214,13 +1217,13 @@ QLineEdit:focus, QLineEdit:hover  {
                  <string notr="true">QLineEdit {
 	border-radius: 25px;
 padding: 0 15px 0 27px;
-border: 2px solid #cecece;
-color: #cecece;
+border: 2px solid #dedede;
+color: #dedede;
 background: transparent;
 background-image: url(:/24x24/images/icons/24x24/cil-https.png);
 background-repeat: no-repeat;
 background-position: left;
-border-left: 15px solid #cecece;
+border-left: 15px solid #dedede;
 }
 
 QLineEdit:focus, QLineEdit:hover {
@@ -1267,9 +1270,9 @@ QLineEdit:focus, QLineEdit:hover {
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background: transparent;
-	border: 2px solid #cecece;	
+	border: 2px solid #dedede;	
 	border-radius: 25px;
 	padding: 5px 150px;
 }
@@ -1297,12 +1300,12 @@ QPushButton:pressed {
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background: rgba(0, 42, 68, 183);
-color: #cecece;
-border: 2px solid #cecece;
+color: #dedede;
+border: 2px solid #dedede;
 border-radius: 15px;
 
-border-left: 25px solid #cecece;
-border-right: 25px solid #cecece;</string>
+border-left: 25px solid #dedede;
+border-right: 25px solid #dedede;</string>
                 </property>
                 <property name="text">
                  <string>School Eyes - version 1.0</string>
@@ -1318,7 +1321,7 @@ border-right: 25px solid #cecece;</string>
              <property name="styleSheet">
               <string notr="true">background-color: rgb(255, 255, 255);</string>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0,0,0">
+             <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0,0,0,0">
               <property name="spacing">
                <number>20</number>
               </property>
@@ -1359,8 +1362,8 @@ border-right: 25px solid #cecece;</string>
                 <property name="styleSheet">
                  <string notr="true">QLabel{
 	background: rgba(0, 42, 68, 183);
-	color: #cecece;
-	border: 2px solid #cecece;
+	color: #dedede;
+	border: 2px solid #dedede;
 	border-radius: 15px;
 	
 }
@@ -1437,7 +1440,7 @@ border-right: 25px solid #cecece;</string>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">background: transparent;
-color: #cecece;</string>
+color: #dedede;</string>
                    </property>
                    <property name="text">
                     <string>Select classroom</string>
@@ -1480,16 +1483,16 @@ color: #cecece;</string>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QComboBox {
-	color: #cecece;
+	color: #dedede;
 	background: #002A44;
-	border: 2px solid #cecece;
+	border: 2px solid #dedede;
 	border-radius: 5px;
 	padding: 5px;
 	padding-left: 10px;
 }
 
 QComboBox QAbstractItemView {
-	color: #cecece;
+	color: #dedede;
 	padding: 10px;
 	selection-background-color: #F38533;
 }
@@ -1530,7 +1533,7 @@ QComboBox:hover {
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>60</height>
+                  <height>55</height>
                  </size>
                 </property>
                 <property name="maximumSize">
@@ -1588,7 +1591,7 @@ QComboBox:hover {
                    </property>
                    <property name="styleSheet">
                     <string notr="true">background: transparent;
-color: #cecece;</string>
+color: #dedede;</string>
                    </property>
                    <property name="text">
                     <string>Add new camera URL</string>
@@ -1600,6 +1603,12 @@ color: #cecece;</string>
                  </item>
                  <item>
                   <widget class="QLineEdit" name="new_camera_url">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -1618,13 +1627,13 @@ color: #cecece;</string>
                     <string notr="true">QLineEdit {
 	background: transparent;
 	background-image: url(:/24x24/images/icons/24x24/cil-video.png);
-	color: #cecece;
+	color: #dedede;
 	border-radius: 25px;
 	padding: 0 15px 0 27px;
-	border: 2px solid #cecece;
+	border: 2px solid #dedede;
 	background-repeat: no-repeat;
 	background-position: left;
-	border-left: 15px solid #cecece;
+	border-left: 15px solid #dedede;
 }
 
 QLineEdit:focus, QLineEdit:hover {
@@ -1635,6 +1644,12 @@ QLineEdit:focus, QLineEdit:hover {
                  </item>
                  <item>
                   <widget class="QPushButton" name="btn_add_camera">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="minimumSize">
                     <size>
                      <width>120</width>
@@ -1654,9 +1669,9 @@ QLineEdit:focus, QLineEdit:hover {
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background: #002A44;
-	border: 2px solid #cecece;
+	border: 2px solid #dedede;
 	border-radius: 25px;
 	padding: 1px 15px;
 }
@@ -1693,7 +1708,7 @@ QPushButton:pressed {
                  <string notr="true">*{
 	background: #003C5F;
 	font-size: 16px;
-	color: #cecece;
+	color: #dedede;
 }
 
 QTableWidget {
@@ -1755,13 +1770,13 @@ QHeaderView::section:horizontal {
 QTableView::item {
 	background: #002A44;
 	border-left: 1px solid #003c5f;
-	color: #cecece;
+	color: #dedede;
 	padding-left: 10px;
 }
 
 QTableView::item:hover, QTableView::item:selected, QTableView::item:focus {
 	background: #003c5f;
-	color: #cecece;
+	color: #dedede;
 }
 </string>
                 </property>
@@ -1885,6 +1900,139 @@ QTableView::item:hover, QTableView::item:selected, QTableView::item:focus {
                 </item>
                </widget>
               </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_16">
+                <property name="spacing">
+                 <number>10</number>
+                </property>
+                <property name="leftMargin">
+                 <number>10</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <spacer name="horizontalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_try_cameras">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Segoe UI</family>
+                    <pointsize>16</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton {
+	color: #dedede;
+	background: #002A44;
+	border: 2px solid #dedede;
+	border-radius: 25px;
+	padding: 1px 15px;
+}
+
+QPushButton:hover {
+	background: #003c5f;
+	border-color: #F38533;
+}
+
+QPushButton:pressed {
+	background: #F38533;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>Try</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_delete_camera">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Segoe UI</family>
+                    <pointsize>16</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton {
+	color: #dedede;
+	background: rgb(179, 32, 27);
+	border: 2px solid #dedede;
+	border-radius: 25px;
+	padding: 1px 15px;
+}
+
+QPushButton:hover {
+	border-color: #F38533;
+}
+
+QPushButton:pressed {
+	background: #F38533;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>Delete</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
              </layout>
             </widget>
             <widget class="QWidget" name="page_help">
@@ -1928,8 +2076,8 @@ QTableView::item:hover, QTableView::item:selected, QTableView::item:focus {
                 <property name="styleSheet">
                  <string notr="true">QLabel{
 	background: rgba(0, 42, 68, 183);
-	color: #cecece;
-	border: 2px solid #cecece;
+	color: #dedede;
+	border: 2px solid #dedede;
 	border-radius: 15px;
 	
 }
@@ -1975,13 +2123,13 @@ QTableView::item:hover, QTableView::item:selected, QTableView::item:focus {
                  <string notr="true">QLineEdit {
 	border-radius: 25px;
 	padding: 0 15px 0 27px;
-	border: 2px solid #cecece;
-	color: #cecece;
+	border: 2px solid #dedede;
+	color: #dedede;
 	background: transparent;
 	background-image: url(:/24x24/images/icons/24x24/cil-user.png);
 	background-repeat: no-repeat;
 	background-position: left;
-	border-left: 15px solid #cecece;
+	border-left: 15px solid #dedede;
 }
 
 QLineEdit:focus, QLineEdit:hover  {
@@ -2029,13 +2177,13 @@ QLineEdit:focus, QLineEdit:hover  {
 	
 	border-radius: 25px;
 	padding: 0 15px 0 27px;
-	border: 2px solid #cecece;
-	color: #cecece;
+	border: 2px solid #dedede;
+	color: #dedede;
 	background: transparent;
 	background-image: url(:/24x24/images/icons/24x24/cil-lock-unlocked.png);
 	background-repeat: no-repeat;
 	background-position: left;
-	border-left: 15px solid #cecece;
+	border-left: 15px solid #dedede;
 }
 
 QLineEdit:focus, QLineEdit:hover {
@@ -2087,13 +2235,13 @@ QLineEdit:focus, QLineEdit:hover {
                  <string notr="true">QLineEdit {
 	border-radius: 25px;
 	padding: 0 15px 0 27px;
-	border: 2px solid #cecece;
-	color: #cecece;
+	border: 2px solid #dedede;
+	color: #dedede;
 	background: transparent;
 	background-image: url(:/24x24/images/icons/24x24/cil-https.png);
 	background-repeat: no-repeat;
 	background-position: left;
-	border-left: 15px solid #cecece;
+	border-left: 15px solid #dedede;
 }
 
 QLineEdit:focus, QLineEdit:hover {
@@ -2145,13 +2293,13 @@ QLineEdit:focus, QLineEdit:hover {
                  <string notr="true">QLineEdit {
 	border-radius: 25px;
 	padding: 0 15px 0 27px;
-	border: 2px solid #cecece;
-	color: #cecece;
+	border: 2px solid #dedede;
+	color: #dedede;
 	background: transparent;
 	background-image: url(:/24x24/images/icons/24x24/cil-https.png);
 	background-repeat: no-repeat;
 	background-position: left;
-	border-left: 15px solid #cecece;
+	border-left: 15px solid #dedede;
 }
 
 QLineEdit:focus, QLineEdit:hover {
@@ -2210,9 +2358,9 @@ QLineEdit:focus, QLineEdit:hover {
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background: transparent;
-	border: 2px solid #cecece;	
+	border: 2px solid #dedede;	
 	border-radius: 25px;
 	padding: 5px 150px;
 }
@@ -2268,8 +2416,8 @@ QPushButton:pressed {
                 <property name="styleSheet">
                  <string notr="true">QLabel{
 	background: rgba(0, 42, 68, 183);
-	color: #cecece;
-	border: 2px solid #cecece;
+	color: #dedede;
+	border: 2px solid #dedede;
 	border-radius: 15px;	
 }
 </string>
@@ -2290,7 +2438,7 @@ QPushButton:pressed {
 }
 
 QTabWidget::pane {
-  border: 1px solid #cecece;
+  border: 1px solid #dedede;
   top:-1px; 
 } 
 
@@ -2298,8 +2446,8 @@ QTabBar::tab {
 	font-size: 14px;
 	font-weight: bold;
 	width: 100%;
-  	color: #cecece; 
-  	border: 1px solid #cecece; 
+  	color: #dedede; 
+  	border: 1px solid #dedede; 
   	padding: 5px 50px;
 } 
 
@@ -2312,7 +2460,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
                  <enum>QTabWidget::Triangular</enum>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="tab_add_student">
                  <property name="styleSheet">
@@ -2377,7 +2525,7 @@ background: rgba(0, 42, 68, 183);
                            </font>
                           </property>
                           <property name="styleSheet">
-                           <string notr="true">color: #cecece;
+                           <string notr="true">color: #dedede;
 background: transparent;</string>
                           </property>
                           <property name="text">
@@ -2416,8 +2564,8 @@ background: transparent;</string>
                           <property name="styleSheet">
                            <string notr="true">QLineEdit {
 	padding: 0 15px 0 27px;
-	border: 2px solid #cecece;
-	color: #cecece;
+	border: 2px solid #dedede;
+	color: #dedede;
 	background: transparent;
 	border-radius: 15px;
 }
@@ -2467,7 +2615,7 @@ QLineEdit:focus, QLineEdit:hover  {
                            </font>
                           </property>
                           <property name="styleSheet">
-                           <string notr="true">color: #cecece;
+                           <string notr="true">color: #dedede;
 background: transparent;</string>
                           </property>
                           <property name="text">
@@ -2506,8 +2654,8 @@ background: transparent;</string>
                           <property name="styleSheet">
                            <string notr="true">QLineEdit {
 	padding: 0 15px 0 27px;
-	border: 2px solid #cecece;
-	color: #cecece;
+	border: 2px solid #dedede;
+	color: #dedede;
 	background: transparent;
 	border-radius: 15px;
 }
@@ -2557,7 +2705,7 @@ QLineEdit:focus, QLineEdit:hover  {
                            </font>
                           </property>
                           <property name="styleSheet">
-                           <string notr="true">color: #cecece;
+                           <string notr="true">color: #dedede;
 background: transparent;</string>
                           </property>
                           <property name="text">
@@ -2596,8 +2744,8 @@ background: transparent;</string>
                           <property name="styleSheet">
                            <string notr="true">QLineEdit {
 	padding: 0 15px 0 27px;
-	border: 2px solid #cecece;
-	color: #cecece;
+	border: 2px solid #dedede;
+	color: #dedede;
 	background: transparent;
 	border-radius: 15px;
 }
@@ -2647,7 +2795,7 @@ QLineEdit:focus, QLineEdit:hover  {
                            </font>
                           </property>
                           <property name="styleSheet">
-                           <string notr="true">color: #cecece;
+                           <string notr="true">color: #dedede;
 background: transparent;</string>
                           </property>
                           <property name="text">
@@ -2686,8 +2834,8 @@ background: transparent;</string>
                           <property name="styleSheet">
                            <string notr="true">QSpinBox {
 	padding: 0 15px 0 27px;
-	border: 2px solid #cecece;
-	color: #cecece;
+	border: 2px solid #dedede;
+	color: #dedede;
 	background: transparent;
 	border-radius: 15px;
 }
@@ -2737,7 +2885,7 @@ QSpinBox:hover, QSpinBox:focus {
                            </font>
                           </property>
                           <property name="styleSheet">
-                           <string notr="true">color: #cecece;
+                           <string notr="true">color: #dedede;
 background: transparent;</string>
                           </property>
                           <property name="text">
@@ -2779,14 +2927,14 @@ background: transparent;</string>
                           <property name="styleSheet">
                            <string notr="true">QComboBox {
 	padding: 0 15px 0 27px;
-	border: 2px solid #cecece;
-	color: #cecece;
+	border: 2px solid #dedede;
+	color: #dedede;
 	background: transparent;
 	border-radius: 15px;
 }
 
 QComboBox QAbstractItemView {
-	color: #cecece;
+	color: #dedede;
 	padding: 10px;
 	selection-background-color: #F38533;
 }
@@ -2875,7 +3023,7 @@ QComboBox:hover {
                            </font>
                           </property>
                           <property name="styleSheet">
-                           <string notr="true">color: #cecece;
+                           <string notr="true">color: #dedede;
 background: transparent;</string>
                           </property>
                           <property name="text">
@@ -2917,14 +3065,14 @@ background: transparent;</string>
                           <property name="styleSheet">
                            <string notr="true">QComboBox {
 	padding: 0 15px 0 27px;
-	border: 2px solid #cecece;
-	color: #cecece;
+	border: 2px solid #dedede;
+	color: #dedede;
 	background: transparent;
 	border-radius: 15px;
 }
 
 QComboBox QAbstractItemView {
-	color: #cecece;
+	color: #dedede;
 	padding: 10px;
 	selection-background-color: #F38533;
 }
@@ -2983,7 +3131,7 @@ QComboBox:hover {
                            </font>
                           </property>
                           <property name="styleSheet">
-                           <string notr="true">color: #cecece;
+                           <string notr="true">color: #dedede;
 background: transparent;</string>
                           </property>
                           <property name="text">
@@ -2995,7 +3143,7 @@ background: transparent;</string>
                          </widget>
                         </item>
                         <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-                         <widget class="QListWidget" name="drap_and_drop_box">
+                         <widget class="QListWidget" name="drag_and_drop_box">
                           <property name="sizePolicy">
                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                             <horstretch>0</horstretch>
@@ -3004,7 +3152,7 @@ background: transparent;</string>
                           </property>
                           <property name="minimumSize">
                            <size>
-                            <width>315</width>
+                            <width>450</width>
                             <height>110</height>
                            </size>
                           </property>
@@ -3027,8 +3175,8 @@ background: transparent;</string>
 	background-image: url(:/background/images/background/drag_drop.png);
 	background-repeat: no-repeat;
 	background-position: center;
-	color: #cecece;
-	border: 1px solid #cecece;
+	color: #dedede;
+	border: 1px solid #dedede;
 	padding: 5px;
 	border-radius: 15px;
 }
@@ -3036,6 +3184,10 @@ background: transparent;</string>
 QListWidget::Item {
 	background: #002A44;
 	padding: 2px;
+}
+
+QListWidget::Item:selected {
+	background: #3C5F85;
 }
 
  QScrollBar:vertical {
@@ -3092,21 +3244,11 @@ QListWidget::Item {
                            <enum>QAbstractItemView::DropOnly</enum>
                           </property>
                           <property name="selectionMode">
-                           <enum>QAbstractItemView::MultiSelection</enum>
+                           <enum>QAbstractItemView::ExtendedSelection</enum>
                           </property>
                           <property name="selectionBehavior">
                            <enum>QAbstractItemView::SelectRows</enum>
                           </property>
-                          <item>
-                           <property name="text">
-                            <string>c:/jordan/pictures/jordan.jpg</string>
-                           </property>
-                          </item>
-                          <item>
-                           <property name="text">
-                            <string>c:/jordan/pictures/jordan.jpg</string>
-                           </property>
-                          </item>
                          </widget>
                         </item>
                        </layout>
@@ -3162,9 +3304,9 @@ QListWidget::Item {
                           </property>
                           <property name="styleSheet">
                            <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background: #002A44;
-	border: 2px solid #cecece;
+	border: 2px solid #dedede;
 	border-radius: 15px;
 	padding: 1px 10px;
 }
@@ -3216,9 +3358,9 @@ QPushButton:pressed {
                           </property>
                           <property name="styleSheet">
                            <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background: #002A44;
-	border: 2px solid #cecece;
+	border: 2px solid #dedede;
 	border-radius: 15px;
 	padding: 1px 10px;
 }
@@ -3299,9 +3441,9 @@ QPushButton:pressed {
                         </property>
                         <property name="styleSheet">
                          <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background: #002A44;
-	border: 2px solid #cecece;
+	border: 2px solid #dedede;
 	border-radius: 15px;
 	padding: 1px 10px;
 }
@@ -3353,9 +3495,9 @@ QPushButton:pressed {
                         </property>
                         <property name="styleSheet">
                          <string notr="true">QPushButton {
-	color: #cecece;
+	color: #dedede;
 	background: #002A44;
-	border: 2px solid #cecece;
+	border: 2px solid #dedede;
 	border-radius: 15px;
 	padding: 1px 10px;
 }
@@ -3389,6 +3531,794 @@ background: rgba(0, 42, 68, 183);
                  <attribute name="title">
                   <string>Informations</string>
                  </attribute>
+                 <layout class="QHBoxLayout" name="horizontalLayout_22">
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_16">
+                    <item>
+                     <widget class="QTableWidget" name="table_students">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>540</width>
+                        <height>270</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="cursor" stdset="0">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">*{
+	background: #003C5F;
+	font-size: 16px;
+	color: #dedede;
+}
+
+QTableWidget {
+	background: #002A44;
+	border-radius: 5px;
+}
+
+ QScrollBar:vertical {
+	border: none;
+    background: rgb(52, 59, 72);
+    width: 14px;
+    margin: 21px 0 21px 0;
+	border-radius: 0px;
+ }
+
+ QScrollBar::handle:vertical {	
+	background: rgb(85, 170, 255);
+    min-height: 25px;
+	border-radius: 7px
+ }
+ QScrollBar::add-line:vertical {
+     border: none;
+    background: rgb(55, 63, 77);
+     height: 20px;
+	border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+     subcontrol-position: bottom;
+     subcontrol-origin: margin;
+ }
+ QScrollBar::sub-line:vertical {
+	border: none;
+    background: rgb(55, 63, 77);
+     height: 20px;
+	border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+     subcontrol-position: top;
+     subcontrol-origin: margin;
+ }
+
+ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+     background: none;
+ }
+
+ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+     background: none;
+ }
+
+
+QHeaderView::section:horizontal {
+	background-color: #F38533;
+	padding: 5px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #002A44;
+	border-radius: 0;
+	border-left: 1px solid #003C5F;
+}
+
+QTableView::item {
+	background: #002A44;
+	border-left: 1px solid #003c5f;
+	color: #dedede;
+	padding-left: 10px;
+}
+
+QTableView::item:hover, QTableView::item:selected, QTableView::item:focus {
+	background: #003c5f;
+	color: #dedede;
+}
+</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::NoFrame</enum>
+                      </property>
+                      <property name="verticalScrollBarPolicy">
+                       <enum>Qt::ScrollBarAsNeeded</enum>
+                      </property>
+                      <property name="editTriggers">
+                       <set>QAbstractItemView::NoEditTriggers</set>
+                      </property>
+                      <property name="alternatingRowColors">
+                       <bool>false</bool>
+                      </property>
+                      <property name="selectionMode">
+                       <enum>QAbstractItemView::SingleSelection</enum>
+                      </property>
+                      <property name="selectionBehavior">
+                       <enum>QAbstractItemView::SelectRows</enum>
+                      </property>
+                      <property name="textElideMode">
+                       <enum>Qt::ElideLeft</enum>
+                      </property>
+                      <property name="gridStyle">
+                       <enum>Qt::NoPen</enum>
+                      </property>
+                      <property name="sortingEnabled">
+                       <bool>true</bool>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="cornerButtonEnabled">
+                       <bool>true</bool>
+                      </property>
+                      <attribute name="horizontalHeaderCascadingSectionResizes">
+                       <bool>true</bool>
+                      </attribute>
+                      <attribute name="horizontalHeaderMinimumSectionSize">
+                       <number>30</number>
+                      </attribute>
+                      <attribute name="horizontalHeaderDefaultSectionSize">
+                       <number>160</number>
+                      </attribute>
+                      <attribute name="horizontalHeaderStretchLastSection">
+                       <bool>true</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderVisible">
+                       <bool>false</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderStretchLastSection">
+                       <bool>false</bool>
+                      </attribute>
+                      <column>
+                       <property name="text">
+                        <string>Register Number</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Name</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Surname</string>
+                       </property>
+                      </column>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_18">
+                      <item>
+                       <spacer name="horizontalSpacer_6">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_student_show_more">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>110</width>
+                          <height>30</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>110</width>
+                          <height>30</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>12</pointsize>
+                          <weight>75</weight>
+                          <bold>true</bold>
+                         </font>
+                        </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QPushButton {
+	color: #dedede;
+	background: #002A44;
+	border: 2px solid #dedede;
+	border-radius: 15px;
+	padding: 1px 10px;
+}
+
+QPushButton:hover {
+	background: #003c5f;
+	border-color: #F38533;
+}
+
+QPushButton:pressed {
+	background: #F38533;
+}</string>
+                        </property>
+                        <property name="text">
+                         <string>Show More</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_student_delete">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>110</width>
+                          <height>30</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>110</width>
+                          <height>30</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>12</pointsize>
+                          <weight>75</weight>
+                          <bold>true</bold>
+                         </font>
+                        </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QPushButton {
+	color: #dedede;
+	background: rgb(179, 32, 27);
+	border: 2px solid #dedede;
+	border-radius: 15px;
+	padding: 1px 10px;
+}
+
+QPushButton:hover {
+	border-color: #F38533;
+}
+
+QPushButton:pressed {
+	background: #F38533;
+}</string>
+                        </property>
+                        <property name="text">
+                         <string>Delete</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_17">
+                    <item>
+                     <widget class="QSplitter" name="splitter_2">
+                      <property name="styleSheet">
+                       <string notr="true">QSplitter{
+	background: #002A44;
+	border: 1px solid #dedede;
+	border-radius: 10px;
+}</string>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <widget class="QSplitter" name="splitter">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background: transparent;</string>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                       <widget class="QLabel" name="student_information_search_label">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>150</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>18</pointsize>
+                          <weight>75</weight>
+                          <bold>true</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color: #dedede;
+background: transparent;
+border-bottom: 1px solid #dededede;</string>
+                        </property>
+                        <property name="text">
+                         <string>Search</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                       <widget class="QWidget" name="layoutWidget">
+                        <layout class="QVBoxLayout" name="verticalLayout_15">
+                         <property name="spacing">
+                          <number>10</number>
+                         </property>
+                         <property name="leftMargin">
+                          <number>10</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>10</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>20</number>
+                         </property>
+                         <item>
+                          <layout class="QHBoxLayout" name="horizontalLayout_19">
+                           <property name="topMargin">
+                            <number>25</number>
+                           </property>
+                           <item>
+                            <widget class="QLabel" name="student_name_label_2">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>35</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>150</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>12</pointsize>
+                               <weight>75</weight>
+                               <bold>true</bold>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color: #dedede;
+background: transparent;</string>
+                             </property>
+                             <property name="text">
+                              <string>Discipline</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QComboBox" name="student_discipline_info_comboBox">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>150</width>
+                               <height>35</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>250</width>
+                               <height>35</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>12</pointsize>
+                               <weight>75</weight>
+                               <bold>true</bold>
+                              </font>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QComboBox {
+	padding: 0 15px 0 27px;
+	border: 2px solid #dedede;
+	color: #dedede;
+	background: transparent;
+	border-radius: 15px;
+}
+
+QComboBox QAbstractItemView {
+	color: #dedede;
+	padding: 10px;
+	selection-background-color: #F38533;
+}
+
+QComboBox:hover {
+	border-color: #F38533;
+}
+
+</string>
+                             </property>
+                             <property name="placeholderText">
+                              <string>-- Discipline --</string>
+                             </property>
+                             <item>
+                              <property name="text">
+                               <string>GIT</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>TTIC</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>GP</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>GAM</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>ROI</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>GESI</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>GC</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>TAU</string>
+                              </property>
+                             </item>
+                            </widget>
+                           </item>
+                          </layout>
+                         </item>
+                         <item>
+                          <layout class="QHBoxLayout" name="horizontalLayout_20">
+                           <item>
+                            <widget class="QLabel" name="student_name_label_3">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>35</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>150</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>12</pointsize>
+                               <weight>75</weight>
+                               <bold>true</bold>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color: #dedede;
+background: transparent;</string>
+                             </property>
+                             <property name="text">
+                              <string>Axe</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QComboBox" name="student_axe_info_comboBox">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>150</width>
+                               <height>35</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>250</width>
+                               <height>35</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>12</pointsize>
+                               <weight>75</weight>
+                               <bold>true</bold>
+                              </font>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QComboBox {
+	padding: 0 15px 0 27px;
+	border: 2px solid #dedede;
+	color: #dedede;
+	background: transparent;
+	border-radius: 15px;
+}
+
+QComboBox QAbstractItemView {
+	color: #dedede;
+	padding: 10px;
+	selection-background-color: #F38533;
+}
+
+QComboBox:hover {
+	border-color: #F38533;
+}
+
+</string>
+                             </property>
+                             <property name="placeholderText">
+                              <string>-- Discipline --</string>
+                             </property>
+                             <item>
+                              <property name="text">
+                               <string>GLO</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>GRT</string>
+                              </property>
+                             </item>
+                            </widget>
+                           </item>
+                          </layout>
+                         </item>
+                         <item>
+                          <layout class="QHBoxLayout" name="horizontalLayout_21">
+                           <item>
+                            <widget class="QLabel" name="student_name_label_4">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>35</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>150</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>12</pointsize>
+                               <weight>75</weight>
+                               <bold>true</bold>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color: #dedede;
+background: transparent;</string>
+                             </property>
+                             <property name="text">
+                              <string>Level</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QSpinBox" name="student_level_info_spinBox">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>150</width>
+                               <height>35</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>250</width>
+                               <height>35</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>12</pointsize>
+                               <weight>75</weight>
+                               <bold>true</bold>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QSpinBox {
+	padding: 0 15px 0 27px;
+	border: 2px solid #dedede;
+	color: #dedede;
+	background: transparent;
+	border-radius: 15px;
+}
+
+QSpinBox:hover, QSpinBox:focus {
+	border-color: #F38533;
+}</string>
+                             </property>
+                             <property name="minimum">
+                              <number>1</number>
+                             </property>
+                             <property name="maximum">
+                              <number>5</number>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </item>
+                        </layout>
+                       </widget>
+                      </widget>
+                      <widget class="QPushButton" name="btn_scan_student">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>120</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>300</width>
+                         <height>35</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Segoe UI</family>
+                         <pointsize>16</pointsize>
+                         <weight>75</weight>
+                         <bold>true</bold>
+                        </font>
+                       </property>
+                       <property name="cursor">
+                        <cursorShape>PointingHandCursor</cursorShape>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton {
+	color: #dedede;
+	background: #002A44;
+	border: 2px solid #dedede;
+	border-radius: 15px;
+	padding: 1px 10px;
+}
+
+QPushButton:hover {
+	background: #003c5f;
+	border-color: #F38533;
+}
+
+QPushButton:pressed {
+	background: #F38533;
+}</string>
+                       </property>
+                       <property name="text">
+                        <string>Scan</string>
+                       </property>
+                      </widget>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_2">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
                 </widget>
                </widget>
               </item>
@@ -3406,7 +4336,7 @@ background: rgba(0, 42, 68, 183);
   </widget>
  </widget>
  <resources>
-  <include location="../../AppData/Local/Programs/Python/Python37/Lib/site-packages/qt5_applications/Qt/bin/res.qrc"/>
+  <include location="src/res.qrc"/>
  </resources>
  <connections/>
 </ui>
