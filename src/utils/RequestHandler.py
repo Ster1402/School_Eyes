@@ -120,6 +120,7 @@ class RequestHandler:
 
             return (default_host, default_port)
 
+    #Decode the resquest and transform into Request object
     def DecodeRequest(self, request):
         decoded_request = None
                  

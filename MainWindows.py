@@ -19,29 +19,8 @@ from src.database.db import DB, DisciplineModel, StudentModel
 from model.Classroom import Classroom
 from UI_MainWindows import Ui_MainWindow
 from src.model.Student import Student
-
-mutex = QMutex()
-
-
-class Worker(QObject):
-    finished = pyqtSignal()
-    error_occured = pyqtSignal(str)
-    
-    def __init__(self, func):
-        super().__init__()
-        self.function = func
-    
-    def run(self):
-        mutex.lock()
-        try:
-            self.function()
-        except ValueError as err:
-            self.error_occured.emit(str(err))
-            
-        mutex.unlock()
-        self.finished.emit()
-        
-                
+from src.utils.Worker import Worker
+                        
 class MainWindows(Ui_MainWindow, QMainWindow):
 
     def __init__(self):
@@ -147,7 +126,7 @@ please make sure that the informations provide are correct."))
         #
         # --> Page Student
         #
-        self.btn_save_add_student.clicked.connect(lambda: self._addStudent())
+        self.btn_save_add_student.clicked.connect(lambda: self.threadAddStudent())
         self.btn_refresh_add_student.clicked.connect(lambda: self._refreshAddStudent())
         
         self.btn_student_show_more.clicked.connect(
@@ -397,14 +376,45 @@ please make sure that the informations provide are correct."))
             try:
                 StudentModel.addStudentPicture(picture, register_number)
             except ValueError:
-                QMessageBox.warning(self, self._translate("Title", "Error"),
-                                    self._translate("ErrorMessage", f"""Error trying to add the picture : \n"""
-                                                    f"""Path : {picture}"""))
-
-        QMessageBox.information(self, self._translate("Title", "Success"),
-                                    self._translate("InfoMessage", "Success"))
+                raise ValueError(f"""Error trying to add the picture : \nPath : {picture}""")
+                
         self._refreshAddStudent()
 
+    def threadAddStudent(self):
+        
+        QMessageBox.information(self, self._translate("Title", "Add Student"),
+                                self._translate("InfoMessage", "Adding new student... !"))
+
+        self.loader = QMessageBox(self)
+        self.loader.setWindowTitle("Processing...")
+        self.loader.setText("Process running, please wait...")
+        self.loader.exec()
+
+        self.success_message = QMessageBox(self)
+        self.success_message.setWindowTitle(self._translate("Title", "Success")) 
+        self.success_message.setText(self._translate("InfoMessage", "Student successfully added !"))
+
+        self.btn_save_add_student.setEnabled(False)
+
+        self.add_student_worker = Worker(lambda: self._addStudent())
+        self.add_student_thread = QThread()
+        
+        self.add_student_worker.moveToThread(self.add_student_thread)
+        
+        self.add_student_thread.started.connect(self.add_student_worker.run)
+        self.add_student_thread.started.connect(lambda: self.loader.setEnabled(False))
+        self.add_student_worker.finished.connect(self.add_student_thread.quit)
+        self.add_student_worker.finished.connect(self.add_student_worker.deleteLater)
+        self.add_student_worker.finished.connect(lambda: self.loader.setEnabled(True))
+        self.add_student_worker.finished.connect(lambda: self.btn_save_add_student.setEnabled(True))
+        self.add_student_worker.finished.connect(lambda: self._refreshAddStudent())
+        self.add_student_worker.finished.connect(lambda: self.success_message.exec())
+        self.add_student_worker.error_occured.connect(self.printError)
+
+        # Start the thread
+        self.add_student_thread.start()
+        
+        
     def _refreshAddStudent(self):
         self.student_name_lineEdit.clear()
         self.student_surname_lineEdit.clear()

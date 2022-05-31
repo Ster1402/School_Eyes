@@ -6,6 +6,14 @@ import face_recognition as fr
 
 from src.utils.NumpyArrayEncoder import NumpyArrayEncoder
 
+global CONNECTION_PARAMS 
+CONNECTION_PARAMS = {
+    "host" : "localhost",
+    "user" : "SterDevs",
+    "password" : "sterdevs",
+    "database" : "SchoolEyes"
+}
+
 global __ROOT_PATH
 __ROOT_PATH = os.path.dirname( os.path.dirname(os.path.abspath(__file__)) )
 

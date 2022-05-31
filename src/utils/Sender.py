@@ -1,40 +1,29 @@
-import sys
-import os
+import datetime
 import json
-
-global _DATABASE_NAME_
-global _DATABASE_HOST_
-global _DATABASE_PORT_
-global _USER_
-global _PASSWORD_
-
-_USER_ = "SchoolEyes"
-_PASSWORD_ = "schooleyes"
-
-_DATABASE_NAME_ = "School_Eyes"
-_DATABASE_HOST_ = "localhost"
-_DATABASE_PORT_ = 3306
+import mysql.connector
+from ..database.db import CONNECTION_PARAMS
 
 class Sender:
 
     def __init__(self, request) :
         self.teacher_id = request.get("id")
         
+    def __EncodeData(self, data):
+        assert isinstance(data, dict)
+        
+        return json.dumps(data).replace('"',"'")
 
     def SendData(self, data):
-        db = connect(host=_DATABASE_HOST_,
-                                port=_DATABASE_PORT_,
-                                user=_USER_,
-                                password=_PASSWORD_,
-                                database=_DATABASE_NAME_)
+        
+        with mysql.connector.connect(**CONNECTION_PARAMS) as db:
+            
+            db.autocommit = True
 
-        cursor = db.cursor()
+            with db.cursor() as cursor:
+                cursor.execute(f"""
+                    INSERT INTO PendingResponse(teacher_id, date, response)
+                                VALUES ({self.teacher_id}, "{datetime.date.today()}", "{self.__EncodeData(data)}")
+                """)
 
-        result = cursor.execute(f"""
-            INSERT INTO PendingResponse(teacher_id, date, response)
-                        VALUES ({self.teacher_id}, NOW(), {json.dumps(data)})
-        """)
-
-        print(result)
 
     

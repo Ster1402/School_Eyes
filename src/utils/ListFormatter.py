@@ -1,14 +1,14 @@
 
 class ListFormatter:
 
-    def __init__(self, request) -> None:
-        self.__request: dict = request
+    def __init__(self, attendance_list) -> None:
+        self.__attendance_list: dict = attendance_list
 
     def FormattedList(self, data):
         
         #Response : attendance list
         res = {
-            "level" : self.__request.get("level"),
+            "level" : self.__attendance_list.get("level"),
             "disciplines" : dict()
         }
 

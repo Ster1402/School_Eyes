@@ -23,6 +23,7 @@ mysqlclient = "*"
 pymysql = "*"
 pyside2 = "*"
 pyqt5 = "*"
+mysql-connector-python = "*"
 
 [dev-packages]
 
