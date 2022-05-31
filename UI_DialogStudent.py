@@ -35,7 +35,7 @@ class Ui_Dialog(object):
         Dialog.setSizeGripEnabled(True)
         Dialog.setModal(True)
         self.student_name_label_2 = QtWidgets.QLabel(Dialog)
-        self.student_name_label_2.setGeometry(QtCore.QRect(200, 20, 401, 38))
+        self.student_name_label_2.setGeometry(QtCore.QRect(260, 20, 401, 38))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -53,10 +53,10 @@ class Ui_Dialog(object):
 "background: transparent;")
         self.student_name_label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.student_name_label_2.setObjectName("student_name_label_2")
-        self.widget = QtWidgets.QWidget(Dialog)
-        self.widget.setGeometry(QtCore.QRect(10, 80, 894, 271))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(Dialog)
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 80, 894, 271))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setSpacing(10)
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -65,7 +65,7 @@ class Ui_Dialog(object):
         self.verticalLayout_11.setObjectName("verticalLayout_11")
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.student_name_label = QtWidgets.QLabel(self.widget)
+        self.student_name_label = QtWidgets.QLabel(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -83,7 +83,7 @@ class Ui_Dialog(object):
 "background: transparent;")
         self.student_name_label.setObjectName("student_name_label")
         self.horizontalLayout_6.addWidget(self.student_name_label)
-        self.student_name_lineEdit = QtWidgets.QLineEdit(self.widget)
+        self.student_name_lineEdit = QtWidgets.QLineEdit(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -115,7 +115,7 @@ class Ui_Dialog(object):
         self.verticalLayout_11.addLayout(self.horizontalLayout_6)
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.student_surname_label = QtWidgets.QLabel(self.widget)
+        self.student_surname_label = QtWidgets.QLabel(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -133,7 +133,7 @@ class Ui_Dialog(object):
 "background: transparent;")
         self.student_surname_label.setObjectName("student_surname_label")
         self.horizontalLayout_7.addWidget(self.student_surname_label)
-        self.student_surname_lineEdit = QtWidgets.QLineEdit(self.widget)
+        self.student_surname_lineEdit = QtWidgets.QLineEdit(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -165,7 +165,7 @@ class Ui_Dialog(object):
         self.verticalLayout_11.addLayout(self.horizontalLayout_7)
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        self.student_register_number_label = QtWidgets.QLabel(self.widget)
+        self.student_register_number_label = QtWidgets.QLabel(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -183,7 +183,7 @@ class Ui_Dialog(object):
 "background: transparent;")
         self.student_register_number_label.setObjectName("student_register_number_label")
         self.horizontalLayout_8.addWidget(self.student_register_number_label)
-        self.student_register_number_lineEdit = QtWidgets.QLineEdit(self.widget)
+        self.student_register_number_lineEdit = QtWidgets.QLineEdit(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -215,7 +215,7 @@ class Ui_Dialog(object):
         self.verticalLayout_11.addLayout(self.horizontalLayout_8)
         self.horizontalLayout_9 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_9.setObjectName("horizontalLayout_9")
-        self.student_level_label = QtWidgets.QLabel(self.widget)
+        self.student_level_label = QtWidgets.QLabel(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -233,7 +233,7 @@ class Ui_Dialog(object):
 "background: transparent;")
         self.student_level_label.setObjectName("student_level_label")
         self.horizontalLayout_9.addWidget(self.student_level_label)
-        self.student_level_spinBox = QtWidgets.QSpinBox(self.widget)
+        self.student_level_spinBox = QtWidgets.QSpinBox(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -265,7 +265,7 @@ class Ui_Dialog(object):
         self.verticalLayout_11.addLayout(self.horizontalLayout_9)
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
-        self.student_discipline_label = QtWidgets.QLabel(self.widget)
+        self.student_discipline_label = QtWidgets.QLabel(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -283,7 +283,7 @@ class Ui_Dialog(object):
 "background: transparent;")
         self.student_discipline_label.setObjectName("student_discipline_label")
         self.horizontalLayout_10.addWidget(self.student_discipline_label)
-        self.student_discipline_comboBox = QtWidgets.QComboBox(self.widget)
+        self.student_discipline_comboBox = QtWidgets.QComboBox(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -330,7 +330,7 @@ class Ui_Dialog(object):
         self.verticalLayout_11.addLayout(self.horizontalLayout_10)
         self.horizontalLayout_11 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_11.setObjectName("horizontalLayout_11")
-        self.student_axe_label = QtWidgets.QLabel(self.widget)
+        self.student_axe_label = QtWidgets.QLabel(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -348,7 +348,7 @@ class Ui_Dialog(object):
 "background: transparent;")
         self.student_axe_label.setObjectName("student_axe_label")
         self.horizontalLayout_11.addWidget(self.student_axe_label)
-        self.student_axe_comboBox = QtWidgets.QComboBox(self.widget)
+        self.student_axe_comboBox = QtWidgets.QComboBox(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -392,7 +392,7 @@ class Ui_Dialog(object):
         self.verticalLayout_12 = QtWidgets.QVBoxLayout()
         self.verticalLayout_12.setSpacing(0)
         self.verticalLayout_12.setObjectName("verticalLayout_12")
-        self.label_drag_and_drop = QtWidgets.QLabel(self.widget)
+        self.label_drag_and_drop = QtWidgets.QLabel(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -411,7 +411,7 @@ class Ui_Dialog(object):
         self.label_drag_and_drop.setAlignment(QtCore.Qt.AlignCenter)
         self.label_drag_and_drop.setObjectName("label_drag_and_drop")
         self.verticalLayout_12.addWidget(self.label_drag_and_drop, 0, QtCore.Qt.AlignTop)
-        self.drag_and_drop_box = ListBoxWidget(self.widget)
+        self.drag_and_drop_box = ListBoxWidget(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -500,7 +500,7 @@ class Ui_Dialog(object):
         self.horizontalLayout_14.setObjectName("horizontalLayout_14")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_14.addItem(spacerItem)
-        self.btn_remove_picture = QtWidgets.QPushButton(self.widget)
+        self.btn_remove_picture = QtWidgets.QPushButton(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -534,7 +534,7 @@ class Ui_Dialog(object):
         self.btn_remove_picture.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.Cameroon))
         self.btn_remove_picture.setObjectName("btn_remove_picture")
         self.horizontalLayout_14.addWidget(self.btn_remove_picture, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
-        self.btn_select_pictures = QtWidgets.QPushButton(self.widget)
+        self.btn_select_pictures = QtWidgets.QPushButton(self.layoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -571,14 +571,15 @@ class Ui_Dialog(object):
         self.horizontalLayout_14.addItem(spacerItem1)
         self.verticalLayout_13.addLayout(self.horizontalLayout_14)
         self.horizontalLayout.addLayout(self.verticalLayout_13)
-        self.widget1 = QtWidgets.QWidget(Dialog)
-        self.widget1.setGeometry(QtCore.QRect(130, 400, 571, 37))
-        self.widget1.setObjectName("widget1")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget1)
+        self.layoutWidget1 = QtWidgets.QWidget(Dialog)
+        self.layoutWidget1.setGeometry(QtCore.QRect(180, 400, 571, 37))
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.layoutWidget1)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setSpacing(15)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.btn_update_student = QtWidgets.QPushButton(self.widget1)
+        self.btn_update_student = QtWidgets.QPushButton(self.layoutWidget1)
+        self.btn_update_student.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -606,12 +607,20 @@ class Ui_Dialog(object):
 "    border-color: #F38533;\n"
 "}\n"
 "\n"
+"QPushButton:!enabled\n"
+"{\n"
+"     background-color: #004c5f;\n"
+"        border-right: 5px solid #dedede;\n"
+"        border-left: 5px solid #dedede;\n"
+"}\n"
+"\n"
 "QPushButton:pressed {\n"
 "    background: #F38533;\n"
 "}")
         self.btn_update_student.setObjectName("btn_update_student")
         self.horizontalLayout_2.addWidget(self.btn_update_student)
-        self.btn_cancel_update_student = QtWidgets.QPushButton(self.widget1)
+        self.btn_cancel_update_student = QtWidgets.QPushButton(self.layoutWidget1)
+        self.btn_cancel_update_student.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -636,6 +645,14 @@ class Ui_Dialog(object):
 "\n"
 "QPushButton:hover {\n"
 "    border-color: #F38533;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:!enabled\n"
+"{\n"
+"     background-color: #A03c5f;\n"
+"        border-right: 5px solid #dedede;\n"
+"        border-left: 5px solid #dedede;\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"

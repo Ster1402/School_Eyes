@@ -56,7 +56,7 @@ color: #dedede;</string>
   <widget class="QLabel" name="student_name_label_2">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>260</x>
      <y>20</y>
      <width>401</width>
      <height>38</height>
@@ -99,7 +99,7 @@ background: transparent;</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -1034,10 +1034,10 @@ QPushButton:pressed {
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>180</x>
      <y>400</y>
      <width>571</width>
      <height>37</height>
@@ -1049,6 +1049,9 @@ QPushButton:pressed {
     </property>
     <item>
      <widget class="QPushButton" name="btn_update_student">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -1092,6 +1095,13 @@ QPushButton:hover {
 	border-color: #F38533;
 }
 
+QPushButton:!enabled
+{
+     background-color: #004c5f;
+   	 border-right: 5px solid #dedede;
+   	 border-left: 5px solid #dedede;
+}
+
 QPushButton:pressed {
 	background: #F38533;
 }</string>
@@ -1103,6 +1113,9 @@ QPushButton:pressed {
     </item>
     <item>
      <widget class="QPushButton" name="btn_cancel_update_student">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -1143,6 +1156,14 @@ QPushButton:pressed {
 
 QPushButton:hover {
 	border-color: #F38533;
+}
+
+
+QPushButton:!enabled
+{
+     background-color: #A03c5f;
+   	 border-right: 5px solid #dedede;
+   	 border-left: 5px solid #dedede;
 }
 
 QPushButton:pressed {

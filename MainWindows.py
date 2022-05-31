@@ -371,14 +371,17 @@ please make sure that the informations provide are correct."))
 
         StudentModel.insertStudent(student, axe)
 
+        errors = []
+
         for picture in pictures:
 
             try:
                 StudentModel.addStudentPicture(picture, register_number)
             except ValueError:
-                raise ValueError(f"""Error trying to add the picture : \nPath : {picture}""")
-                
-        self._refreshAddStudent()
+                errors.append(f"""- Error trying to add the picture : \nPath : {picture}""")
+
+        if errors:
+            raise ValueError(' \n- '.join(errors))
 
     def threadAddStudent(self):
         

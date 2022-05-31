@@ -1047,35 +1047,11 @@ class Ui_MainWindow(object):
         self.table_camera.setCornerButtonEnabled(True)
         self.table_camera.setObjectName("table_camera")
         self.table_camera.setColumnCount(2)
-        self.table_camera.setRowCount(4)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setVerticalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setVerticalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setVerticalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setVerticalHeaderItem(3, item)
+        self.table_camera.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.table_camera.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.table_camera.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setItem(0, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setItem(0, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setItem(1, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setItem(1, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setItem(2, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setItem(2, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setItem(3, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_camera.setItem(3, 1, item)
         self.table_camera.horizontalHeader().setCascadingSectionResizes(True)
         self.table_camera.horizontalHeader().setDefaultSectionSize(350)
         self.table_camera.horizontalHeader().setStretchLastSection(True)
@@ -1089,6 +1065,7 @@ class Ui_MainWindow(object):
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_16.addItem(spacerItem2)
         self.btn_try_cameras = QtWidgets.QPushButton(self.page_camera)
+        self.btn_try_cameras.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1116,12 +1093,22 @@ class Ui_MainWindow(object):
 "    border-color: #F38533;\n"
 "}\n"
 "\n"
+"\n"
+"QPushButton:!enabled\n"
+"{\n"
+"     background-color: #004c5f;\n"
+"        border-right: 5px solid #dedede;\n"
+"        border-left: 5px solid #dedede;\n"
+"}\n"
+"\n"
+"\n"
 "QPushButton:pressed {\n"
 "    background: #F38533;\n"
 "}")
         self.btn_try_cameras.setObjectName("btn_try_cameras")
         self.horizontalLayout_16.addWidget(self.btn_try_cameras)
         self.btn_delete_camera = QtWidgets.QPushButton(self.page_camera)
+        self.btn_delete_camera.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1147,6 +1134,15 @@ class Ui_MainWindow(object):
 "QPushButton:hover {\n"
 "    border-color: #F38533;\n"
 "}\n"
+"\n"
+"\n"
+"QPushButton:!enabled\n"
+"{\n"
+"     background-color: #A04c5f;\n"
+"        border-right: 5px solid #dedede;\n"
+"        border-left: 5px solid #dedede;\n"
+"}\n"
+"\n"
 "\n"
 "QPushButton:pressed {\n"
 "    background: #F38533;\n"
@@ -1964,10 +1960,20 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton:pressed {\n"
 "    background: #F38533;\n"
-"}")
+"}\n"
+"\n"
+"\n"
+"QPushButton:!enabled\n"
+"{\n"
+"     background-color: #004c5f;\n"
+"        border-right: 5px solid #dedede;\n"
+"        border-left: 5px solid #dedede;\n"
+"}\n"
+"")
         self.btn_refresh_add_student.setObjectName("btn_refresh_add_student")
         self.horizontalLayout_12.addWidget(self.btn_refresh_add_student)
         self.btn_save_add_student = QtWidgets.QPushButton(self.tab_add_student)
+        self.btn_save_add_student.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1997,7 +2003,15 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton:pressed {\n"
 "    background: #F38533;\n"
-"}")
+"}\n"
+"\n"
+"QPushButton:!enabled\n"
+"{\n"
+"     background-color: #004c5f;\n"
+"        border-right: 5px solid #dedede;\n"
+"        border-left: 5px solid #dedede;\n"
+"}\n"
+"")
         self.btn_save_add_student.setObjectName("btn_save_add_student")
         self.horizontalLayout_12.addWidget(self.btn_save_add_student)
         self.horizontalLayout_13.addLayout(self.horizontalLayout_12)
@@ -2442,7 +2456,16 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton:pressed {\n"
 "    background: #F38533;\n"
-"}")
+"}\n"
+"\n"
+"\n"
+"QPushButton:!enabled\n"
+"{\n"
+"     background-color: #004c5f;\n"
+"        border-right: 5px solid #dedede;\n"
+"        border-left: 5px solid #dedede;\n"
+"}\n"
+"")
         self.btn_scan_student.setObjectName("btn_scan_student")
         self.verticalLayout_17.addWidget(self.splitter_2)
         spacerItem6 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -2458,7 +2481,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stacked_widget.setCurrentIndex(5)
+        self.stacked_widget.setCurrentIndex(1)
         self.student_tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -2489,37 +2512,10 @@ class Ui_MainWindow(object):
         self.label_add_camera.setText(_translate("MainWindow", "Add new camera URL"))
         self.btn_add_camera.setText(_translate("MainWindow", "Add"))
         self.table_camera.setSortingEnabled(True)
-        item = self.table_camera.verticalHeaderItem(0)
-        item.setText(_translate("MainWindow", "1"))
-        item = self.table_camera.verticalHeaderItem(1)
-        item.setText(_translate("MainWindow", "2"))
-        item = self.table_camera.verticalHeaderItem(2)
-        item.setText(_translate("MainWindow", "3"))
-        item = self.table_camera.verticalHeaderItem(3)
-        item.setText(_translate("MainWindow", "4"))
         item = self.table_camera.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Camera"))
         item = self.table_camera.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "URL"))
-        __sortingEnabled = self.table_camera.isSortingEnabled()
-        self.table_camera.setSortingEnabled(False)
-        item = self.table_camera.item(0, 0)
-        item.setText(_translate("MainWindow", "Camera_1"))
-        item = self.table_camera.item(0, 1)
-        item.setText(_translate("MainWindow", "Webcam"))
-        item = self.table_camera.item(1, 0)
-        item.setText(_translate("MainWindow", "Camera_2"))
-        item = self.table_camera.item(1, 1)
-        item.setText(_translate("MainWindow", "rtsp:http://192.168.43.37:8080/h_264.uwa"))
-        item = self.table_camera.item(2, 0)
-        item.setText(_translate("MainWindow", "Camera_3"))
-        item = self.table_camera.item(2, 1)
-        item.setText(_translate("MainWindow", "rtsp:http://192.168.43.37:8080/h_264.uwa"))
-        item = self.table_camera.item(3, 0)
-        item.setText(_translate("MainWindow", "Camera_4"))
-        item = self.table_camera.item(3, 1)
-        item.setText(_translate("MainWindow", "rtsp:http://192.168.43.37:8080/h_264.uwa"))
-        self.table_camera.setSortingEnabled(__sortingEnabled)
         self.btn_try_cameras.setText(_translate("MainWindow", "Try"))
         self.btn_delete_camera.setText(_translate("MainWindow", "Delete"))
         self.title_settings.setText(_translate("MainWindow", "Settings"))
@@ -2582,5 +2578,4 @@ class Ui_MainWindow(object):
         self.student_name_label_4.setText(_translate("MainWindow", "Level"))
         self.btn_scan_student.setText(_translate("MainWindow", "Scan"))
         self.student_tabWidget.setTabText(self.student_tabWidget.indexOf(self.tab_student_information), _translate("MainWindow", "Informations"))
-
 import res_rc
