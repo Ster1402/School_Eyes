@@ -2582,4 +2582,5 @@ class Ui_MainWindow(object):
         self.student_name_label_4.setText(_translate("MainWindow", "Level"))
         self.btn_scan_student.setText(_translate("MainWindow", "Scan"))
         self.student_tabWidget.setTabText(self.student_tabWidget.indexOf(self.tab_student_information), _translate("MainWindow", "Informations"))
+
 import res_rc
