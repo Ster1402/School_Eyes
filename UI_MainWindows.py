@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\UI_MainWindows.ui'
+# Form implementation generated from reading ui file 'UI_MainWindows.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -2459,7 +2459,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.stacked_widget.setCurrentIndex(5)
-        self.student_tabWidget.setCurrentIndex(0)
+        self.student_tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -2582,13 +2582,4 @@ class Ui_MainWindow(object):
         self.student_name_label_4.setText(_translate("MainWindow", "Level"))
         self.btn_scan_student.setText(_translate("MainWindow", "Scan"))
         self.student_tabWidget.setTabText(self.student_tabWidget.indexOf(self.tab_student_information), _translate("MainWindow", "Informations"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+import res_rc

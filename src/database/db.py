@@ -2,6 +2,7 @@ import hashlib
 import json
 import sqlite3
 import os
+from unittest import result
 import face_recognition as fr
 
 from src.utils.NumpyArrayEncoder import NumpyArrayEncoder
@@ -355,10 +356,6 @@ class StudentModel:
         assert isinstance(picture_path, str)
         assert isinstance(register_number, str)
 
-        if not os.path.exists(picture_path):
-            raise ValueError("The picture file doesn't exist!")
-        elif not picture_path.endswith((".png", ".jpg", ".jpeg")):
-            raise ValueError("A picture is required, either png, jpg or jpeg")
 
         student = StudentModel.findStudent(register_number)
 
@@ -372,6 +369,11 @@ class StudentModel:
             
             if not result:
             
+                if not os.path.exists(picture_path):
+                    raise ValueError("The picture file doesn't exist!")
+                elif not picture_path.endswith((".png", ".jpg", ".jpeg")):
+                    raise ValueError("A picture is required, either png, jpg or jpeg")
+                
                 #Get face encoding
                 picture = fr.load_image_file(picture_path)
 
@@ -483,8 +485,16 @@ class StudentModel:
         register_number = student["register_number"]
         level = student["level"]
 
-        # if StudentModel.findStudent(register_number):
-        #     raise ValueError("Student already exist")
+        #Verify if other student have the same register number
+        query = f"""
+            SELECT id FROM Student
+            WHERE register_number="{register_number}" 
+                    AND id != {student_id}
+        """
+
+        if len(DB.executeQuery_(query)) > 0:
+            raise ValueError("Two Students can't have the same register number !")
+        
 
         query = f"""
             UPDATE Student

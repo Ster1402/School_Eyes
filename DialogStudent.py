@@ -171,14 +171,14 @@ class DiaglogStudent(Ui_Dialog, QDialog):
 
                 try:
                     StudentModel.addStudentPicture(picture, register_number)
-                except ValueError:
+                except ValueError as err:
                     QMessageBox.warning(self, self.__translate("Title", "Error"),
                                         self.__translate("ErrorMessage", f"""Error trying to add the picture : \n"""
-                                                        f"""Path : {picture}"""))
+                                                        f"""Path : {picture}, Error : {str(err)}"""))
                 
-        except ValueError:
+        except ValueError as err:
             QMessageBox.critical(self, self.__translate("Title","Error"),
-                                 self.__translate("ErrorMessage", "Sorry, an error occur. :( "))
+                                 self.__translate("ErrorMessage", f"Sorry, an error occur : {str(err)}"))
             self.reject()
         else:
             QMessageBox.information(self, self.__translate("Title","Success"),

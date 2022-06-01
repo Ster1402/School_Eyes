@@ -16,7 +16,7 @@ import cv2
 from DialogStudent import DiaglogStudent
 
 from src.database.db import DB, DisciplineModel, StudentModel
-from model.Classroom import Classroom
+from src.model.Classroom import Classroom
 from UI_MainWindows import Ui_MainWindow
 from src.model.Student import Student
 

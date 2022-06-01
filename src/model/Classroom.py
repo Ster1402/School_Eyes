@@ -22,6 +22,9 @@ class Classroom(dict):
             
             classroom_cameras = data.get("VideoSources").get(f"_{self['name']}")
             
+            if not classroom_cameras:
+                return list()
+
             for camera in classroom_cameras:
                 
                 cameras.append({
