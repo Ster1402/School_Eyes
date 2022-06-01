@@ -12,22 +12,27 @@ class Sender:
     def __EncodeData(self, data):
         assert isinstance(data, dict)
         
-        return json.dumps(data).replace('"',"'")
+        return json.dumps(data, indent=4).replace('"',"'")
 
     def SendData(self, data):
 
         encoded_data = self.__EncodeData(data)
 
-        with mysql.connector.connect(**CONNECTION_PARAMS) as db:
+        try:
             
-            db.autocommit = True
-            
-            with db.cursor() as cursor:
-                cursor.execute(f"""
-                    INSERT INTO PendingResponse(teacher_id, date, response)
-                                VALUES ({self.teacher_id}, "{datetime.date.today()}", "{encoded_data}")
-                """)
-
+            with mysql.connector.connect(**CONNECTION_PARAMS) as db:
+                
+                db.autocommit = True
+                
+                with db.cursor() as cursor:
+                    cursor.execute(f"""
+                        INSERT INTO PendingResponse(teacher_id, date, response)
+                                    VALUES ({self.teacher_id}, "{datetime.date.today()}", "{encoded_data}")
+                    """)
+        except ConnectionRefusedError as err:
+            print("[ConnectionRefusedError] : ", err)
+        except mysql.connector.InterfaceError as err:
+            print("[mysql.connector.InterfaceError] : ", err)
 
         # Print result into the log file
     
@@ -36,6 +41,7 @@ class Sender:
         if not os.path.exists( LOGS_DIR ):
             os.makedirs(LOGS_DIR)
             
-        with open( os.path.join(LOGS_DIR, 'log.txt') ) as log_file:
-            log_file.write(encoded_data)
+        with open( os.path.join(LOGS_DIR, 'log.txt'), "a" ) as log_file:
+            log_file.write("""\n====================================="""
+                           + encoded_data)
     

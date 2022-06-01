@@ -372,7 +372,7 @@ please make sure that the informations provide are correct."))
         StudentModel.insertStudent(student, axe)
 
         errors = []
-
+   
         for picture in pictures:
 
             try:
