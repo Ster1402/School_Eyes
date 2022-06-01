@@ -33,6 +33,8 @@ class Sender:
             print("[ConnectionRefusedError] : ", err)
         except mysql.connector.InterfaceError as err:
             print("[mysql.connector.InterfaceError] : ", err)
+        except mysql.connector.errors.ProgrammingError as err:
+            print("[mysql.connector.errors.ProgrammingError] : ", err)
 
         # Print result into the log file
     
