@@ -1,8 +1,9 @@
 
+from src.utils.Worker import Worker
 from UI_DialogStudent import Ui_Dialog
 from PyQt5.QtWidgets import QDialog, QMessageBox, QFileDialog
 from src.database.db import DisciplineModel, StudentModel
-from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtCore import QCoreApplication, QThread
 
 class DiaglogStudent(Ui_Dialog, QDialog):
     
@@ -25,7 +26,7 @@ class DiaglogStudent(Ui_Dialog, QDialog):
         self.__slots_connection()
         
     def __slots_connection(self):
-        self.btn_update_student.clicked.connect(lambda: self.updateStudent())
+        self.btn_update_student.clicked.connect(lambda: self.threadUpdateStudent())
         self.btn_cancel_update_student.clicked.connect(lambda: self.reject())
         self.student_discipline_comboBox.currentTextChanged.connect(lambda discipline: self._updateAxes(discipline))
         self.btn_remove_picture.clicked.connect(lambda: self.removeStudentSelectedPictures())
@@ -123,16 +124,6 @@ class DiaglogStudent(Ui_Dialog, QDialog):
 
     def updateStudent(self):
         
-        confirm_dialog = QMessageBox(self) 
-        confirm_dialog.setWindowTitle(self.__translate("Title", "Update Student"))
-        confirm_dialog.setText(self.__translate("WarningMessage", 
-                                                  "Are you sure that you want to overwrite "))                              
-        confirm_dialog.setIcon(QMessageBox.Warning)
-        confirm_dialog.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-        
-        if not confirm_dialog.exec() == QMessageBox.Yes:
-            return
-        
         name = self.student_name_lineEdit.text()
         #Verification
         if not name:
@@ -164,6 +155,8 @@ class DiaglogStudent(Ui_Dialog, QDialog):
         
         self.student.update(new_student)
         
+        errors = []
+        
         try:
             StudentModel.updateStudent(self.student, axe)
             
@@ -171,16 +164,76 @@ class DiaglogStudent(Ui_Dialog, QDialog):
 
                 try:
                     StudentModel.addStudentPicture(picture, register_number)
-                except ValueError as err:
-                    QMessageBox.warning(self, self.__translate("Title", "Error"),
-                                        self.__translate("ErrorMessage", f"""Error trying to add the picture : \n"""
-                                                        f"""Path : {picture}, Error : {str(err)}"""))
+                except ValueError:
+                    errors.append(f"""- Error trying to add the picture : \n"""
+                                                        f"""Path : {picture}""")
+                    # QMessageBox.warning(self, self.__translate("Title", "Error"),
+                    #                     self.__translate("ErrorMessage", f"""Error trying to add the picture : \n"""
+                    #                                     f"""Path : {picture}"""))
                 
         except ValueError as err:
-            QMessageBox.critical(self, self.__translate("Title","Error"),
-                                 self.__translate("ErrorMessage", f"Sorry, an error occur : {str(err)}"))
-            self.reject()
-        else:
-            QMessageBox.information(self, self.__translate("Title","Success"),
-                                 self.__translate("SuccessMessage", "Update is done !"))
+            errors.append(f"""Sorry, an error occur.\n"""
+                                    f"""Error : {str(err)}""")
+            # QMessageBox.critical(self, self.__translate("Title","Error"),
+            #                      self.__translate("ErrorMessage", "Sorry, an error occur. :( "))
+            # self.reject()
+            
+        if errors:
+            raise ValueError(' \n- '.join(errors))
+            
+    def threadUpdateStudent(self):
+        
+        confirm_dialog = QMessageBox(self) 
+        confirm_dialog.setWindowTitle(self.__translate("Title", "Update Student"))
+        confirm_dialog.setText(self.__translate("WarningMessage", 
+                                                  "Are you sure that you want to update the informations ? "))                              
+        confirm_dialog.setIcon(QMessageBox.Warning)
+        confirm_dialog.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        
+        if not confirm_dialog.exec() == QMessageBox.Yes:
+            return
+        
+        self.loader = QMessageBox(self)
+        self.loader.setWindowTitle("Processing...")
+        self.loader.setText("Process running, please wait...")
+        self.loader.exec()
+
+        self.success_message = QMessageBox(self)
+        self.success_message.setWindowTitle(self.__translate("Title", "Success")) 
+        self.success_message.setText(self.__translate("InfoMessage", "Student successfully updated !"))
+
+        self.btn_update_student.setEnabled(False)
+        self.btn_cancel_update_student.setEnabled(False)
+        
+        self.update_student_worker = Worker(lambda: self.updateStudent())
+        self.update_student_thread = QThread()
+        
+        self.update_student_worker.moveToThread(self.update_student_thread)
+        
+        self.update_student_thread.started.connect(self.update_student_worker.run)
+        self.update_student_thread.started.connect(lambda: self.setWindowTitle("Please wait..."))
+        
+        self.update_error = False
+        self.update_student_worker.error_occured.connect(self.printError)
+        self.update_student_worker.finished.connect(self.update_student_thread.quit)
+        self.update_student_worker.finished.connect(lambda: self.__finish())
+        self.update_student_worker.finished.connect(lambda: self.btn_cancel_update_student.setEnabled(True))
+        self.update_student_worker.finished.connect(lambda: self.btn_update_student.setEnabled(True))
+        self.update_student_worker.finished.connect(self.update_student_worker.deleteLater)
+
+        # Start the thread
+        self.update_student_thread.start()
+        
+    def __finish(self):
+        
+        if not self.update_error:
+            self.success_message.exec()
             self.accept()
+        
+    def printError(self, error: str):
+        self.update_error = True
+        QMessageBox.warning(self, self.__translate("Title", "Warning"),
+                                self.__translate("WarningMessage", error))
+        
+        self.accept()
+        

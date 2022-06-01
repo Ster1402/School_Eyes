@@ -20,10 +20,10 @@
 class Request(dict):
 
     def __init__(self, id=0, teacher="", classroom="", course="", 
-                disciplines="", level=0, socket_id="", finish_hour=""):
+                disciplines="", level=0, finish_hour=""):
 
         self._verifyParam(id, teacher, classroom, course, 
-                         disciplines, level, socket_id, finish_hour)
+                         disciplines, level, finish_hour)
 
         self["id"] = id
         self["teacher"] = teacher
@@ -31,16 +31,14 @@ class Request(dict):
         self["course"] = course
         self["disciplines"] = disciplines
         self["level"] = level
-        self["socket_id"] = socket_id
         self["finish_hour"] = finish_hour
 
     def _verifyParam(self, id, teacher, classroom, course, 
-                disciplines, level, socket_id, finish_hour):
+                disciplines, level, finish_hour):
                 assert isinstance(id, int)
-                assert isinstance(socket_id, str)
                 assert isinstance(teacher, str)
                 assert isinstance(classroom, str)
                 assert isinstance(course, str)
                 assert isinstance(disciplines, list) or isinstance(disciplines, set)
                 assert isinstance(level, int)
-
+                assert isinstance(finish_hour, str)

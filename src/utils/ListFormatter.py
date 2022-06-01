@@ -1,14 +1,22 @@
 
+from pprintpp import pprint
+
+
 class ListFormatter:
 
-    def __init__(self, request) -> None:
-        self.__request: dict = request
+    def __init__(self, attendance_list) -> None:
+        self.__attendance_list: dict = attendance_list
+        print("[Unformatted List] : ")
+        pprint(attendance_list)
 
     def FormattedList(self, data):
         
         #Response : attendance list
         res = {
-            "level" : self.__request.get("level"),
+            "level" : self.__attendance_list.get("level"),
+            "classroom" : self.__attendance_list.get("classroom"),
+            "teacher" : self.__attendance_list.get("teacher"),
+            "concerned_disciplines" : self.__attendance_list.get("disciplines"),
             "disciplines" : dict()
         }
 

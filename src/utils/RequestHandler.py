@@ -120,6 +120,7 @@ class RequestHandler:
 
             return (default_host, default_port)
 
+    #Decode the resquest and transform into Request object
     def DecodeRequest(self, request):
         decoded_request = None
                  
@@ -136,7 +137,6 @@ class RequestHandler:
                         course=decoded_request.get("course"),
                         disciplines=decoded_request.get("disciplines"),
                         level=decoded_request.get("level"),
-                        socket_id=decoded_request.get("socket_id"),
                         finish_hour=decoded_request.get("finish_hour"))
 
     """
@@ -173,4 +173,5 @@ class RequestHandler:
         thread.daemon = True
         thread.start()
 
+        await self.sio.emit('server-response', json.dumps({"start_time" : ctime(), "status" : "OK"}), to=socket_id)
 
