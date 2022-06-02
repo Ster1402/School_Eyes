@@ -1,7 +1,4 @@
 
-import hashlib
-import re
-from time import sleep
 from PyQt5.QtCore import QObject, pyqtSignal
 
 class Worker(QObject):

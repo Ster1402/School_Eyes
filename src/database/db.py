@@ -2,7 +2,6 @@ import hashlib
 import json
 import sqlite3
 import os
-from unittest import result
 import face_recognition as fr
 
 from src.utils.NumpyArrayEncoder import NumpyArrayEncoder

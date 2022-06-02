@@ -1,6 +1,4 @@
-from pprint import pprint
 from src.model.Axe import Axe
-from ..database.db import DisciplineModel
 
 class Discipline(dict):
 

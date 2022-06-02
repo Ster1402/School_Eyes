@@ -2,6 +2,8 @@ import json
 import cv2
 from itertools import cycle
 import os
+
+
 class VideoProvider:
 
     __ROOT__PATH = os.path.dirname( os.path.dirname(__file__) ) #...src/
