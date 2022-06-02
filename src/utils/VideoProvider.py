@@ -54,10 +54,8 @@ class VideoProvider:
                             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                         except:
                             print("[Error while trying to convert frame to RGB]")
-                            
 
                         yield frame
-                    
             else:
                 print("[[Error] : Couldn't open camera!]")        
                 yield None

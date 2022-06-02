@@ -48,11 +48,7 @@ class FaceReconizer:
                 self.__students.extend(students)
 
     def StudentsDetected(self, frame) -> list:
-
         print("[FaceReconizer.StudentsDetected]...")
-        # pil_img = Image.fromarray(frame)
-        # pil_img.show()
-        # print("Showing frame...")
 
         result = set()
 
@@ -62,30 +58,23 @@ class FaceReconizer:
                                                 number_of_times_to_upsample=3)
                 
             print("[Face Locations]:", face_locations)
-
         except:
             print("Error while trying to get face locations")
             return set()
-
         else:
-
             if face_locations:
                 unknowns_faces_encodings = fr.face_encodings(face_image=frame, 
                                                             known_face_locations=face_locations,
                                                             num_jitters=2)
-
             else:
                 print("Nobody found with face_locations!")
                 unknowns_faces_encodings = fr.face_encodings(face_image=frame,
                                                             num_jitters=2)
             
-
         for unknown_face_encoding in unknowns_faces_encodings:
-
             print("[Trying to know student]")
 
             for student in self.__students:
-                
                 print("[Comparing with : ", student["name"], "]")
                 student_face_encodings = student["face_encodings"]
 
