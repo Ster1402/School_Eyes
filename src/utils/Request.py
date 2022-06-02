@@ -12,7 +12,6 @@
                         },
                         ...
                 ],
-                socket_id : <id_du_socketio>,
                 finish_hour : <heure_de_fin>
         }
 """

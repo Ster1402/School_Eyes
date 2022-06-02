@@ -4,23 +4,24 @@ from pprintpp import pprint
 
 class ListFormatter:
 
-    def __init__(self, attendance_list) -> None:
-        self.__attendance_list: dict = attendance_list
-        print("[Unformatted List] : ")
-        pprint(attendance_list)
+    def __init__(self, request) -> None:
+        self.__request: dict = request
 
     def FormattedList(self, data):
         
         #Response : attendance list
         res = {
-            "level" : self.__attendance_list.get("level"),
-            "classroom" : self.__attendance_list.get("classroom"),
-            "teacher" : self.__attendance_list.get("teacher"),
-            "concerned_disciplines" : self.__attendance_list.get("disciplines"),
+            "level" : self.__request.get("level"),
+            "classroom" : self.__request.get("classroom"),
+            "teacher" : self.__request.get("teacher"),
+            "concerned_disciplines" : self.__request.get("disciplines"),
             "disciplines" : dict()
         }
 
         entry_number = len(data)
+        
+        print("[Unformatted List] : ")
+        pprint(data)
 
         #We construct the attendance per discipline and axe
         for entry in data:
@@ -41,6 +42,7 @@ class ListFormatter:
                 if student not in res["disciplines"][discipline_name][axe_name]:
                     student["attendance_percentage"] = (1 / entry_number) * 100
                     res["disciplines"][discipline_name][axe_name].add(student)
+                    
                 else:
                     ind = list(res["disciplines"][discipline_name][axe_name]).index(student)
                     new_student = list(res["disciplines"][discipline_name][axe_name])[ind]

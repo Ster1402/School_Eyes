@@ -20,7 +20,7 @@
    <string>School Eyes</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="src/res.qrc">
+   <iconset>
     <normaloff>:/logo/images/SchoolEyes_Logo.ico</normaloff>:/logo/images/SchoolEyes_Logo.ico</iconset>
   </property>
   <property name="windowOpacity">
@@ -868,7 +868,7 @@ background-repeat: no-repeat;
 </string>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="page_home">
              <property name="layoutDirection">

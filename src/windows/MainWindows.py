@@ -1,10 +1,13 @@
 
 import hashlib
+import json
+import os
+from pprint import pprint
 import re
-from time import sleep
+from time import ctime, sleep
 
 from PyQt5 import QtCore
-from PyQt5.QtCore import QPropertyAnimation, QMutex, QObject, QThread, pyqtSignal
+from PyQt5.QtCore import QPropertyAnimation, QThread
 from PyQt5.QtWidgets import (
     QMainWindow, 
     QTableWidgetItem, 
@@ -12,14 +15,20 @@ from PyQt5.QtWidgets import (
     QPushButton, 
     QDialog,
     QFileDialog)
+
 import cv2
-from DialogStudent import DiaglogStudent
+from src.windows.DialogStudent import DiaglogStudent
+from src.windows.DialogRequestParams import DiaglogRequestParams
+
+from src.windows_ui.UI_MainWindows import Ui_MainWindow
 
 from src.database.db import DB, DisciplineModel, StudentModel
 from src.model.Classroom import Classroom
-from UI_MainWindows import Ui_MainWindow
 from src.model.Student import Student
 from src.utils.Worker import Worker
+from src.utils.FaceReconizer import FaceReconizer
+from src.utils.ListFormatter import ListFormatter
+from src.utils.Request import Request
                         
 class MainWindows(Ui_MainWindow, QMainWindow):
 
@@ -151,13 +160,12 @@ please make sure that the informations provide are correct."))
         #
         # --> Page Cameras
         #
-        self.btn_add_camera.clicked.connect(lambda: self._addCamera())
-        self.new_camera_url.returnPressed.connect(lambda: self._addCamera())
+        self.btn_add_camera.clicked.connect(self._addCamera)
+        self.new_camera_url.returnPressed.connect(self._addCamera)
         self.btn_delete_camera.clicked.connect(lambda: self._deleteCamera())
-        self.btn_try_cameras.clicked.connect(lambda: self._tryCameras())
+        self.btn_try_cameras.clicked.connect(self._tryCameras)
         self.select_classroom.currentTextChanged.connect(lambda classroom: self._updateCamerasList(classroom))
-        
-        
+             
     def __initialize_pages_data(self):
 
         #
@@ -177,6 +185,8 @@ please make sure that the informations provide are correct."))
 
         classroom_name = self.select_classroom.currentText()
         self._updateCamerasList(classroom_name)
+
+        self.recognition_launched = False
 
         #
         # --> Page Settings
@@ -383,8 +393,7 @@ please make sure that the informations provide are correct."))
         if errors:
             raise ValueError(' \n- '.join(errors))
 
-    def threadAddStudent(self):
-        
+    def threadAddStudent(self):      
         QMessageBox.information(self, self._translate("Title", "Add Student"),
                                 self._translate("InfoMessage", "Adding new student... !"))
 
@@ -561,8 +570,159 @@ please make sure that the informations provide are correct."))
         QMessageBox.critical(self, self._translate("Title", "Error"),
                                 self._translate("ErrorMessage", error))
     
+    def _getParamsForVideoReconignition(self):
+        
+        request = dict()
+        
+        self.dialogRequestParams = DiaglogRequestParams(self)
+        
+        if self.dialogRequestParams.exec() != QDialog.Accepted:
+            return
+        
+        request = self.dialogRequestParams.request
+
+        return Request(id=self.admin_connected[0],
+                teacher=self.admin_connected[1],
+                classroom=request.get("classroom"),
+                course="Local Recognition",
+                disciplines=request.get("disciplines"),
+                level=request.get("level"))
+        
+    def __setRecognitionLaunched(self, value):
+        self.recognition_launched = value
+    
+    def launchRecognition(self):
+        
+        if self.recognition_launched:
+            return
+        
+        #Get Recognition parameters
+        request = self._getParamsForVideoReconignition()
+        url = self.new_camera_url.text()
+        if not url:
+            self.printError("No video selected !")
+            return 
+        
+        self.btn_try_cameras.setEnabled(False)
+        self.btn_add_camera.setEnabled(False)
+        
+        self.recognition_launched = True
+        
+        #Launch thread
+        self.reconizer_worker = Worker(lambda: self._videoReconignition(url, request))
+        self.reconizer_thread = QThread()
+        
+        self.reconizer_worker.moveToThread(self.reconizer_thread)
+        
+        self.reconizer_thread.started.connect(self.reconizer_worker.run)
+        self.reconizer_worker.finished.connect(self.reconizer_thread.quit)
+        self.reconizer_worker.finished.connect(lambda: self.__setRecognitionLaunched(False))
+        self.reconizer_worker.finished.connect(self.reconizer_worker.deleteLater)
+        self.reconizer_worker.error_occured.connect(self.printError)
+
+        # Start the thread
+        self.reconizer_thread.start()
+        QMessageBox.information(self, self._translate("Title", "Started"),
+                                self._translate("InfoMessage", "The recognition process started..."))
+
+        
+    
+    def _videoReconignition(self, url, request: Request):
+        assert isinstance(url, str)
+        
+        if not os.path.exists(url):
+            raise ValueError("[Error] The video doesn't exist !")
+        
+        try:
+            video = cv2.VideoCapture(url)
+
+            #Utils
+            __face_reconizer = FaceReconizer(concerned_disciplines=request.get("disciplines"),
+                                             level= request.get("level"))
+            __list_formatter = ListFormatter(request)
+
+            result: list = []        
+            students: set = {}
+
+            start_time = ctime()
+
+            while video.isOpened():
+
+                is_frame_ready, frame = video.read()
+                
+                if is_frame_ready:
+                    
+                    try:
+                        frame = cv2.resize(frame, (0,0), fx= 0.25, fy= 0.25)    
+                        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                    except:
+                        pass
+                    
+                    students_detected: set = __face_reconizer.StudentsDetected(frame)
+
+                    if students_detected:
+                        temp = []
+                        temp.extend(students_detected)
+                        temp.extend(students) 
+                        
+                        students = set(temp) #We add students
+                
+                    else:
+
+                        if students:
+                            #When we are done looking for students for a period of time
+                            time = ctime()
+                            result.append({
+                                "time": time,
+                                "students": set(students)
+                            })
+
+                        students = {}
+
+                    sleep(.2)
+                    #Restart the timer eventually
+                else:
+                    break
+            
+            end_time = ctime()
+
+            attendance_list = __list_formatter.FormattedList(result)
+
+            attendance_list["start_time"] = start_time
+            attendance_list["end_time"] = end_time
+            attendance_list["course"] = request["course"]
+
+            print("Attendance List : ")
+            pprint(attendance_list)
+
+            #Save attendance_list
+            ROOT_DIR = os.path.dirname( os.path.dirname(__file__))
+            FILE_ATTENDANCE_LIST = os.path.join(ROOT_DIR, "log/", f"attendance_list_{ctime()}.txt")
+            
+            try:
+                with open(FILE_ATTENDANCE_LIST, "w") as f:
+                    f.write( f"""\n ================ Attendance list {ctime()}======================== \n"""
+                        + json.dumps(attendance_list, indent=4)
+                    )
+                    
+            except:
+                raise ValueError("Coudn't save the attendance list from the video, sorry :(")
+            
+        except: 
+            raise ValueError("Something uninspect occur :(")
+    
+    def setCameraRunning(self, value):
+        self.camera_is_running = value
+    
     def _tryCameras(self):
         selectedItems = self.table_camera.selectedItems()
+
+        if self.camera_is_running:
+            QMessageBox.warning(self, self._translate("Title", "Camera already running"),
+                                self._translate("WarningMessage", "There is already a camera running !"))
+            return
+
+        self.camera_is_running = True
 
         if not selectedItems:
             QMessageBox.warning(self, self._translate("Title", "Empty selection"),
@@ -586,6 +746,7 @@ please make sure that the informations provide are correct."))
         
         self.try_camera_thread.started.connect(self.try_camera_worker.run)
         self.try_camera_worker.finished.connect(self.try_camera_thread.quit)
+        self.try_camera_worker.finished.connect(lambda: self.setCameraRunning(False))
         self.try_camera_worker.finished.connect(self.try_camera_worker.deleteLater)
         self.try_camera_worker.error_occured.connect(self.printError)
 
@@ -641,6 +802,46 @@ please make sure that the informations provide are correct."))
         assert isinstance(classroom_name, str)
         
         self.table_camera.clearContents()
+        
+        if classroom_name == "Local File":
+            self.label_add_camera.setText(self._translate("Label", "Path"))
+            self.new_camera_url.setEnabled(False)
+            self.btn_delete_camera.setEnabled(False)
+            self.btn_try_cameras.setEnabled(False)
+            self.btn_try_cameras.setText(self._translate("Button", "Start"))
+            if self.recognition_launched:
+                self.btn_try_cameras.setText(self._translate("Button", "Running..."))
+                self.btn_try_cameras.setEnabled(False)
+                
+            self.btn_add_camera.setText(self._translate("Button", "Select"))
+            
+            try:
+                self.btn_try_cameras.clicked.connect(self.launchRecognition)
+                self.btn_try_cameras.clicked.disconnect(self._tryCameras)
+                self.btn_add_camera.clicked.disconnect(self._addCamera)
+                self.btn_add_camera.clicked.connect(self.chooseVideoToReconize)
+            except:
+                pass
+            
+            return
+        
+        else:
+            self.label_add_camera.setText(self._translate("Label", "Add new camera URL"))
+            self.new_camera_url.setEnabled(True)
+            self.btn_delete_camera.setEnabled(True)
+            self.btn_try_cameras.setEnabled(True)
+            self.btn_try_cameras.setText(self._translate("Button", "Try"))
+            self.btn_add_camera.setText(self._translate("Button", "Add"))
+            
+            try:
+                self.btn_try_cameras.clicked.disconnect(self.launchRecognition)
+                self.btn_try_cameras.clicked.connect(self._tryCameras)
+                self.btn_add_camera.clicked.connect(self._addCamera)
+                self.btn_add_camera.clicked.disconnect(self.chooseVideoToReconize)
+            
+            except:
+                pass
+            
         classroom = Classroom(classroom_name)
         cameras = classroom.getCameras()
         
@@ -673,6 +874,21 @@ please make sure that the informations provide are correct."))
         
         self.new_camera_url.clear()
             
+    def chooseVideoToReconize(self):
+        files = QFileDialog.getOpenFileName(self,
+                                     "Select one file to open",
+                                     "",
+                                     "Videos (*.mp4 *.mkv *.avi)")
+        
+        try:
+            video_path = files[0].replace("/", "\\")
+        
+            if video_path:
+                self.btn_try_cameras.setEnabled(True)
+                self.new_camera_url.setText(video_path)    
+        except:
+            pass
+
     
     def _addCamera(self):
         
