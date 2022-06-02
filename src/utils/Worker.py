@@ -2,9 +2,7 @@
 import hashlib
 import re
 from time import sleep
-from PyQt5.QtCore import QMutex, QObject, pyqtSignal
-
-mutex = QMutex()
+from PyQt5.QtCore import QObject, pyqtSignal
 
 class Worker(QObject):
     finished = pyqtSignal()
@@ -15,11 +13,9 @@ class Worker(QObject):
         self.function = func
     
     def run(self):
-        mutex.lock()
         try:
             self.function()
         except ValueError as err:
             self.error_occured.emit(str(err))
             
-        mutex.unlock()
         self.finished.emit()

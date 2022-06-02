@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from ListBoxWidget import ListBoxWidget
+from src.components.ListBoxWidget import ListBoxWidget
 
 
 class Ui_Dialog(object):

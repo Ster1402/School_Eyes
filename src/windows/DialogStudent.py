@@ -1,6 +1,6 @@
 
 from src.utils.Worker import Worker
-from UI_DialogStudent import Ui_Dialog
+from src.windows_ui.UI_DialogStudent import Ui_Dialog
 from PyQt5.QtWidgets import QDialog, QMessageBox, QFileDialog
 from src.database.db import DisciplineModel, StudentModel
 from PyQt5.QtCore import QCoreApplication, QThread
