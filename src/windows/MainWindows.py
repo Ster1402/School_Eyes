@@ -588,8 +588,16 @@ please make sure that the informations provide are correct."))
                 disciplines=request.get("disciplines"),
                 level=request.get("level"))
         
-    def __setRecognitionLaunched(self, value):
-        self.recognition_launched = value
+    def __setRecognitionLaunched(self, ok):
+        self.recognition_launched = ok
+        
+        if not ok:
+            if self.new_camera_url.text().endswith((".mp4", ".mkv", ".avi")):
+                self.btn_try_cameras.setText(self._translate("Button", "Start"))
+                self.new_camera_url.clear()
+            
+            QMessageBox.information(self, self._translate("Title", "Success"),
+                                self._translate("Info","The attendance is ready\nPath: src/logs/"))
     
     def launchRecognition(self):
         
@@ -604,6 +612,7 @@ please make sure that the informations provide are correct."))
             return 
         
         self.btn_try_cameras.setEnabled(False)
+        self.btn_try_cameras.setText(self._translate("Button", "Running..."))
         self.btn_add_camera.setEnabled(False)
         
         self.recognition_launched = True
@@ -679,7 +688,7 @@ please make sure that the informations provide are correct."))
 
                         students = {}
 
-                    sleep(.2)
+                    # sleep(.2)
                     #Restart the timer eventually
                 else:
                     break
@@ -696,20 +705,26 @@ please make sure that the informations provide are correct."))
             pprint(attendance_list)
 
             #Save attendance_list
-            ROOT_DIR = os.path.dirname( os.path.dirname(__file__))
-            FILE_ATTENDANCE_LIST = os.path.join(ROOT_DIR, "log/", f"attendance_list_{ctime()}.txt")
-            
             try:
+                ROOT_DIR = os.path.dirname( os.path.dirname(__file__))
+                LOGS_DIR = os.path.join(ROOT_DIR, 'logs')
+                if not os.path.exists( LOGS_DIR ):
+                    os.makedirs(LOGS_DIR)
+                    
+                time = str(ctime().replace(' ','_').replace(':','-'))
+                FILE_ATTENDANCE_LIST = os.path.join(LOGS_DIR, f"attendance_list_{time}.txt")
+                
                 with open(FILE_ATTENDANCE_LIST, "w") as f:
-                    f.write( f"""\n ================ Attendance list {ctime()}======================== \n"""
+                    f.write( f"""\n ================ Attendance list {time}======================== \n"""
                         + json.dumps(attendance_list, indent=4)
                     )
                     
             except:
+                print("Coudn't save the attendance list from the video, sorry :(")
                 raise ValueError("Coudn't save the attendance list from the video, sorry :(")
             
         except: 
-            raise ValueError("Something uninspect occur :(")
+            raise ValueError(f"Something uninspect occur :(\nTime: {time}")
     
     def setCameraRunning(self, value):
         self.camera_is_running = value
@@ -755,48 +770,48 @@ please make sure that the informations provide are correct."))
 
         
     def tryCamera(self, camera_url):
+            
+        print("[Camera Launched]")
         
-        if not self.camera_is_running:
-            
-            self.btn_try_cameras.setEnabled(False)
-            self.btn_try_cameras.setText("Running...")    
-            self.camera_is_running = True
-            
-            if camera_url == "Webcam":
-                camera_url = 0
+        self.btn_try_cameras.setEnabled(False)
+        self.btn_try_cameras.setText("Running...")    
+        self.camera_is_running = True
         
-            camera = cv2.VideoCapture(camera_url)
+        if camera_url == "Webcam":
+            camera_url = 0
+    
+        camera = cv2.VideoCapture(camera_url)
+        
+        if camera.isOpened():
             
-            if camera.isOpened():
+            while True:
                 
-                while True:
+                is_frame_ready, frame = camera.read()
+                
+                if is_frame_ready:
                     
-                    is_frame_ready, frame = camera.read()
-                    
-                    if is_frame_ready:
+                    cv2.imshow("Camera preview", frame)
                         
-                        cv2.imshow("Camera preview", frame)
-                            
-                    key = cv2.waitKey(20)
-                    
-                    sleep(.01)
-                    
-                    if key == 27: #Esc
-                        break
-                    
-                cv2.destroyWindow("Camera preview")
+                key = cv2.waitKey(20)
+                
+                sleep(.01)
+                
+                if key == 27: #Esc
+                    break
+                
+            cv2.destroyWindow("Camera preview")
 
-            else:
-                self.camera_is_running = False
-                self.btn_try_cameras.setEnabled(True)
-                self.btn_try_cameras.setText("Try")    
-                raise ValueError("Impossible to join the camera, please make sure that the camera or the url is available !")
-            
-            camera.release()
+        else:
             self.camera_is_running = False
             self.btn_try_cameras.setEnabled(True)
             self.btn_try_cameras.setText("Try")    
-    
+            raise ValueError("Impossible to join the camera, please make sure that the camera or the url is available !")
+        
+        camera.release()
+        self.camera_is_running = False
+        self.btn_try_cameras.setEnabled(True)
+        self.btn_try_cameras.setText("Try")    
+
     
     def _updateCamerasList(self, classroom_name: str):
         assert isinstance(classroom_name, str)

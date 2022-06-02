@@ -105,10 +105,12 @@ class FaceReconizer:
                     #We add student if at least 40% of his pictures matches
                     if accurency_percent > 0.4:
                         #Remove face_encodings and pictures
+                        print("[Student Accepted]")
                         s: Student = student.copy()
                         s["discipline_name"] = student["discipline_name"]
                         s["axe_name"] = student["axe_name"]
                         result.add(s)
+                        break
 
         print("[FaceReconizer.StudentsDetected] : done !")
 
