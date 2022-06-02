@@ -102,8 +102,8 @@ class FaceReconizer:
 
                     print(f"Matches : {accurency_percent * 100}%")
 
-                    #We add student if at least 50% of his pictures matches
-                    if number_of_match > 0:
+                    #We add student if at least 40% of his pictures matches
+                    if accurency_percent > 0.4:
                         #Remove face_encodings and pictures
                         s: Student = student.copy()
                         s["discipline_name"] = student["discipline_name"]
